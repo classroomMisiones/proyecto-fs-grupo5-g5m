@@ -1,0 +1,61 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: "IBM Plex Sans", sans-serif;
+}
+
+h1, h2{
+    font-size: 102px;
+    letter-spacing: 7px;
+}
+
+.img-body{
+    width: 650px;
+    height: auto;
+}
+
+p{
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    font-size: 24px;
+}
+.text-descripcion{
+    margin-top: -150px;
+}
+
+/* animacion link registro */
+.row-Link-registro{
+    height: 100px;
+    background-color: crimson;
+}
+.Link-registro{
+    text-decoration: none;
+    font-size: 24px;
+    color: #1e2022; 
+    background-color: #ffc107;
+    padding:10px;
+    border-radius: 5px;
+    position: relative;
+
+    margin-top: 25px;
+    
+    animation: rebote 2s infinite;
+}
+
+@keyframes rebote{
+    0%, 20%, 50%, 80%, 100%{
+    transform: translateY(0);
+    }
+    40%{ 
+    transform: translateY(-20px);
+    }
+    60%{
+    transform: translateY(-10px);
+    }
+}
+
+/* ========================== */

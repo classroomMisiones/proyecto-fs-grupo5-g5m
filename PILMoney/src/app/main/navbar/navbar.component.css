@@ -1,12 +1,14 @@
 :root{
   --bg-a-color: #212529;
 }
-
-
+.imglogo{
+  width: 150px;
+  height: auto;
+}
 
 #navbarNav{
   font-size: 24px;
-  margin-left: 75%;
+  margin-left: 70%;
 }
 /* Estilos y animacion menú */
 ul li{

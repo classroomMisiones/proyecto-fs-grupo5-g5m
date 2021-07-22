@@ -12,6 +12,10 @@ h1, h2{
     font-size: 102px;
     letter-spacing: 7px;
 }
+h2{
+    font-family: mansalva, sans-serif;
+    font-size: 115px;
+}
 
 .img-body{
     width: 650px;

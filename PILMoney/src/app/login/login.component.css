@@ -1,3 +1,11 @@
+html{
+    margin: 0;
+    padding: 0;
+    background-color: #ecf0f3;
+    overflow: hidden;
+    height: 100vh;
+    
+  }
 img {
   
     display: block;
@@ -8,14 +16,12 @@ img {
 * {
     box-sizing: border-box;
   }
-  html,
-  body {
-    background: #ecf0f3;
-  }
+ 
   h1 {
     margin: 0;
     padding: 0;
   }
+  p{margin-top: 10px;}
   .custom-form {
     min-width: 300px;
     max-width: 60%;

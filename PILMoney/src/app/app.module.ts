@@ -10,6 +10,7 @@ import { BodyComponent } from './main/body/body.component';
 import { RegistroUsuarioComponent } from './registro-usuario/registro-usuario.component';
 import { FormularioComponent } from './registro-usuario/formulario/formulario.component';
 import { LoginComponent } from './login/login.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -28,7 +29,8 @@ import { LoginComponent } from './login/login.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

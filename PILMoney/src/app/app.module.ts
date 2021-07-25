@@ -9,6 +9,7 @@ import { FooterComponent } from './main/footer/footer.component';
 import { BodyComponent } from './main/body/body.component';
 import { RegistroUsuarioComponent } from './registro-usuario/registro-usuario.component';
 import { FormularioComponent } from './registro-usuario/formulario/formulario.component';
+import { LoginComponent } from './login/login.component';
 
 
 
@@ -21,6 +22,7 @@ import { FormularioComponent } from './registro-usuario/formulario/formulario.co
     BodyComponent,
     RegistroUsuarioComponent,
     FormularioComponent,
+    LoginComponent,
     
 
   ],

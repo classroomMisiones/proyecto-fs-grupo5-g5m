@@ -1,0 +1,9 @@
+div{
+  position: relative;
+
+}
+.error-container{
+  position: absolute;
+  top: -150%;
+  left: 50%;
+}

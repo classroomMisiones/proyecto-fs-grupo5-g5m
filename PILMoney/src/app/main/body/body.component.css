@@ -6,6 +6,8 @@
 
 body{
     font-family: "IBM Plex Sans", sans-serif;
+    position: absolute;
+    z-index:-1;
 }
 
 h1, h2{

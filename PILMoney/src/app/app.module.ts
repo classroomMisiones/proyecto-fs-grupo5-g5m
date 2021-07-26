@@ -10,7 +10,7 @@ import { BodyComponent } from './main/body/body.component';
 import { RegistroUsuarioComponent } from './registro-usuario/registro-usuario.component';
 import { FormularioComponent } from './registro-usuario/formulario/formulario.component';
 import { LoginComponent } from './login/login.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -24,13 +24,14 @@ import { FormsModule } from '@angular/forms';
     RegistroUsuarioComponent,
     FormularioComponent,
     LoginComponent,
-    
+
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

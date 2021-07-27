@@ -1,26 +1,42 @@
-<html>
-  <div>
+<html> 
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Botón de Luz de Neón con CSS</title>
+    <link rel="stylesheet" href="error.component.css">
+  </head>
+<div>
   <style>
     
   </style>  
     
-    <div class="error_agustin">
+    <div class="error_agustin_5">
       <h1 id="Error">¡CHAKE!</h1>
     </div>
      
     <div class="error_agustin_2"> 
-      <img src="http://2.bp.blogspot.com/-ObpuRKspYT0/UUiiInRFvyI/AAAAAAAAAEM/zg3Sk39PnNg/s1600/custom-404-error-page-for-blogger%5B2%5D.jpg">
+      <!--  <img src="http://2.bp.blogspot.com/-ObpuRKspYT0/UUiiInRFvyI/AAAAAAAAAEM/zg3Sk39PnNg/s1600/custom-404-error-page-for-blogger%5B2%5D.jpg"> -->
+      <img src="../../../assets/images/chochan.png">
     </div>
     
-    <div class="error_agustin_3"> 
+    <div class="error_agustin_5"> 
       <h2>Página no encontrada.</h2>
     </div>
     
+    
+      
+  
+
     <div class="error_agustin_4">
-      <br>
-      <a  [routerLink]="'/main'"><button >Volver</button></a>
+      <!-- <a  [routerLink]="'/main'"><button >Volver a Inicio</button></a> -->
+      <a [routerLink]="'/main'" class="btn-neon">
+        <span id="span1"></span>
+        <span id="span2"></span>
+        <span id="span3"></span>
+        <span id="span4"></span>
+        VOLVER A INICIO
+    </a>
       <p>(Ahhrre... ¿qué le pasaba?))</p>
-      <br>
     </div>
     
   </div>

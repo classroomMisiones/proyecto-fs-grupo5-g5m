@@ -8,7 +8,7 @@ import { RegistroUsuarioComponent } from './registro-usuario/registro-usuario.co
 
 const routes: Routes = [
 
-  { path: 'main', component: BodyComponent, pathMatch:'full' },
+  { path: '', component: BodyComponent, pathMatch:'full' },
   { path: "login", component: LoginComponent, pathMatch: "full" },
   { path: "registro", component: RegistroUsuarioComponent, pathMatch: "full" },
   { path:'**', component:ErrorComponent }

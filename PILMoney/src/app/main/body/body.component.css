@@ -1,7 +1,16 @@
+html{
+    margin: 0;
+    padding: 0;
+    background-color: #ecf0f3;
+    overflow: hidden;
+    height: 100vh;
+    
+  }
 *{
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    padding-bottom: 1%;
 }
 
 body{

@@ -7,8 +7,8 @@ import { ErrorComponent} from './error/error.component';
 import { RegistroUsuarioComponent } from './registro-usuario/registro-usuario.component'
 
 const routes: Routes = [
-  
-  { path: 'iniciobody', component: BodyComponent, pathMatch:'full' },
+
+  { path: 'main', component: BodyComponent, pathMatch:'full' },
   { path: "login", component: LoginComponent, pathMatch: "full" },
   { path: "registro", component: RegistroUsuarioComponent, pathMatch: "full" },
   { path:'**', component:ErrorComponent }

@@ -5,16 +5,35 @@
 
 <div class="login">
 
-  <form class="custom-form" method="post">
+  <!--<form class="custom-form" method="post">
     <h1>Login</h1>
     <input type="email" [(ngModel)]="email" name="email" placeholder="Email" required="required" />
     <input type="password" [(ngModel)]="password" name="password" placeholder="Contraseña" required="required" />
-    <button type="submit" (click)="login()">Ingresar</button>
+    <button type="submit" (click)="login()" >Ingresar</button>
+    <div class="form-group">
+      <p> <a [routerLink]="'/forgot-password'" style='color: #1dca73'>Recuperar contraseña</a></p>
+    </div>
+  </form> -->
+  <form class="custom-form" [formGroup]="form">
+    <h1>Login</h1>
+    <input type="email" name="email" placeholder="Email" formControlName="email" />
+    <div class="alert-danger" *ngIf="email!.invalid && (email!.dirty || email!.touched)">
+      <div class="container-error-message" *ngIf="email!.errors!.required"> Email requerido </div>
+      <div class="container-error-message" *ngIf="email!.invalid && !email!.errors!.required"> Ingrese un email valido </div>
+    </div>
+    <input type="password" name="password" placeholder="Contraseña" formControlName="password" />
+    <div class="alert-danger" *ngIf="password!.invalid && (password!.dirty || password!.touched)">
+      <div class="container-error-message" *ngIf="password!.errors!.required"> Contraseña requerida </div>
+      <div class="container-error-message" *ngIf="password!.errors!.minlength"> La contraseña debe tener al menos 8 caracteres </div>
+      <div class="container-error-message" *ngIf="password!.invalid && !password!.errors!.required"> Debe tener letras mayusculas, minusculas y números </div>
+    </div>
+    <button type="submit" [disabled]="!form.valid" >Ingresar</button>
     <div class="form-group">
       <p> <a [routerLink]="'/forgot-password'" style='color: #1dca73'>Recuperar contraseña</a></p>
     </div>
   </form>
-
+       
+            
 </div>
 
 </html>

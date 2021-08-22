@@ -11,6 +11,7 @@ import { RegistroUsuarioComponent } from './registro-usuario/registro-usuario.co
 import { FormularioComponent } from './registro-usuario/formulario/formulario.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NosotrosComponent } from './nosotros/nosotros.component';
 
 
 
@@ -24,6 +25,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     RegistroUsuarioComponent,
     FormularioComponent,
     LoginComponent,
+    NosotrosComponent,
 
 
   ],

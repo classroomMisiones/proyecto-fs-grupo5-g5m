@@ -27,7 +27,7 @@
       <div class="container-error-message" *ngIf="password!.errors!.minlength"> La contraseña debe tener al menos 8 caracteres </div>
       <div class="container-error-message" *ngIf="password!.invalid && !password!.errors!.required"> Debe tener letras mayusculas, minusculas y números </div>
     </div>
-    <button type="submit" [disabled]="!form.valid" >Ingresar</button>
+    <button [disabled]="form.invalid" type="submit" class="btn btn-info" >Ingresar</button>
     <div class="form-group">
       <p> <a [routerLink]="'/forgot-password'" style='color: #1dca73'>Recuperar contraseña</a></p>
     </div>

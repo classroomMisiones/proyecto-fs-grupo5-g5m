@@ -12,6 +12,7 @@ import { FormularioComponent } from './registro-usuario/formulario/formulario.co
 import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NosotrosComponent } from './nosotros/nosotros.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 
@@ -26,6 +27,7 @@ import { NosotrosComponent } from './nosotros/nosotros.component';
     FormularioComponent,
     LoginComponent,
     NosotrosComponent,
+    DashboardComponent,
 
 
   ],

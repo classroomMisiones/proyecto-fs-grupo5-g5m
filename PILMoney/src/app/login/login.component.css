@@ -65,3 +65,4 @@ img {
 .alert-danger {margin-top: 5px;}
 
 .container-error-message { padding: 3px;}
+a.ex2:hover, a.ex2:active {font-size: 150%;}

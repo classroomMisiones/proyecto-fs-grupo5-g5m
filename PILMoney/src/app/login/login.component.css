@@ -62,3 +62,7 @@ img {
     box-shadow: 3px 3px 8px #b1b1b1, -3px -3px 8px #ffffff;
     cursor: pointer;
   }
+.alert-danger {margin-top: 5px;}
+
+.container-error-message { padding: 3px;}
+a.ex2:hover, a.ex2:active {font-size: 150%;}

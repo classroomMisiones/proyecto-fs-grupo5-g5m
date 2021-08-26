@@ -1,26 +1,27 @@
-
-    <nav class="navbar navbar-expand-lg navbar-light bg-light .navbar-toggler">
-        <div class="container-fluid">
-            <a class="navbar-brand" [routerLink]="''">
-                <img src="../../../assets/img/logo3.svg" alt="" width="80px" height="auto" class="imglogo d-inline-block align-text-top">
-            </a>
-
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
+<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand menu-index" [routerLink]="''" routerLinkActive="Active">
+            <img src="../../../assets/img/logo3.svg" alt="" width="80px" height="auto" class="imglogo img-responsive d-inline-block align-text-top">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-navbar" aria-controls="main-navbar" 
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="divmenu collapse navbar-collapse d-sm-inline-flex flex-sm-row-reverse" id="main-navbar">
+            <ul class="navbar-nav flex-grow-1 justify-content-end ">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" [routerLink]="''">Inicio</a>
+                    <a class="nav-link menu-index m-2" aria-current="page" [routerLink]="''">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link"  routerLink="conoce-mas">Conócenos</a>
+                    <a class="nav-link menu-index m-2" routerLink="conoce-mas">Conócenos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" [routerLink]="'/login'">Ingresa</a>
+                    <a class="nav-link menu-index m-2" [routerLink]="'/login'">Ingresa</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link"  routerLink="registro">Registrate</a>
+                    <a class="nav-link menu-index m-2" routerLink="registro">Registrate</a>
                 </li>
-
-                </ul>
-            </div>
+            </ul>
         </div>
-    </nav>
+    </div>
+</nav>

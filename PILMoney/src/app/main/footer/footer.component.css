@@ -3,9 +3,9 @@
   --bg-a-color:#212529;
 }
 
-a{
+a, p{
   position: relative;
-  font-size: 24px;
+  font-size: 20px;
 }
 
 a:before{
@@ -37,3 +37,46 @@ a:after{
 a:hover:before, a:hover:after{
   transform: scaleX(1);
 }
+
+ /* Media Queries */
+  
+/* // X-Small devices (portrait phones, less than 576px)*/
+/*// No media query for `xs` since this is the default in Bootstrap*/
+@media (min-width: 576px) { 
+  
+
+}
+@media (min-width: 768px) { 
+  .imglogo{
+    width: 130px;
+    height: auto;
+  }
+}
+@media (min-width: 992px) { 
+ 
+}
+@media (min-width: 1200px) {  
+  a, p{ 
+    font-size: 20px;
+  }
+}
+@media (min-width: 1400px) { 
+
+}
+  /*
+  
+  @media (min-width: 576px) { 
+  
+  }
+  @media (min-width: 768px) { 
+  
+  }
+  @media (min-width: 992px) { 
+  
+  }
+  @media (min-width: 1200px) {  
+
+  }
+  @media (min-width: 1400px) { 
+  
+  }*/

@@ -6,14 +6,11 @@
   height: auto;
 }
 
-#navbarNav{
-  font-size: 24px;
-  margin-left: 60%;
+ul{
+     
+  font-size: 20px;
 }
-/* Estilos y animacion menú */
-ul li{
-    list-style: none;
-}
+
 
 ul li a{
     text-decoration: none;
@@ -49,3 +46,15 @@ ul li a{
   ul li a:hover:before, ul li a:hover:after{
     transform: scaleX(1);
   }
+
+  /* Media Queries */
+  
+/* // X-Small devices (portrait phones, less than 576px)*/
+/*// No media query for `xs` since this is the default in Bootstrap*/
+@media (max-width: 575px) { 
+  ul{
+    margin-left: 70%;
+    font-size: 18px;
+    
+  }
+}

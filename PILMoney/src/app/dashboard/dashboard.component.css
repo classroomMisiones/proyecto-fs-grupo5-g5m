@@ -147,3 +147,29 @@ body{
     grid-area: footer;
   /*  grid-column: span 4;*/
 }
+@media only screen and (max-width: 890px) {
+    .container{
+        grid-template-areas: "header header header header "
+                             "pesos pesos pesos pesos "
+                             " widget-1 widget-2 widget-3 widget-4"
+                             "sidebar sidebar sidebar sidebar"
+                             "crypto crypto  crypto  crypto "
+                             "widget-5 widget-6  widget-9  widget-9 "
+                             "widget-7 widget-8  widget-9  widget-9 "
+                            "footer footer footer footer";
+    }
+}
+
+@media only screen and (max-width: 700px)  {
+    
+   .container{
+        grid-template-areas: "header header header "
+                             "pesos  widget-1 widget-2"                   
+                             "pesos widget-3 widget-4"
+                             "sidebar sidebar sidebar"
+                             "crypto widget-5 widget-6 "
+                             "widget-7   widget-9 widget-9"
+                             "widget-8  widget-9 widget-9"
+                            "footer footer footer ";
+    }
+}

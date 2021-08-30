@@ -13,43 +13,49 @@ body{
 }
 
 h1{
-    font-size: 102px;
-    letter-spacing: 7px;
+    font-size: 35px;
+    margin-top: 10px;
 }
+
 h2{
     font-family: "mansalva", sans-serif;
-    font-size: 115px;
+    font-size: 38px;
     letter-spacing: 5px;
 }
 
 .img-body{
-    width: 650px;
+    width: 200px;
     height: auto;
 }
 
 p{
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-weight: 400;
-    font-size: 24px;
-    letter-spacing: 5px;
+    font-size: 14px;
+    letter-spacing: 3px;
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
 }
+
 .text-descripcion{
-    margin-top: -150px;
-    margin-bottom: 20px;
+    margin-top: 15px;
+    margin-bottom: 25px;
 }
 
 /* animacion link registro */
 .row-Link-registro{
-    height: 100px;
+    height: 70px;
     width: 100%;
     background-color: #dc143c;
 }
 .rebote{
     animation: rebote 2s infinite;
 }
+
 .Link-registro{
+    font-family: 'Roboto', sans-serif;
     text-decoration: none;
-    font-size: 24px;   
+    font-size: 14px;   
     padding:10px;
     border-radius: 5px;
     position: relative;
@@ -73,49 +79,95 @@ p{
 /* ========================== */
   /* Media Queries */
   
-/* // X-Small devices (portrait phones, less than 576px)*/
-/*// No media query for `xs` since this is the default in Bootstrap*/
-@media (max-width: 575px) { 
+
+
+@media (min-width: 768px) { 
     h1{
-        font-size: 35px;
-        margin-top: 10px;
+        font-size: 60px;
+        letter-spacing: 7px;
     }
     h2{
-        font-size: 38px;
+        font-size: 70px;
+        letter-spacing: 5px;
     }
+    
     .img-body{
-        width: 200px;
+        width: 350px;
         height: auto;
     }
+    
     p{
-        font-weight: 400;
-        font-size: 18px;
+        font-size: 24px;
+        letter-spacing: 3px;
+        margin-top: 15rem;
     }
     .text-descripcion{
-        margin-top: 15px;
-        margin-bottom: 25px;
-    }
+        margin-top: -170px;
+        margin-bottom: 20px;
+    }   
     .row-Link-registro{
-        height: 70px;
-        width: 100%;
+        height: 5.5rem;        
     }
+    
     .Link-registro{
-        font-size: 18px;
+        font-size: 24px;   
     }
 }
 
-@media (min-width: 576px) { 
-  
-}
-@media (min-width: 768px) { 
 
-}
 @media (min-width: 992px) { 
-
+    h1{
+        font-size: 90px;
+        letter-spacing: 7px;
+    }
+    h2{
+        font-size: 100px;
+        letter-spacing: 5px;
+    }
+    
+    .img-body{
+        width: 500px;
+        height: auto;
+    }
+    
+    p{
+        font-size: 24px;
+    }
+    .text-descripcion{
+        margin-top: -190px;
+        margin-bottom: 20px;
+    }
+    
+    /* animacion link registro */
+    .Link-registro{
+        font-size: 30px;   
+    }
 }
 @media (min-width: 1200px) {  
-
-}
-@media (min-width: 1400px) { 
-
+    h1{
+        font-size: 102px;
+        letter-spacing: 7px;
+    }
+    h2{
+        font-size: 115px;
+        letter-spacing: 5px;
+    }
+    
+    .img-body{
+        width: 750px;
+        height: auto;
+    }
+    
+    p{
+        font-size: 24px;
+    }
+    .text-descripcion{
+        margin-top: -435px;
+        margin-bottom: 20px;
+    }
+    
+    /* animacion link registro */
+    .Link-registro{
+        font-size: 24px;   
+    }
 }

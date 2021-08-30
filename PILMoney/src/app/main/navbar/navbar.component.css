@@ -2,15 +2,14 @@
   --bg-a-color: #212529;
 }
 .imglogo{
-  width: 150px;
+  width: 100px;
   height: auto;
 }
 
 ul{
-     
-  font-size: 20px;
+  margin-left: 70%;
+  font-size: 18px;
 }
-
 
 ul li a{
     text-decoration: none;
@@ -51,10 +50,13 @@ ul li a{
   
 /* // X-Small devices (portrait phones, less than 576px)*/
 /*// No media query for `xs` since this is the default in Bootstrap*/
-@media (max-width: 575px) { 
+
+@media (min-width: 576px) { 
   ul{
-    margin-left: 70%;
-    font-size: 18px;
-    
+    font-size: 20px;
+  }
+  .imglogo{
+    width: 150px;
+    height: auto;
   }
 }

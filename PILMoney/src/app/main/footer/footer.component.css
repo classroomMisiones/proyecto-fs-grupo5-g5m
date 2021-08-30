@@ -2,10 +2,10 @@
 :root{
   --bg-a-color:#212529;
 }
-
 a, p{
   position: relative;
-  font-size: 20px;
+  font-size: 16px;
+  margin: 0;
 }
 
 a:before{
@@ -42,41 +42,14 @@ a:hover:before, a:hover:after{
   
 /* // X-Small devices (portrait phones, less than 576px)*/
 /*// No media query for `xs` since this is the default in Bootstrap*/
-@media (min-width: 576px) { 
-  
 
-}
 @media (min-width: 768px) { 
   .imglogo{
     width: 130px;
     height: auto;
   }
-}
-@media (min-width: 992px) { 
- 
-}
-@media (min-width: 1200px) {  
-  a, p{ 
+  a, p{
+    position: relative;
     font-size: 20px;
   }
 }
-@media (min-width: 1400px) { 
-
-}
-  /*
-  
-  @media (min-width: 576px) { 
-  
-  }
-  @media (min-width: 768px) { 
-  
-  }
-  @media (min-width: 992px) { 
-  
-  }
-  @media (min-width: 1200px) {  
-
-  }
-  @media (min-width: 1400px) { 
-  
-  }*/

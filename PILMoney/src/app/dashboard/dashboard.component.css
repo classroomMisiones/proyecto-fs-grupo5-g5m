@@ -61,7 +61,7 @@ ul li a:hover {
     text-shadow: 2px 2px 10px #033247;
  background: #525151;
 }
- .sidebar .sidebar-header h3 span {
+ .sidebar .sidebar-header h4 span {
     
     margin-right: 0.5rem;
 }
@@ -85,7 +85,7 @@ ul li a:hover {
     left: 60px;
 }
 
- #sidebar-toggle:checked ~ .sidebar .sidebar-header h3 span,
+ #sidebar-toggle:checked ~ .sidebar .sidebar-header h4 span,
  #sidebar-toggle:checked ~ .sidebar li span:last-child{
     display: none;
     
@@ -275,7 +275,7 @@ iframe {
     border-radius: 7px;
    
 }
-.activity-card h3{
+.activity-card h4{
     color: #8390a2;
     margin: 1rem;
 }
@@ -325,20 +325,21 @@ tbody tr:nth-child(even){
 
 
 .img-2 img{
-    height: 60px;
-    width: 60px;
+    height: 50px;
+    width: 50px;
     border-radius: 50%;
     margin-left: 2.5px;
-    border: 3px solid #363434;
+    border: 3px solid #918989;
     background-size: cover ;
     background-repeat:no-repeat ;
 }
+
 .img-3 img{
-    height: 60px;
-    width: 60px;
+    height: 50px;
+    width: 50px;
     border-radius: 50%;
     margin-left: 2.5px;
-    border: 3px solid #363434;
+    border: 3px solid #918989;
     background-size: cover ;
     background-repeat:no-repeat ;
 }
@@ -407,7 +408,7 @@ tbody tr:nth-child(even){
         z-index: 150;
     }
    
-     .sidebar .sidebar-header h3 span,
+     .sidebar .sidebar-header h4 span,
      .sidebar li span:last-child{
        display: none;
        
@@ -434,7 +435,7 @@ tbody tr:nth-child(even){
    
 }
 
-#sidebar-toggle:checked ~ .sidebar .sidebar-header h3 span,
+#sidebar-toggle:checked ~ .sidebar .sidebar-header h4 span,
 #sidebar-toggle:checked ~ .sidebar li span:last-child{
    display: inline;
    

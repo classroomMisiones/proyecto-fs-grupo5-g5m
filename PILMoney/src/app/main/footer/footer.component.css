@@ -2,10 +2,10 @@
 :root{
   --bg-a-color:#212529;
 }
-
-a{
+a, p{
   position: relative;
-  font-size: 24px;
+  font-size: 16px;
+  margin: 0;
 }
 
 a:before{
@@ -36,4 +36,20 @@ a:after{
 
 a:hover:before, a:hover:after{
   transform: scaleX(1);
+}
+
+ /* Media Queries */
+  
+/* // X-Small devices (portrait phones, less than 576px)*/
+/*// No media query for `xs` since this is the default in Bootstrap*/
+
+@media (min-width: 768px) { 
+  .imglogo{
+    width: 130px;
+    height: auto;
+  }
+  a, p{
+    position: relative;
+    font-size: 20px;
+  }
 }

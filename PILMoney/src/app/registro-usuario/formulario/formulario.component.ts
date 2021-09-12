@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder,FormControl, FormGroup, Validators } from '@angular/forms';
-
+import {AbstractControl, ValidationErrors, ValidatorFn} from '@angular/forms';
 @Component({
   selector: 'app-formulario',
   templateUrl: './formulario.component.html',
@@ -16,8 +16,6 @@ export class FormularioComponent implements OnInit {
             nombre:['',Validators.required],
             apellido:['',Validators.required],
             email: new FormControl('', [Validators.required, Validators.minLength(5), Validators.pattern(this.emailPattern)]),
-            dni:['',Validators.required],
-            telefono:['',Validators.required],
             password:['',Validators.required],
           })
         }
@@ -29,5 +27,25 @@ export class FormularioComponent implements OnInit {
     if(this.createRegistro.invalid){
       return;
     }
+  }
+}
+export function createPasswordStrengthValidator(): ValidatorFn {
+  return (control:AbstractControl) : ValidationErrors | null => {
+
+      const value = control.value;
+
+      if (!value) {
+          return null;
+      }
+
+      const hasUpperCase = /[A-Z]+/.test(value);
+
+      const hasLowerCase = /[a-z]+/.test(value);
+
+      const hasNumeric = /[0-9]+/.test(value);
+
+      const passwordValid = hasUpperCase && hasLowerCase && hasNumeric;
+
+      return !passwordValid ? {passwordStrength:true}: null;
   }
 }

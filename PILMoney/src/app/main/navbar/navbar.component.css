@@ -2,17 +2,13 @@
   --bg-a-color: #212529;
 }
 .imglogo{
-  width: 150px;
+  width: 100px;
   height: auto;
 }
 
-#navbarNav{
-  font-size: 24px;
-  margin-left: 60%;
-}
-/* Estilos y animacion menú */
-ul li{
-    list-style: none;
+ul{
+  margin-left: 70%;
+  font-size: 18px;
 }
 
 ul li a{
@@ -49,3 +45,18 @@ ul li a{
   ul li a:hover:before, ul li a:hover:after{
     transform: scaleX(1);
   }
+
+  /* Media Queries */
+  
+/* // X-Small devices (portrait phones, less than 576px)*/
+/*// No media query for `xs` since this is the default in Bootstrap*/
+
+@media (min-width: 576px) { 
+  ul{
+    font-size: 20px;
+  }
+  .imglogo{
+    width: 150px;
+    height: auto;
+  }
+}

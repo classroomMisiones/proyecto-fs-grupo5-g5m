@@ -1,123 +1,346 @@
-<!--<!DOCTYPE html>
-<html>
-<head>
-<style>
-.item0 { grid-area: A; }
-.item1 { grid-area: B; }
-.item2 { grid-area: C; }
-.item3 { grid-area: D; }
-.item4 { grid-area: E; }
-.item5 { grid-area: F; }
-.item6 { grid-area: G; }
-.item7 { grid-area: H; }
-.item8 { grid-area: I; }
 
-
-.grid-container {
-  display: grid;
-  grid-template-columns: 200px 100px auto auto;
-  grid-template-rows: 100px 100px 200px 100px 200px 100px;
-  grid-template-areas:
-    ' A B B B B'
-    'A C C C C'
-    'A D D D D'
-    'A E E E E'
-    'A F F F F'
-    'A G G G  G'
-    'A H H H H'
-    'A I I I I';
-  grid-gap: 10px;
-  background-color: #2196F3;
-  padding: 10px;
-}
-
-.grid-container > div {
-  background-color: rgba(255, 255, 255, 0.8);
-  text-align: left;
-  padding: 20px 0;
-  font-size: 30px;
-}
-</style>
-</head>
-<body>
-
-<div class="grid-container">
-  <div class="item0">A</div>
-  <div class="item1">B</div>
-  <div class="item2">C</div>
-  <div class="item3"><div>D</div></div>  
-  <div class="item4">E</div>  
-  <div class="item5">F</div>
-  <div class="item6">G</div>
-  <div class="item7">H</div>
-  <div class="item8">I</div>
-  
-</div>
-
-</body>
-</html>
--->
-<!DOCTYPE html>
-<html lang="en">
+<html >
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css?family=Robobo" rel="stylesheet">
-  <link rel="stylesheet" href="dashboard.component.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>Document</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
+  
 </head>
 <body>
-    <div class="container">
-        <header class="header">
-          <h2>HEADER</h2>
-        </header>
-        <div class="sidebar">
-        <img src="assets/img/sidebar-2.jpg" alt="fondo">
-            <div class="logo" >
-              <a class="simple-text nav-link" [routerLink]="['']" >
-                KePúa
-              </a>
-              <hr>
+  <input type="checkbox" id="sidebar-toggle">
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <h3 class="brand">
+        <span class="ti-wallet"></span>
+        <span>KePúa</span>
+		
+      </h3> 
+	  
+      <label for = "sidebar-toggle" ><span class="ti-menu-alt"></span></label>
+	 
+    </div>
+	 <hr>
+    <div class="sidebar-menu">
+      <ul>
+        <li>
+          <a href="">
+            <span class="ti-home" ></span>
+            <span>HOME</span>
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <span class="ti-face-smile"></span>
+            <span>Equipo</span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="">
+            <span class="ti-help-alt"></span>
+            <span>Ayuda</span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="">
+            <span class="ti-settings"></span>
+            <span>Cuenta</span>
+          </a>
+        </li>
+		<li>
+          <a href="">
+            <span class="ti-power-off"></span>
+            <span>Logout</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="main-content">
+
+    <header>
+      <div class="search-wrapper">
+        <span class="ti-search">
+          <input type="search" placeholder="Buscar">
+        </span>
+      </div>
+      <div class="social-icons" >
+        <span class="ti-bell"></span>
+        <span class="ti-comment"> </span>
+        <div class="foto-perfil"> <img class="img-responsive" src="assets/img/1.JPG" alt="foto perfil" ></div>
+      </div>
+    </header>
+    <main> 
+      <h2 class="dash-title">Operaciones en Pesos</h2>
+      <div class="dash-cards">
+        <div class="card-single">
+          <div class="card-body">
+            <span class="ti-wallet"></span>
+            <div>
+              <h5>Dinero disponible</h5>
+              <h4>$325.212</h4>
             </div>
           </div>
-        <div class="pesos">
-          <h2>PESOS</h2>
+          <div class="card-footer">
+            <a href="">Retirar Dinero</a>
+          </div>
         </div>
-        <div class="widget-1">
-          <h3>WITGET-1</h3>
+        <div class="card-single">
+          <div class="card-body">
+            <span class="ti-credit-card"></span>
+            <div>
+              <h5>Depositar Dinero</h5>
+              
+            </div>
+          </div>
+          <div class="card-footer">
+            <a href="">Ingrese una suma de dinero</a>
+			
+			
+						
+			
+			
+			
+          </div>
         </div>
-        <div class="widget-2">
-          <h3>WITGET-2</h3>
+        <div class="card-single">
+          <div class="card-body">
+            <span class="ti-check-box"></span>
+            <div>
+              <h5>Operaciones Realizadas</h5>
+             
+            </div>
+          </div>
+          <div class="card-footer">
+            <a href="">Consultar</a>
+          </div>
         </div>
-        <div class="widget-3">
-          <h3>WITGET-3</h3>
+        
+		<div class="card-single">
+          <div class="card-body">
+            <span class="ti-sharethis"></span>
+            <div>
+              <h5>Transferir a otra cuenta</h5>
+              
+            </div>
+          </div>
+          <div class="card-footer">
+            <a href="">Cantidad a enviar</a>
+          </div>
         </div>
-        <div class="widget-4">
-          <h3>WITGET-4</h3>
+		
+      </div>
+	   <h2 class="dash-title">Operaciones con Bitcoins</h2>
+      <div class="dash-cards">
+        <div class="card-single">
+          <div class="card-body">
+            <span class="ti-shopping-cart"></span>
+            <div>
+              <h5>Comprar Bitcoins</h5>
+              <h4>BTC</h4>
+            </div>
+          </div>
+          <div class="card-footer">
+            <a href="">Cantidad a adquirir</a>
+          </div>
         </div>
-        <div class="crypto">
-          <h2>CRYPTO</h2>
+        <div class="card-single">
+          <div class="card-body">
+            <span class="ti-export"></span>
+            <div>
+              <h5>Vender Bitcoins</h5>
+              <h4>BTC</h4>
+            </div>
+          </div>
+          <div class="card-footer">
+            <a href="">Cantidad a vender</a>
+          </div>
         </div>
-        <div class="widget-5">
-          <h3>WITGET-5</h3>
+        <div class="card-single">
+          <div class="card-body">
+            <span class="ti-check-box"></span>
+            <div>
+              <h5>Operaciones Realizadas</h5>
+              
+            </div>
+          </div>
+          <div class="card-footer">
+            <a href="">Ver</a>
+          </div>
         </div>
-        <div class="widget-6">
-          <h3>WITGET-6</h3>
-        </div>
-        <div class="widget-7">
-          <h3>WITGET-7</h3>
-        </div>
-        <div class="widget-8">
-          <h3>WITGET-8</h3>
-        </div>
-        <div class="widget-9">
-          <h3>WITGET-9</h3>
-        </div>
-        <footer class="footer">
-          <h3>FOOTER</h3>
-        </footer>
 
-    </div> 
+        <div class="card-single">
+          <div class="card-body">
+            <span class="ti-eye"></span>
+            <div>
+              <h5>Mostrar comisiones vigentes</h5>
+              
+            </div>
+          </div>
+          <div class="card-footer">
+            <a href="">Consultar</a>
+          </div>
+        </div>
+        
+        
+      </div>
+	  <div class="chart-grid">
+        <div class="chart-followers">
+          <div class="chart-head">
+            <h3>Evolución de BTC vs Peso</h3>
+            <span class="las la-cog"></span>
+          </div>
+          <iframe id="inlineFrameExample"
+          
+          src="https://www.dolarsi.com/bitcoin/">
+      </iframe>
+        </div>
+		 <div class="chart-sales">
+          <div class="chart-head">
+            <h3>Consultar Cotizaciones </h3>
+            <span class="las la-cog"></span>
+          </div>
+          <iframe id="inlineFrameExample"
+          
+          src="https://cotizadordecriptomonedasprueba.netlify.app/">
+      </iframe>
+        </div>
+      </div>
+        
+		
+         <section class="recent">
+            <div class="activity-grid">
+
+              <div class="activity-card">
+
+                <h3>Actividad reciente</h3>
+
+                <table>
+                    <thead>
+                        <tr>
+                          <th>Transacción</th>
+                          <th>Fecha de operación</th>
+                          <th>Fecha de cierre</th>
+                          <th>Moneda</th>
+                          <th>Estatus</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                          <td>Compra</td>
+                          <td>15 July, 2021</td>
+                          <td>22 Aug, 2021</td>
+                          <td class="td-team">
+                            
+                           
+                            <div class="img-3" ><img class="img-responsive" src="assets/img/3.jpg" alt="foto moneda" ></div>
+                          </td>
+                          <td>
+                              <span class="badge success">Realizado</span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Deposito</td>
+                          <td>15 July, 2021</td>
+                          <td>22 Aug, 2021</td>
+                          <td class="td-team">
+                           
+                            <div class="img-2"><img class="img-responsive" src="assets/img/2.jpg" alt="foto moneda" ></div>
+                           
+                          </td>
+                          <td>
+                              <span class="badge warning">Procesando</span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Venta</td>
+                          <td>15 July, 2021</td>
+                          <td>22 Aug, 2021</td>
+                          <td class="td-team">
+                            
+                            <div class="img-3"><img class="img-responsive" src="assets/img/3.jpg" alt="foto moneda" ></div>
+                          </td>
+                          <td>
+                              <span class="badge success">Realizado</span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Transferencia</td>
+                          <td>15 July, 2021</td>
+                          <td>22 Aug, 2021</td>
+                          <td class="td-team">
+                          
+                            <div class="img-2" ><img class="img-responsive" src="assets/img/2.jpg" alt="foto moneda" ></div>
+                         
+                          </td>
+                          <td>
+                              <span class="badge warning">Procesando</span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Compra</td>
+                          <td>15 July, 2021</td>
+                          <td>22 Aug, 2021</td>
+                          <td class="td-team">
+                            
+                            <div class="img-3" ><img class="img-responsive" src="assets/img/3.jpg" alt="foto moneda" ></div>
+                          </td>
+                          <td>
+                              <span class="badge success">Realizado</span>
+                          </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+              </div>
+              <div class="sumary">
+                  <div class="sumary-card">
+                      <div class="sumary-single">
+                        <span class="ti-id-badge"></span>
+                        <div>
+                            <h5>196</h5>
+                            <small>Numero del staff</small>
+                        </div>
+
+                      </div>
+                      <div class="sumary-single">
+                        <span class="ti-calendar"></span>
+                        <div>
+                            <h5>16</h5>
+                            <small>Numero de licencia</small>
+                        </div>
+                      </div>
+                      <div class="sumary-single">
+                        <span class="ti-face-smile"></span>
+                        <div>
+                            <h5>12</h5>
+                            <small>Solicitar actualización del perfil</small>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="bday-card">
+                      <div class="bday-flex">
+                        <div class="bday-img" ><img class="img-responsive" src="assets/img/1.JPG" alt="foto moneda" ></div>
+                        <div class="bday-info">
+                            <h5>Juan Carlos Batman</h5>
+                            <small>Cumpleaños hoy</small>
+                         </div>
+                      </div>
+
+                      <div class="text-center">
+                        <button><span class="ti-gift"></span>
+                          Saludalo
+                        </button>
+                      </div>
+                  </div>
+              </div>
+            </div> 
+         </section>
+    </main>
+  </div>
 </body>
 </html>

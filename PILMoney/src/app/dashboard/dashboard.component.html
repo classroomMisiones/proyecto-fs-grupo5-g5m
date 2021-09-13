@@ -6,12 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>Dashboard</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
-  
+
 </head>
-     
+
 <body>
 
- 
+
 
 
   <input type="checkbox" id="sidebar-toggle">
@@ -20,11 +20,11 @@
       <h4 class="brand">
         <span class="ti-wallet"></span>
         <span>KePúa</span>
-		
-      </h4> 
-	  
+
+      </h4>
+
       <label for = "sidebar-toggle" ><span class="ti-menu-alt"></span></label>
-	 
+
     </div>
 	 <hr>
     <div class="sidebar-menu">
@@ -41,18 +41,19 @@
             <span>Equipo</span>
           </a>
         </li>
-        
+
         <li>
           <a href="">
             <span class="ti-help-alt"></span>
             <span>Ayuda</span>
           </a>
         </li>
-        
+
         <li>
-          <a href="">
+          <a [routerLink]="'/configuracion'">
             <span class="ti-settings"></span>
-            <span>Cuenta</span>
+
+             <span>Cuenta</span>
           </a>
         </li>
 		<li>
@@ -64,11 +65,11 @@
       </ul>
     </div>
   </div>
-       
-          
+
+
 
   <div class="main-content">
-        
+
     <header>
       <div class="search-wrapper">
         <span class="ti-search">
@@ -81,9 +82,9 @@
         <div class="foto-perfil"> <img class="img-responsive" src="assets/img/1.JPG" alt="foto perfil" ></div>
       </div>
     </header>
-    <main> 
+    <main>
 
-                  
+
 
 
       <h2 class="dash-title">Operaciones en Pesos</h2>
@@ -104,14 +105,14 @@
               <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                 Retirar Dinero
               </button>
-              
+
               <!-- Modal -->
               <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
                       <h5 class="modal-title" id="staticBackdropLabel">Dinero a Retirar</h5>
-                      
+
                     </div>
                     <div class="modal-body">
                       <div class="input-group mb-3">
@@ -126,8 +127,8 @@
                     </div>
                   </div>
                 </div>
-              </div> 
-             </div>   
+              </div>
+             </div>
 
 
           </div>
@@ -142,8 +143,8 @@
           </div>
           <div class="card-footer">
             <!--<a href="">Ingrese una suma de dinero</a>-->
-			
-			
+
+
                  <div class="popu">
 
                   <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
@@ -156,7 +157,7 @@
                             <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
                             <span class="input-group-text">.00</span>
                           </div>
-                          
+
                         </div>
                         <div class="modal-body">
                           Realizar la operación
@@ -174,7 +175,7 @@
                           <h5 class="modal-title" id="exampleModalToggleLabel2">Confirmar operación</h5>
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        
+
                         <div class="modal-footer">
                           <button class="btn btn-primary" data-bs-dismiss="modal" data-bs-toggle="modal">Confirmar</button>
                         </div>
@@ -182,20 +183,20 @@
                     </div>
                   </div>
                 <a class="btn btn-primary" data-bs-toggle="modal" href="#exampleModalToggle"   role="button">Realizar Deposito  </a>
-                 </div>   
-			
-			
-			
+                 </div>
+
+
+
           </div>
-              
+
         </div>
-        
+
         <div class="card-single">
           <div class="card-body">
             <span class="ti-check-box"></span>
             <div>
               <h5>Operaciones Realizadas</h5>
-             
+
             </div>
           </div>
           <div class="card-footer">
@@ -203,8 +204,8 @@
 
                   <div class="pop">
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Consultar</button>
-                   
-                   
+
+
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                       <div class="modal-dialog">
                         <div class="modal-content">
@@ -257,13 +258,13 @@
 
           </div>
         </div>
-        
+
 		<div class="card-single">
           <div class="card-body">
             <span class="ti-sharethis"></span>
             <div>
               <h5>Transferir a otra cuenta</h5>
-              
+
             </div>
           </div>
           <div class="card-footer">
@@ -293,20 +294,20 @@
             </h2>
             <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
               <div class="accordion-body">
-                
+
                   <h5 class="modal-title" id="exampleModalToggleLabel">Ingrese CBU</h5>
-                  
+
                   <input class="form-control" type="text" placeholder="CBU" aria-label="CBU">
-                  
+
                   <h5 class="modal-title" id="exampleModalToggleLabel">Dinero a Tranferir</h5>
-                  
+
                   <div class="input-group mb-3">
                     <span class="input-group-text">$</span>
                     <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
                     <span class="input-group-text">.00</span>
                   </div>
                   &nbsp;
-                
+
               </div>
             </div>
           </div>
@@ -324,7 +325,7 @@
                 <input class="form-control" type="text" placeholder="N° DE CUENTA" aria-label="CBU">
                 
                 <h5 class="modal-title" id="exampleModalToggleLabel">Dinero a Tranferir</h5>
-                
+
                 <div class="input-group mb-3">
                   <span class="input-group-text">$</span>
                   <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
@@ -334,7 +335,7 @@
               </div>
             </div>
           </div>
-         
+
         </div>
       </div>
       <div class="modal-footer">
@@ -349,7 +350,7 @@
 
           </div>
         </div>
-		
+
       </div>
 	   <h2 class="dash-title">Operaciones con Bitcoins</h2>
       <div class="dash-cards">
@@ -440,7 +441,7 @@
             <span class="ti-check-box"></span>
             <div>
               <h5>Operaciones Realizadas</h5>
-              
+
             </div>
           </div>
           <div class="card-footer">
@@ -570,8 +571,8 @@
 
           </div>
         </div>
-        
-        
+
+
       </div>
 	  <div class="chart-grid">
         <div class="chart-followers">
@@ -580,7 +581,7 @@
             <span class="las la-cog"></span>
           </div>
           <iframe id="inlineFrameExample"
-          
+
           src="https://www.dolarsi.com/bitcoin/">
       </iframe>
         </div>
@@ -590,13 +591,13 @@
             <span class="las la-cog"></span>
           </div>
           <iframe id="inlineFrameExample"
-          
+
           src="https://cotizadordecriptomonedasprueba.netlify.app/">
       </iframe>
         </div>
       </div>
-        
-		
+
+
          <section class="recent">
             <div class="activity-grid">
 
@@ -620,8 +621,8 @@
                           <td>15 July, 2021</td>
                           <td>22 Aug, 2021</td>
                           <td class="td-team">
-                            
-                           
+
+
                             <div class="img-3" ><img class="img-responsive" src="assets/img/3.jpg" alt="foto moneda" ></div>
                           </td>
                           <td>
@@ -633,9 +634,9 @@
                           <td>15 July, 2021</td>
                           <td>22 Aug, 2021</td>
                           <td class="td-team">
-                           
+
                             <div class="img-2"><img class="img-responsive" src="assets/img/2.jpg" alt="foto moneda" ></div>
-                           
+
                           </td>
                           <td>
                               <span class="badge warning">Procesando</span>
@@ -646,7 +647,7 @@
                           <td>15 July, 2021</td>
                           <td>22 Aug, 2021</td>
                           <td class="td-team">
-                            
+
                             <div class="img-3"><img class="img-responsive" src="assets/img/3.jpg" alt="foto moneda" ></div>
                           </td>
                           <td>
@@ -658,9 +659,9 @@
                           <td>15 July, 2021</td>
                           <td>22 Aug, 2021</td>
                           <td class="td-team">
-                          
+
                             <div class="img-2" ><img class="img-responsive" src="assets/img/2.jpg" alt="foto moneda" ></div>
-                         
+
                           </td>
                           <td>
                               <span class="badge warning">Procesando</span>
@@ -671,7 +672,7 @@
                           <td>15 July, 2021</td>
                           <td>22 Aug, 2021</td>
                           <td class="td-team">
-                            
+
                             <div class="img-3" ><img class="img-responsive" src="assets/img/3.jpg" alt="foto moneda" ></div>
                           </td>
                           <td>
@@ -723,14 +724,14 @@
                       </div>
                   </div>
               </div>
-            </div> 
+            </div>
          </section>
     </main>
-    
+
   </div>
 
 
-  
+
 </body>
 
 </html>

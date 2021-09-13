@@ -13,6 +13,7 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NosotrosComponent } from './nosotros/nosotros.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ConfiguracionComponent } from './configuracion/configuracion.component';
 
 
 
@@ -28,6 +29,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     LoginComponent,
     NosotrosComponent,
     DashboardComponent,
+    ConfiguracionComponent,
 
 
   ],

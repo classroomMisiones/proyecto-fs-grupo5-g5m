@@ -7,27 +7,36 @@ import {AbstractControl, ValidationErrors, ValidatorFn} from '@angular/forms';
   styleUrls: ['./formulario.component.css']
 })
 export class FormularioComponent implements OnInit {
-  private emailPattern: any = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  createRegistro: FormGroup;
-  submitted = false;
-  constructor(private fb: FormBuilder
-        ) {
-          this.createRegistro=this.fb.group({
-            nombre:['',Validators.required],
-            apellido:['',Validators.required],
-            email: new FormControl('', [Validators.required, Validators.minLength(5), Validators.pattern(this.emailPattern)]),
-            password:['',Validators.required],
-          })
-        }
+  //private emailPattern: any = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  //createRegistro: FormGroup;
+  form = this.fb.group({
+    email: ['',{
+      validators:[Validators.required, Validators.email,Validators.minLength(5)],
+      updateOn: 'blur'
+    }],
+    password: ['',[Validators.required, Validators.minLength(8),
+      createPasswordStrengthValidator()]],
+    nombre: ['',[Validators.required, Validators.minLength(8),
+      createPasswordStrengthValidator()]],
+    apellido: ['',[Validators.required, Validators.minLength(8),
+      createPasswordStrengthValidator()]]
+});
 
-  ngOnInit(): void {
-  }
-  registrarse(){
+
+constructor(private fb: FormBuilder){}
+ngOnInit(){}
+get email(){return this.form.get('email');}
+get password(){return this.form.get('password');}
+get nombre(){return this.form.get('nombre');}
+get apellido(){return this.form.get('apellido');}
+
+
+ /* registrarse(){
     this.submitted = true;
     if(this.createRegistro.invalid){
       return;
     }
-  }
+  }*/
 }
 export function createPasswordStrengthValidator(): ValidatorFn {
   return (control:AbstractControl) : ValidationErrors | null => {

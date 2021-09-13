@@ -1,0 +1,125 @@
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
+
+</head>
+
+
+
+
+
+<input type="checkbox" id="sidebar-toggle">
+<div class="sidebar">
+  <div class="sidebar-header">
+    <h4 class="brand">
+      <span class="ti-wallet"></span>
+      <span>KePúa</span>
+
+    </h4>
+
+    <label for = "sidebar-toggle" ><span class="ti-menu-alt"></span></label>
+
+  </div>
+ <hr>
+  <div class="sidebar-menu">
+    <ul>
+      <li>
+        <a href="">
+          <span class="ti-home" ></span>
+          <span>HOME</span>
+        </a>
+      </li>
+      <li>
+        <a href="">
+          <span class="ti-face-smile"></span>
+          <span>Equipo</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="">
+          <span class="ti-help-alt"></span>
+          <span>Ayuda</span>
+        </a>
+      </li>
+
+      <li>
+        <a [routerLink]="'/configuracion'">
+          <span class="ti-settings"></span>
+
+           <span>Cuenta</span>
+        </a>
+      </li>
+  <li>
+        <a href="">
+          <span class="ti-power-off"></span>
+          <span>Logout</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+
+  <div class="main-content">
+
+    <header>
+      <div class="search-wrapper">
+        <span class="ti-search">
+          <input type="search" placeholder="Buscar">
+        </span>
+      </div>
+      <div class="social-icons" >
+        <span class="ti-bell"></span>
+        <span class="ti-comment"> </span>
+        <div class="foto-perfil"> <img class="img-responsive" src="assets/img/1.JPG" alt="foto perfil" ></div>
+      </div>
+    </header>
+    <h1 style="text-align:center">Mi cuenta</h1>
+      <form class="custom-form">
+        <div class="container">
+          <div class="row">
+            <div class="col">
+              <input type="number" name="dni" placeholder="Numero de identificacion" formControlName="dni" max="8"/>
+
+              <input type="tel" name="telefono" placeholder="telefono" formControlName="telefono" />
+
+              <select name="pais">
+                <option value="1">Argentina</option>
+                <option value="2">Brasil</option>
+                <option value="3">Paraguay</option>
+                <option value="3">Uruguay</option>
+              </select>
+
+              <input type="localidad" name="localidad" placeholder="Localidad" formControlName="localidad" />
+            </div>
+            <div class="col">
+              <select name="tipoDocumento" placeholder="Tipo de Documento">
+                <option value="1">DNI</option>
+                <option value="2">Libreta civica</option>
+                <option value="3">Libreta de Enrolamiento</option>
+                <option value="4">Cédula de Identidad</option>
+
+              </select>
+
+              <input type="direccion" name="direccion" placeholder="Direccion" formControlName="direccion" />
+
+              <input type="nroDireccion" name="nroDireccion" placeholder="Nro Direccion" formControlName="nroDireccion" />
+
+              <input type="provincia" name="provincia" placeholder="Provincia" formControlName="provincia" />
+
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center">
+          <button type="submit" class="btn btn-primary">
+              Guardar datos
+          </button>
+
+        </div>
+      </form>
+    </div>

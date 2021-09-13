@@ -158,6 +158,7 @@ ul li a:hover {
      padding: 1rem 3rem;
 
  }
+
  .dash-title {
      color: #1d2231;
      margin-bottom: 1rem;
@@ -172,10 +173,10 @@ ul li a:hover {
  }
  
 
-.dash-cards:hover {
-     transform: translateY(-15px);
-	 box-shadow: 0 12px 16px  rgba(0,0,0,0.2);
- }
+ /*.dash-cards:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 12px 16px  rgba(0,0,0,0.2);
+}*/
 
  .card-single{
      background: #fff;
@@ -454,6 +455,32 @@ tbody tr:nth-child(even){
 
 }
 
+}
+.modal{
+    padding: 20px;
+    transition: none;
+    transform: none;
+    margin-top: 100px;
+    padding-left: 400px;
+    align-items: center;
+}
+.modal-content{
+    padding: 20px;
+    margin-left: 100px;
+    height: 100%;
+}
+.modal-body{
+    padding: 20px;
+    height: 100%;
+    width: 100%;
+}
+.popu a {
+    margin-top: 0px;
+    color: #fff;
+}
+.modal-footer{
+    justify-content: space-between;
+    padding: 20px;
 }
 
 @media only screen and (max-width:860px) {

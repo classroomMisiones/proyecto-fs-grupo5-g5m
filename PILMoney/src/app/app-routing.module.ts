@@ -8,6 +8,7 @@ import { RegistroUsuarioComponent } from './registro-usuario/registro-usuario.co
 import { NosotrosComponent } from './nosotros/nosotros.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ConfiguracionComponent } from './configuracion/configuracion.component';
+import { FaqComponent } from './faq/faq.component';
 
 const routes: Routes = [
 
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path:"nosotros", component: NosotrosComponent, pathMatch: 'full' },
   { path:"dashboard", component: DashboardComponent, pathMatch: 'full' },
   { path:"configuracion", component: ConfiguracionComponent, pathMatch: 'full' },
+  { path:"faq", component: FaqComponent, pathMatch: 'full' },
   { path:'**', component:ErrorComponent }
 
 ];

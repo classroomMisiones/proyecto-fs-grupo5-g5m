@@ -9,5 +9,6 @@ namespace ProyectoWallet.Models
     {
         public int Id_comision { get; set; }
         public string Id_transaccion { get; set; }
+        public string Fecha { get; set; }
     }
 }

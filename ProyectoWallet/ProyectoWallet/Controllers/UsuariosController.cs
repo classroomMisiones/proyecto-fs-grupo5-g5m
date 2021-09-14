@@ -19,14 +19,23 @@ namespace ProyectoWallet.Controllers
         public IHttpActionResult Get()
         {
             DataTable dt = new DataTable();
-            using (SqlConnection conector = new SqlConnection(mi_conexion))
+            try 
             {
-                conector.Open();
-                SqlDataAdapter adaptador = new SqlDataAdapter("SELECT * FROM usuarios", conector);
-                adaptador.Fill(dt);
+                using (SqlConnection conector = new SqlConnection(mi_conexion))
+                {
+                    conector.Open();
+                    SqlDataAdapter adaptador = new SqlDataAdapter("SELECT * FROM usuarios", conector);
+                    adaptador.Fill(dt);
+                }
+                return Ok(dt);
             }
-            return Ok(dt);
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return InternalServerError(e);
+            }
         }
+
 
         // GET: api/Usuario/5
         public DataTable Get(int id)
@@ -47,8 +56,9 @@ namespace ProyectoWallet.Controllers
                 return dt;
                 //return nombre;
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Console.WriteLine(e.Message);
                 return null;
             }
         }
@@ -57,62 +67,52 @@ namespace ProyectoWallet.Controllers
         public void Post([FromBody] Models.Usuario oUsuario)
         {
             string fecha = DateTime.Now.ToString("dd-MM-yyyy");
-            using (SqlConnection conector = new SqlConnection(mi_conexion))
+            try 
             {
-                try
+                using (SqlConnection conector = new SqlConnection(mi_conexion))
                 {
-                    conector.Open();
-                    SqlCommand comando = new SqlCommand();
-                    comando.CommandText = "INSERT INTO usuarios (nombre, apellido, id_email, passw, fecha_passw,nombre_de_usuario ) " +
-                        "VALUES ('" + oUsuario.Nombre + "','" + oUsuario.Apellido + "'," + oUsuario.Id_email + ",'" + oUsuario.Passw + "'," +
-                        " '" + fecha + "', '" + oUsuario.Nombre.Substring(0, 1) + "." + oUsuario.Apellido + "')"; 
-                    comando.Connection = conector;
-                    comando.ExecuteNonQuery();
-                }
-                catch
-                {
+                 
+                        conector.Open();
+                        SqlCommand comando = new SqlCommand();
+                        comando.CommandText = "INSERT INTO usuarios (nombre, apellido, id_email, id_rol, passw, fecha_passw,nombre_de_usuario ) " +
+                            "VALUES ('" + oUsuario.Nombre + "','" + oUsuario.Apellido + "'," + oUsuario.Id_email + ", " + 1 + " ,'" + oUsuario.Passw + "'," +
+                            " '" + fecha + "', '" + oUsuario.Nombre.Substring(0, 1) + "." + oUsuario.Apellido + "')";
+                        comando.Connection = conector;
+                        comando.ExecuteNonQuery();
+                 
                 }
             }
+            catch (Exception e) 
+            {
+                Console.WriteLine(e.Message);
+            }
+            
         }
 
 
         // PUT: api/Usuario/5
         public void Put (int id, [FromBody] Models.Usuario oUsuario)
         {
-            
-            using (SqlConnection conector = new SqlConnection(mi_conexion))
+            string fecha = DateTime.Now.ToString("dd-MM-yyyy");
+            try
             {
-                try
+                using (SqlConnection conector = new SqlConnection(mi_conexion))
                 {
                     conector.Open();
                     SqlCommand comando = new SqlCommand();
-                    comando.CommandText = "UPDATE usuarios SET " +
-                        "nombre = '" + oUsuario.Nombre + "', " +
-                        "apellido = '" + oUsuario.Apellido + "'," +
-                        "dni_numero = " + oUsuario.Dni_numero + " , " +
-                        "id_tipo_dni = " + oUsuario.Id_tipo_dni + " , " +
-                        "direccion = '" + oUsuario.Direccion + "', " +
-                        "nro_direccion = " + oUsuario.Nro_direccion + " , " +
-                        "piso_departamento = '" + oUsuario.Piso_departamento + "', " +
-                        "id_email = " + oUsuario.Id_email + " , " +
-                        "id_telefono = " + oUsuario.Id_telefono + " , " +
-                        "id_pais = " + oUsuario.Id_pais + " , " +
-                        "id_provincia = " + oUsuario.Id_provincia + " , " +
-                        "id_localidad = " + oUsuario.Id_localidad + " , " +
-                        "id_estado_cuenta = " + oUsuario.Id_estado_cuenta + " , " +
-                        "id_rol = " + oUsuario.Id_rol + " , " +
-                        "passw = '" + oUsuario.Passw + "' , " +
-                        "WHERE id_usuario = " + id;
-                    
+                    comando.CommandText = "UPDATE usuarios SET nombre = '" + oUsuario.Nombre + "', apellido = '" + oUsuario.Apellido + "', dni_numero = " + oUsuario.Dni_numero + ", id_tipo_dni = " + oUsuario.Id_tipo_dni + ", direccion = '" + oUsuario.Direccion + "', nro_direccion = " + oUsuario.Nro_direccion + ", piso_departamento = '" + oUsuario.Piso_departamento + "', id_email = " + oUsuario.Id_email + " , id_telefono = " + oUsuario.Id_telefono + " ,  id_pais = " + oUsuario.Id_pais + " , id_provincia = " + oUsuario.Id_provincia + " ,id_localidad = " + oUsuario.Id_localidad + " , id_estado_cuenta = " + oUsuario.Id_estado_cuenta + " , id_rol = " + oUsuario.Id_rol + ", passw = '" + oUsuario.Passw + "', fecha_passw = '" + fecha + "', nombre_de_usuario = '" + oUsuario.Nombre.Substring(0, 1) + "." + oUsuario.Apellido + "'  WHERE id_usuario = " + id;
+
                     comando.Connection = conector;
-                    //comando.ExecuteNonQuery();
-                    comando.BeginExecuteNonQuery();
-                }
-                catch (Exception)
-                {
-                    Console.WriteLine("hola");
+                    comando.ExecuteNonQuery();
+                    //comando.BeginExecuteNonQuery();
                 }
             }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                
+            }
+            
         }
 
         public void Delete(int id)
@@ -125,8 +125,9 @@ namespace ProyectoWallet.Controllers
                     SqlCommand comando = new SqlCommand("DELETE FROM usuarios WHERE id_usuario = " + id, conector);
                     comando.ExecuteNonQuery();
                 }
-                catch 
+                catch (Exception e)
                 {
+                    Console.WriteLine(e.Message);
                 }
                 
             }

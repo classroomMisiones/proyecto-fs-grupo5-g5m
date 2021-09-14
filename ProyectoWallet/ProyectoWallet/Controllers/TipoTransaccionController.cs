@@ -18,18 +18,20 @@ namespace ProyectoWallet.Controllers
         public IHttpActionResult Get()
         {
             DataTable dataTableResultado = new DataTable();
-            using (SqlConnection conector = new SqlConnection(mi_conexion))
+            try 
             {
-                try
+                using (SqlConnection conector = new SqlConnection(mi_conexion))
                 {
-                    conector.Open();
-                    SqlDataAdapter adaptador = new SqlDataAdapter("SELECT * FROM tipo_transaccion", conector);
-                    adaptador.Fill(dataTableResultado);
+                        conector.Open();
+                        SqlDataAdapter adaptador = new SqlDataAdapter("SELECT * FROM tipo_transaccion", conector);
+                        adaptador.Fill(dataTableResultado);
+                    
                 }
-                catch (Exception)
-                {
-                }
+            } 
+            catch (Exception) 
+            { 
             }
+            
             return Ok(dataTableResultado);
         }
 
@@ -78,21 +80,23 @@ namespace ProyectoWallet.Controllers
         // PUT: api/Rol/5
         public void Put(int id, [FromBody] Models.TipoTransaccion oTipoTransaccion)
         {
-            using (SqlConnection conector = new SqlConnection(mi_conexion))
+            try 
             {
-                try
+                using (SqlConnection conector = new SqlConnection(mi_conexion))
                 {
-                    conector.Open();
-                    SqlCommand comando = new SqlCommand();
-                    comando.CommandText = "UPDATE tipo_transaccion SET descripcion = '" + oTipoTransaccion.Descripcion + "',  valor_comision = " + oTipoTransaccion.Valor_comision + " WHERE id_tipo_transaccion = " + id;
-                    comando.Connection = conector;
-                    //comando.BeginExecuteNonQuery();
-                    comando.ExecuteNonQuery();
+                        conector.Open();
+                        SqlCommand comando = new SqlCommand();
+                        comando.CommandText = "UPDATE tipo_transaccion SET descripcion = '" + oTipoTransaccion.Descripcion + "',  valor_comision = " + oTipoTransaccion.Valor_comision + " WHERE id_tipo_transaccion = " + id;
+                        comando.Connection = conector;
+                        //comando.BeginExecuteNonQuery();
+                        comando.ExecuteNonQuery();
+                    
                 }
-                catch (Exception)
-                {
-                }
+            } 
+            catch (Exception) 
+            { 
             }
+            
         }
 
         // DELETE: api/Rol/5

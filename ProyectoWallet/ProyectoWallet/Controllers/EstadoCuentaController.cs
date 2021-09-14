@@ -18,18 +18,20 @@ namespace ProyectoWallet.Controllers
         public IHttpActionResult Get()
         {
             DataTable dataTableResultado = new DataTable();
-            using (SqlConnection conector = new SqlConnection(mi_conexion))
+            try 
             {
-                try
+                using (SqlConnection conector = new SqlConnection(mi_conexion))
                 {
-                    conector.Open();
-                    SqlDataAdapter adaptador = new SqlDataAdapter("SELECT * FROM estado_cuenta", conector);
-                    adaptador.Fill(dataTableResultado);
+                        conector.Open();
+                        SqlDataAdapter adaptador = new SqlDataAdapter("SELECT * FROM estado_cuenta", conector);
+                        adaptador.Fill(dataTableResultado);
+                    
                 }
-                catch (Exception)
-                {
-                }
+            } 
+            catch (Exception) 
+            { 
             }
+           
             return Ok(dataTableResultado);
         }
 

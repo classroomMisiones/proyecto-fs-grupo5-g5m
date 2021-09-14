@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-faq',
+  selector: 'app-error',
   templateUrl: './faq.component.html',
   styleUrls: ['./faq.component.css']
 })

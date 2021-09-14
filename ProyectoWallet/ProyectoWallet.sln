@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-VisualStudioVersion = 16.0.31613.86
+VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProyectoWallet", "ProyectoWallet\ProyectoWallet.csproj", "{C0E0BAD8-5CD7-44CC-B724-EAF47F565070}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProyectoWallet", "ProyectoWallet\ProyectoWallet.csproj", "{B7DDF482-38A2-4EA7-9857-8DBB43430FC7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C0E0BAD8-5CD7-44CC-B724-EAF47F565070}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C0E0BAD8-5CD7-44CC-B724-EAF47F565070}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C0E0BAD8-5CD7-44CC-B724-EAF47F565070}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C0E0BAD8-5CD7-44CC-B724-EAF47F565070}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7DDF482-38A2-4EA7-9857-8DBB43430FC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7DDF482-38A2-4EA7-9857-8DBB43430FC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7DDF482-38A2-4EA7-9857-8DBB43430FC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7DDF482-38A2-4EA7-9857-8DBB43430FC7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {93BFA80A-6EDD-46D8-820F-2A2C72B72C6A}
+		SolutionGuid = {622BCC32-8830-4275-9EF6-0ADF27CE339F}
 	EndGlobalSection
 EndGlobal

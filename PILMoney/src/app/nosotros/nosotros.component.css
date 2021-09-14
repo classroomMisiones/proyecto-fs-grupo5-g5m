@@ -1,5 +1,5 @@
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
   margin: 0;
 }
 
@@ -19,15 +19,15 @@ html {
 }
 
 .card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 255, 42, 0.856);
   margin: 8px;
 }
 
 .about-section {
   padding: 50px;
   text-align: center;
-  background-color: #474e5d;
-  color: white;
+  background-color: #6cc29a;
+  color: rgb(250, 250, 250);
 }
 
 .container {
@@ -50,7 +50,7 @@ html {
   display: inline-block;
   padding: 8px;
   color: white;
-  background-color: #000;
+  background-color: rgb(81, 194, 115);
   text-align: center;
   cursor: pointer;
   width: 100%;

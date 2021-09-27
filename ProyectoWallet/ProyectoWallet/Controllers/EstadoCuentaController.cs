@@ -7,12 +7,14 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace ProyectoWallet.Controllers
 {
+    [EnableCors(origins: "http//localhost:4200", headers: "*", methods: "*")]
     public class EstadoCuentaController : ApiController
     {
-        public string mi_conexion = ConfigurationManager.ConnectionStrings["CadenaConexion"].ConnectionString;
+        public string mi_conexion = ConfigurationManager.ConnectionStrings["kepuaBDConexion"].ConnectionString;
 
         [HttpGet]
         public IHttpActionResult Get()
@@ -67,7 +69,7 @@ namespace ProyectoWallet.Controllers
                 {
                     conector.Open();
                     SqlCommand comando = new SqlCommand();
-                    comando.CommandText = "INSERT INTO estado_cuenta (nombre) VALUES ('" + oEstadoCuenta.Nombre +"')";
+                    comando.CommandText = "INSERT INTO estado_cuenta (nombre) VALUES ('" + oEstadoCuenta.Nombre + "')";
                     comando.Connection = conector;
                     comando.ExecuteNonQuery();
                 }

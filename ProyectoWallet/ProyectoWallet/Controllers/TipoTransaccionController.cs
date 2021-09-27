@@ -7,12 +7,14 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace ProyectoWallet.Controllers
 {
+    [EnableCors(origins: "http//localhost:4200", headers: "*", methods: "*")]
     public class TipoTransaccionController : ApiController
     {
-        public string mi_conexion = ConfigurationManager.ConnectionStrings["CadenaConexion"].ConnectionString;
+        public string mi_conexion = ConfigurationManager.ConnectionStrings["kepuaBDConexion"].ConnectionString;
 
         [HttpGet]
         public IHttpActionResult Get()
@@ -50,7 +52,7 @@ namespace ProyectoWallet.Controllers
 
                 }
                 return dataTableResultado;
-                //return dataTableResultado.Rows[0]["descripcion"].ToString();
+                
             }
             catch (Exception)
             {
@@ -67,7 +69,7 @@ namespace ProyectoWallet.Controllers
                 {
                     conector.Open();
                     SqlCommand comando = new SqlCommand();
-                    comando.CommandText = "INSERT INTO tipo_transaccion (descripcion, valor_comision) VALUES ('" + oTipoTransaccion.Descripcion + "' , " + oTipoTransaccion.Valor_comision + ")";
+                    comando.CommandText = "INSERT INTO tipo_transaccion (valor_comision, descripcion ) VALUES (" + oTipoTransaccion.Valor_comision + " , '" + oTipoTransaccion.Descripcion + "' )";
                     comando.Connection = conector;
                     comando.ExecuteNonQuery();
                 }

@@ -7,12 +7,14 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace ProyectoWallet.Controllers
 {
+    [EnableCors(origins: "http//localhost:4200", headers: "*", methods: "*")]
     public class ComisionesController : ApiController
     {
-        public string mi_conexion = ConfigurationManager.ConnectionStrings["CadenaConexion"].ConnectionString;
+        public string mi_conexion = ConfigurationManager.ConnectionStrings["kepuaBDConexion"].ConnectionString;
 
         [HttpGet]
         public IHttpActionResult Get()
@@ -48,7 +50,8 @@ namespace ProyectoWallet.Controllers
                 using (SqlConnection conector = new SqlConnection(mi_conexion))
                 {
                     conector.Open();
-                    SqlDataAdapter adaptador = new SqlDataAdapter("SELECT id_transaccion, fecha FROM comisiones WHERE id_comision = " + id, conector);
+
+                    SqlDataAdapter adaptador = new SqlDataAdapter("SELECT id_transaccion, id_moneda, porcentaje_comision, monto_comision, fecha FROM comisiones WHERE id_comision = " + id, conector);
                     adaptador.Fill(dataTableResultado);
                 }
                 return dataTableResultado.Rows[0]["id_transaccion"].ToString();
@@ -68,9 +71,11 @@ namespace ProyectoWallet.Controllers
             {
                 using (SqlConnection conector = new SqlConnection(mi_conexion))
                 {
+                    
+                    string fecha = DateTime.Now.ToString("dd-MM-yyyy");
                     conector.Open();
                     SqlCommand comando = new SqlCommand();
-                    comando.CommandText = "INSERT INTO comisiones (id_transaccion, fecha) VALUES (" + oComisiones.Id_transaccion + ", '" + oComisiones.Fecha + "')";
+                    comando.CommandText = "INSERT INTO comisiones (id_transaccion, id_moneda, porcentaje_comision, monto_comision, fecha) VALUES (" + oComisiones.Id_transaccion + ","+ oComisiones.Id_moneda +","+ oComisiones.Porcentaje_comision +" ,"+ oComisiones.Monto_comision +", '" + oComisiones.Fecha + "')";
                     comando.Connection = conector;
                     comando.ExecuteNonQuery();
                 }
@@ -90,7 +95,8 @@ namespace ProyectoWallet.Controllers
                 {
                     conector.Open();
                     SqlCommand comando = new SqlCommand();
-                    comando.CommandText = "UPDATE comisiones SET id_transaccion = " + oComisiones.Id_transaccion + ", fecha = '" + oComisiones.Fecha + "'  WHERE id_comision = " + id;
+                    comando.CommandText = "UPDATE comisiones SET id_transaccion = " + oComisiones.Id_transaccion + ", id_moneda = " + oComisiones.Id_moneda + ", porcentaje_comision = " + oComisiones.Porcentaje_comision + ", monto_comision = " + oComisiones.Monto_comision + ", fecha = '"+ oComisiones.Fecha + "'  WHERE id_comision = " + id;
+                    //;
                     comando.Connection = conector;
                     //comando.BeginExecuteNonQuery();
                     comando.ExecuteNonQuery();

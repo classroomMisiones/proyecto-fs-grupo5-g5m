@@ -9,7 +9,7 @@ namespace ProyectoWallet.Models
     {
         public int Id_historia_cuenta { get; set; }
         public string Fecha_hora { get; set; }
-        public string Estado { get; set; }
+        public int Id_estado_cuenta { get; set; }
         public int Id_cuenta { get; set; }
         public int Id_usuario { get; set; }
     }

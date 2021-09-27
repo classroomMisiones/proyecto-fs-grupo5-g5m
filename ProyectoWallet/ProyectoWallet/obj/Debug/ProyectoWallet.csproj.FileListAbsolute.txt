@@ -93,3 +93,6 @@ E:\Proyecto-Angular\proyecto-fs-grupo5-g5m\ProyectoWallet\ProyectoWallet\obj\Deb
 E:\Proyecto-Angular\proyecto-fs-grupo5-g5m\ProyectoWallet\ProyectoWallet\obj\Debug\ProyectoWallet.csproj.CopyComplete
 E:\Proyecto-Angular\proyecto-fs-grupo5-g5m\ProyectoWallet\ProyectoWallet\obj\Debug\ProyectoWallet.dll
 E:\Proyecto-Angular\proyecto-fs-grupo5-g5m\ProyectoWallet\ProyectoWallet\obj\Debug\ProyectoWallet.pdb
+E:\Proyecto-Angular\proyecto-fs-grupo5-g5m\ProyectoWallet\ProyectoWallet\bin\System.Web.Cors.dll
+E:\Proyecto-Angular\proyecto-fs-grupo5-g5m\ProyectoWallet\ProyectoWallet\bin\System.Web.Http.Cors.dll
+E:\Proyecto-Angular\proyecto-fs-grupo5-g5m\ProyectoWallet\ProyectoWallet\bin\System.Web.Http.Cors.xml

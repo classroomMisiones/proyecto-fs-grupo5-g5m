@@ -7,12 +7,16 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace ProyectoWallet.Controllers
 {
+    //[EnableCors(origins: "*", headers: "*", methods: "*")]
+    [EnableCors(origins: "http//localhost:4200", headers: "*", methods: "*")]
+    //[EnableCors(origins: "http//localhost:44344", headers: "*", methods: "*")]
     public class CuentasController : ApiController
     {
-        public string mi_conexion = ConfigurationManager.ConnectionStrings["CadenaConexion"].ConnectionString;
+        public string mi_conexion = ConfigurationManager.ConnectionStrings["kepuaBDConexion"].ConnectionString;
 
         [HttpGet]
         public IHttpActionResult Get()
@@ -47,10 +51,11 @@ namespace ProyectoWallet.Controllers
                 using (SqlConnection conector = new SqlConnection(mi_conexion))
                 {
                     conector.Open();
-                    SqlDataAdapter adaptador = new SqlDataAdapter("SELECT cvu FROM cuentas WHERE id_cuenta = " + id, conector);
+
+                    SqlDataAdapter adaptador = new SqlDataAdapter("SELECT cvu, id_usuario, id_estado_cuenta FROM cuentas WHERE id_cuenta = " + id, conector);
                     adaptador.Fill(dataTableResultado);
                 }
-                return dataTableResultado.Rows[0]["cvu"].ToString();
+                return dataTableResultado.Rows[0]["cvu"].ToString()+" "+ dataTableResultado.Rows[0]["id_usuario"].ToString() + " " + dataTableResultado.Rows[0]["id_estado_cuenta"].ToString();
 
             }
             catch (Exception)
@@ -61,7 +66,7 @@ namespace ProyectoWallet.Controllers
         }
 
         // POST: api/Rol
-        public void Post([FromBody] Models.Cuentas oCuentas, [FromBody] Models.Usuario oUsuario)
+        public void Post([FromBody] Models.Cuentas oCuentas)
         {
             try
             {

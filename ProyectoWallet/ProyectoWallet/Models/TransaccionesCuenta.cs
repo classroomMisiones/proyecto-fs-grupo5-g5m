@@ -13,11 +13,10 @@ namespace ProyectoWallet.Models
         public string Hora { get; set; }
         public int Id_tipo_transaccion { get; set; }
         public int Id_cuenta_origen { get; set; }
-        public int Id_moneda1 { get; set; }
-        public float Monto1 { get; set; }
+        public int Id_moneda_origen { get; set; }
+        public float Monto_origen { get; set; }
         public int Id_cuenta_destino { get; set; }
-        public int Id_moneda2 { get; set; }
-        public float Monto2 { get; set; }
-
+        public int Id_moneda_destino { get; set; }
+        public float Monto_destino { get; set; }
     }
 }

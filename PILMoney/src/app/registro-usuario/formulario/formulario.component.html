@@ -8,10 +8,10 @@
                       <div class="col">
                             <div class="form-group row">
                               <div class="col-md-9">
-                                  <input id="name" type="text" class="form-control" name="name" placeholder="Nombre"  formControlName="nombre" required pattern="[A-Za-z0-9]+">
-                                  <div class="alert-danger" *ngIf="nombre!.invalid && (nombre!.dirty || nombre!.touched)">
-                                    <div class="container-error-message" *ngIf="nombre!.errors!.required">Ingrese nombre</div>
-                                  </div>
+                                <input id="name" type="text" class="form-control" name="name" placeholder="Nombre"  formControlName="nombre" required pattern="[A-Za-z0-9]+">
+                                <div class="alert-danger" *ngIf="nombre!.invalid && (nombre!.dirty || nombre!.touched)">
+                                  <div class="container-error-message" *ngIf="nombre!.errors!.required">Ingrese nombre</div>
+                                </div>
                               </div>
                             </div>
 

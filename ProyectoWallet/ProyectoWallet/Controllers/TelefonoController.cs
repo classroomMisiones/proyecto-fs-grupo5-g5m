@@ -7,12 +7,14 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace ProyectoWallet.Controllers
 {
+    [EnableCors(origins: "http//localhost:4200", headers: "*", methods: "*")]
     public class TelefonoController : ApiController
     {
-        public string mi_conexion = ConfigurationManager.ConnectionStrings["CadenaConexion"].ConnectionString;
+        public string mi_conexion = ConfigurationManager.ConnectionStrings["kepuaBDConexion"].ConnectionString;
 
         [HttpGet]
         public IHttpActionResult Get()
@@ -48,10 +50,10 @@ namespace ProyectoWallet.Controllers
                 using (SqlConnection conector = new SqlConnection(mi_conexion))
                 {
                     conector.Open();
-                    SqlDataAdapter adaptador = new SqlDataAdapter("SELECT numero_telefono FROM telefono WHERE id_telefono = " + id, conector);
+                    SqlDataAdapter adaptador = new SqlDataAdapter("SELECT numero_telefono, id_usuario FROM telefono WHERE id_telefono = " + id, conector);
                     adaptador.Fill(dataTableResultado);
                 }
-                return dataTableResultado.Rows[0]["numero_telefono"].ToString();
+                return dataTableResultado.Rows[0]["numero_telefono"].ToString() +" "+ dataTableResultado.Rows[0]["id_usuario"].ToString();
 
             }
             catch (Exception)

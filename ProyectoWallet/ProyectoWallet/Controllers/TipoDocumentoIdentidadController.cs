@@ -7,12 +7,14 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace ProyectoWallet.Controllers
 {
+    [EnableCors(origins: "http//localhost:4200", headers: "*", methods: "*")]
     public class TipoDocumentoIdentidadController : ApiController
     {
-        public string mi_conexion = ConfigurationManager.ConnectionStrings["CadenaConexion"].ConnectionString;
+        public string mi_conexion = ConfigurationManager.ConnectionStrings["kepuaBDConexion"].ConnectionString;
 
         [HttpGet]
         public IHttpActionResult Get()
@@ -58,7 +60,7 @@ namespace ProyectoWallet.Controllers
         }
 
         // POST: api/Rol
-        public void Post([FromBody] Models.TipoDocumento oTipoDocumento)
+        public void Post([FromBody] Models.TipoDocumentoIdentidad oTipoDocumento)
         {
             try
             {
@@ -77,7 +79,7 @@ namespace ProyectoWallet.Controllers
         }
 
         // PUT: api/Rol/5
-        public void Put(int id, [FromBody] Models.TipoDocumento oTipoDocumento)
+        public void Put(int id, [FromBody] Models.TipoDocumentoIdentidad oTipoDocumento)
         {
             try { } catch (Exception) { }
             using (SqlConnection conector = new SqlConnection(mi_conexion))

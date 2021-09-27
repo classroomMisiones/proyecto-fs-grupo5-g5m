@@ -9,6 +9,5 @@ namespace ProyectoWallet.Models
     {
         public int Id_estado_cuenta { get; set; }
         public string Nombre { get; set; }
-        public float valor_comision { get; set; }
     }
 }

@@ -11,7 +11,7 @@ using System.Web.Http.Cors;
 
 namespace ProyectoWallet.Controllers
 {
-    [EnableCors(origins: "http//localhost:4200", headers: "*", methods: "*")]
+    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public class ComisionesController : ApiController
     {
         public string mi_conexion = ConfigurationManager.ConnectionStrings["kepuaBDConexion"].ConnectionString;
@@ -29,19 +29,18 @@ namespace ProyectoWallet.Controllers
                     adaptador.Fill(dataTableResultado);
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Console.WriteLine(e);
             }
 
             return Ok(dataTableResultado);
 
         }
 
-
-
-
+        [HttpGet]
         // GET: api/Usuario/5
-        public string Get(int id)
+        public IHttpActionResult Get(int id)
         {
             DataTable dataTableResultado = new DataTable();
 
@@ -51,21 +50,21 @@ namespace ProyectoWallet.Controllers
                 {
                     conector.Open();
 
-                    SqlDataAdapter adaptador = new SqlDataAdapter("SELECT id_transaccion, id_moneda, porcentaje_comision, monto_comision, fecha FROM comisiones WHERE id_comision = " + id, conector);
+                    SqlDataAdapter adaptador = new SqlDataAdapter("SELECT Id_comision, Id_transaccion, Id_moneda, Porcentaje_comision, Monto_comision, Fecha FROM comisiones WHERE Id_comision = " + id, conector);
                     adaptador.Fill(dataTableResultado);
                 }
-                return dataTableResultado.Rows[0]["id_transaccion"].ToString();
-
+                    //dataTableResultado.Rows[0]["Id_transaccion"].ToString()+" "+ dataTableResultado.Rows[0]["Id_moneda"].ToString() + " " + 
+                    //dataTableResultado.Rows[0]["Porcentaje_comision"].ToString() + " " +dataTableResultado.Rows[0]["Monto_comision"].ToString() + " " + dataTableResultado.Rows[0]["Fecha"].ToString();
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return "No se pudo realizar la operacion, Numero de Indice Erroneo";
+                Console.WriteLine(e.Message);
             }
-
+            return Ok(dataTableResultado);
         }
 
         // POST: api/Rol
-        public void Post([FromBody] Models.Comisiones oComisiones)
+        public string Post([FromBody] Models.Comisiones oComisiones)
         {
             try
             {
@@ -75,55 +74,63 @@ namespace ProyectoWallet.Controllers
                     string fecha = DateTime.Now.ToString("dd-MM-yyyy");
                     conector.Open();
                     SqlCommand comando = new SqlCommand();
-                    comando.CommandText = "INSERT INTO comisiones (id_transaccion, id_moneda, porcentaje_comision, monto_comision, fecha) VALUES (" + oComisiones.Id_transaccion + ","+ oComisiones.Id_moneda +","+ oComisiones.Porcentaje_comision +" ,"+ oComisiones.Monto_comision +", '" + oComisiones.Fecha + "')";
+                    comando.CommandText = "INSERT INTO comisiones (Id_transaccion, Id_moneda, Porcentaje_comision, Fecha , Monto_comision) VALUES (" + oComisiones.Id_transaccion + ","+ oComisiones.Id_moneda +","+ oComisiones.Porcentaje_comision.ToString().Replace(",", ".") + " , '" + fecha + "'," + oComisiones.Monto_comision.ToString().Replace(",", ".") + ")";
+                    
                     comando.Connection = conector;
                     comando.ExecuteNonQuery();
                 }
+                return "OPERACION DE INSERCION EXITOSA";
             }
-            catch (Exception)
+            catch (Exception e)
             {
-
+                Console.WriteLine(e.Message);
+                return "NO SE PUDO COMPLETAR LA OPERACION  DE INSERCION";
             }
         }
 
         // PUT: api/Rol/5
-        public void Put(int id, [FromBody] Models.Comisiones oComisiones)
+        public string Put(int id, [FromBody] Models.Comisiones oComisiones)
         {
             try
             {
                 using (SqlConnection conector = new SqlConnection(mi_conexion))
                 {
+                    string fecha = DateTime.Now.ToString("dd-MM-yyyy");
                     conector.Open();
                     SqlCommand comando = new SqlCommand();
-                    comando.CommandText = "UPDATE comisiones SET id_transaccion = " + oComisiones.Id_transaccion + ", id_moneda = " + oComisiones.Id_moneda + ", porcentaje_comision = " + oComisiones.Porcentaje_comision + ", monto_comision = " + oComisiones.Monto_comision + ", fecha = '"+ oComisiones.Fecha + "'  WHERE id_comision = " + id;
-                    //;
+                    comando.CommandText = "UPDATE comisiones SET Id_transaccion = " + oComisiones.Id_transaccion + ", Id_moneda = " + oComisiones.Id_moneda + ", Fecha = '"+ fecha + "', Porcentaje_comision = " + oComisiones.Porcentaje_comision.ToString().Replace(",", ".") + ", Monto_comision= " + oComisiones.Monto_comision.ToString().Replace(",", ".") + "  WHERE Id_comision = " + id;
+                    
                     comando.Connection = conector;
                     //comando.BeginExecuteNonQuery();
                     comando.ExecuteNonQuery();
                 }
+                return "OPERACION DE ACUALIZACION EXITOSA";
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Console.WriteLine(e.Message);
+                return "NO SE PUDO COMPLETAR LA OPERACION DE ACUALIZACION";
             }
-
         }
 
         // DELETE: api/Rol/5
-        public void Delete(int id)
+        public string Delete(int id)
         {
             try
             {
                 using (SqlConnection conector = new SqlConnection(mi_conexion))
                 {
                     conector.Open();
-                    SqlCommand comando = new SqlCommand("DELETE FROM comisiones WHERE id_comision = " + id, conector);
+                    SqlCommand comando = new SqlCommand("DELETE FROM comisiones WHERE Id_comision = " + id, conector);
                     comando.ExecuteNonQuery();
-
                 }
+                return "OPERACION DE BORRADO EXITOSA";
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Console.WriteLine(e.Message);
                 //throw new KeyNotFoundException("No pudo completar la operacion, Id erroneo o inexistente");
+                return "NO SE PUDO COMPLETAR LA OPERACION DE BORRADO";
             }
         }
     }

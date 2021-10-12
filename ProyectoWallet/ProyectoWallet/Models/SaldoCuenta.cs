@@ -10,7 +10,7 @@ namespace ProyectoWallet.Models
         public int Id_saldo { get; set; }
         public int Id_usuario { get; set; }
         public int Id_moneda { get; set; }
-        public float Saldo { get; set; }
+        public Double Saldo { get; set; }
         public string Fecha { get; set; }
         public string Hora { get; set; }
     }

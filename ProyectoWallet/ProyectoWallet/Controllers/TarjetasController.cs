@@ -11,7 +11,7 @@ using System.Web.Http.Cors;
 
 namespace ProyectoWallet.Controllers
 {
-    [EnableCors(origins: "http//localhost:4200", headers: "*", methods: "*")]
+    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public class TarjetasController : ApiController
     {
         public string mi_conexion = ConfigurationManager.ConnectionStrings["kepuaBDConexion"].ConnectionString;
@@ -24,7 +24,6 @@ namespace ProyectoWallet.Controllers
             {
                 using (SqlConnection conector = new SqlConnection(mi_conexion))
                 {
-
                     conector.Open();
                     SqlDataAdapter adaptador = new SqlDataAdapter("SELECT * FROM tarjetas", conector);
                     adaptador.Fill(dataTableResultado);
@@ -33,13 +32,12 @@ namespace ProyectoWallet.Controllers
             catch (Exception)
             {
             }
-
             return Ok(dataTableResultado);
         }
 
-
+        [HttpGet]
         // GET: api/Usuario/5
-        public string Get(int id)
+        public IHttpActionResult Get(int id)
         {
             DataTable dataTableResultado = new DataTable();
             try
@@ -47,22 +45,22 @@ namespace ProyectoWallet.Controllers
                 using (SqlConnection conector = new SqlConnection(mi_conexion))
                 {
                     conector.Open();
-                    SqlDataAdapter adaptador = new SqlDataAdapter("SELECT numero_tarjeta, Fecha_vencimiento, id_usuario FROM tarjetas WHERE id_tarjeta = " + id, conector);
+                    SqlDataAdapter adaptador = new SqlDataAdapter("SELECT Id_tarjeta, Numero_tarjeta, Fecha_vencimiento, Id_usuario FROM tarjetas WHERE Id_tarjeta = " + id, conector);
                     adaptador.Fill(dataTableResultado);
 
                 }
                 //return dataTableResultado;
-                return dataTableResultado.Rows[0]["numero_tarjeta"].ToString();
+                //return dataTableResultado.Rows[0]["Numero_tarjeta"].ToString();
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return "No se pudo realizar la operacion, Numero de Indice Erroneo";
-                //return null;
+                Console.WriteLine(e.Message);
             }
+            return Ok(dataTableResultado);
         }
 
         // POST: api/Rol
-        public void Post([FromBody] Models.Tarjetas oTarjetas)
+        public string Post([FromBody] Models.Tarjetas oTarjetas)
         {
             try
             {
@@ -70,19 +68,22 @@ namespace ProyectoWallet.Controllers
                 {
                     conector.Open();
                     SqlCommand comando = new SqlCommand();
-                    comando.CommandText = "INSERT INTO tarjetas (numero_tarjeta, fecha_vencimiento, id_usuario) VALUES ('" + oTarjetas.Numero_tarjeta + "','" + oTarjetas.Fecha_vencimiento + "'," + oTarjetas.Id_usuario + " )";
+                    comando.CommandText = "INSERT INTO tarjetas (Numero_tarjeta, Fecha_vencimiento, Id_usuario) VALUES ('" + oTarjetas.Numero_tarjeta + "','" + oTarjetas.Fecha_vencimiento + "'," + oTarjetas.Id_usuario + " )";                   
                     comando.Connection = conector;
                     
                     comando.ExecuteNonQuery();
                 }
+                return "OPERACION DE INSERCION EXITOSA";
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Console.WriteLine(e.Message);
+                return "NO SE PUDO COMPLETAR LA OPERACION  DE INSERCION";
             }
         }
 
         // PUT: api/Rol/5
-        public void Put(int id, [FromBody] Models.Tarjetas oTarjetas)
+        public string Put(int id, [FromBody] Models.Tarjetas oTarjetas)
         {
             using (SqlConnection conector = new SqlConnection(mi_conexion))
             {
@@ -90,34 +91,39 @@ namespace ProyectoWallet.Controllers
                 {
                     conector.Open();
                     SqlCommand comando = new SqlCommand();
-                    comando.CommandText = "UPDATE tarjetas SET numero_tarjeta = '" + oTarjetas.Numero_tarjeta + "',  fecha_vencimiento = '" + oTarjetas.Fecha_vencimiento + "' , id_usuario = "+ oTarjetas.Id_usuario +" WHERE id_tarjeta = " + id;
+                    comando.CommandText = "UPDATE tarjetas SET Numero_tarjeta = '" + oTarjetas.Numero_tarjeta + "',  Fecha_vencimiento = '" + oTarjetas.Fecha_vencimiento + "' , Id_usuario = "+ oTarjetas.Id_usuario +" WHERE Id_tarjeta = " + id;
                     comando.Connection = conector;
                     //comando.BeginExecuteNonQuery();
                     comando.ExecuteNonQuery();
+                    return "OPERACION DE ACUALIZACION EXITOSA";
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
+                    Console.WriteLine(e.Message);
+                    return "NO SE PUDO COMPLETAR LA OPERACION DE ACUALIZACION";
                 }
             }
         }
 
         // DELETE: api/Rol/5
-        public void Delete(int id)
+        public string Delete(int id)
         {
             try
             {
                 using (SqlConnection conector = new SqlConnection(mi_conexion))
                 {
                     conector.Open();
-                    SqlCommand comando = new SqlCommand("DELETE FROM tarjetas WHERE id_tarjeta = " + id, conector);
+                    SqlCommand comando = new SqlCommand("DELETE FROM tarjetas WHERE Id_tarjeta = " + id, conector);
                     comando.ExecuteNonQuery();
                 }
+                return "OPERACION DE BORRADO EXITOSA";
             }
-            catch (Exception)
+            catch (Exception e)
             {
-
+                Console.WriteLine(e.Message);
+                //throw new KeyNotFoundException("No pudo completar la operacion, Id erroneo o inexistente");
+                return "NO SE PUDO COMPLETAR LA OPERACION DE BORRADO";
             }
-
         }
     }
 }

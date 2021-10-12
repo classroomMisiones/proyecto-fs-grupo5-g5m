@@ -11,6 +11,7 @@ using System.Web.Http.Cors;
 
 namespace ProyectoWallet.Controllers
 {
+    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public class CuentaHistorialEstadosController : ApiController
     {
         public string mi_conexion = ConfigurationManager.ConnectionStrings["kepuaBDConexion"].ConnectionString;
@@ -34,9 +35,9 @@ namespace ProyectoWallet.Controllers
             return Ok(dataTableResultado);
         }
 
-
+        [HttpGet]
         // GET: api/Usuario/5
-        public string Get(int id)
+        public IHttpActionResult Get(int id)
         {
             DataTable dataTableResultado = new DataTable();
             try
@@ -44,22 +45,22 @@ namespace ProyectoWallet.Controllers
                 using (SqlConnection conector = new SqlConnection(mi_conexion))
                 {
                     conector.Open();
-                    SqlDataAdapter adaptador = new SqlDataAdapter("SELECT id_usuario, id_cuenta, id_estado_cuenta, fecha_hora FROM cuentas_historial_estado WHERE id_historia_cuenta = " + id, conector);
+                    SqlDataAdapter adaptador = new SqlDataAdapter("SELECT Id_historia_cuenta, Id_usuario, Id_cuenta, Id_estado_cuenta, Fecha_hora FROM cuentas_historial_estado WHERE Id_historia_cuenta = " + id, conector);
                     adaptador.Fill(dataTableResultado);
 
                 }
                 //return dataTableResultado;
-                return dataTableResultado.Rows[0]["id_usuario"].ToString() + " " + dataTableResultado.Rows[0]["id_cuenta"].ToString() + " " + dataTableResultado.Rows[0]["id_estado_cuenta"].ToString() + " " + dataTableResultado.Rows[0]["fecha_hora"].ToString() ;
+               // return dataTableResultado.Rows[0]["Id_usuario"].ToString() + " " + dataTableResultado.Rows[0]["Id_cuenta"].ToString() + " " + dataTableResultado.Rows[0]["Id_estado_cuenta"].ToString() + " " + dataTableResultado.Rows[0]["Fecha_hora"].ToString() ;
             }
             catch (Exception)
             {
-                return "No se pudo realizar la operacion, Numero de Indice Erroneo";
-
+                //return "No se pudo realizar la operacion, Numero de Indice Erroneo";
             }
+            return Ok(dataTableResultado);
         }
 
         // POST: api/Rol
-        public void Post([FromBody] Models.CuentasHistorialEstado oCuentasHistorialEstado)
+        public string Post([FromBody] Models.CuentasHistorialEstado oCuentasHistorialEstado)
         {
             try
             {
@@ -70,56 +71,63 @@ namespace ProyectoWallet.Controllers
 
                     conector.Open();
                     SqlCommand comando = new SqlCommand();
-                    comando.CommandText = "INSERT INTO cuentas_historial_estado (fecha_hora, id_estado_cuenta, id_cuenta, id_usuario) VALUES ('" +fechaHora + "', " + oCuentasHistorialEstado.Id_estado_cuenta + ", " + oCuentasHistorialEstado.Id_cuenta + ", " + oCuentasHistorialEstado.Id_usuario + ")";
+                    comando.CommandText = "INSERT INTO cuentas_historial_estado (Fecha_hora, Id_estado_cuenta, Id_cuenta, Id_usuario) VALUES ('" +fechaHora + "', " + oCuentasHistorialEstado.Id_estado_cuenta + ", " + oCuentasHistorialEstado.Id_cuenta + ", " + oCuentasHistorialEstado.Id_usuario + ")";
                     //comando.CommandText = "INSERT INTO cuentas_historial_estado (fecha_hora, id_estado_cuenta, id_cuenta, id_usuario) VALUES ('" + fechaHora + "', " + oCuentasHistorialEstado.Id_estado_cuenta + ", , " + oCuentasHistorialEstado.Id_cuenta + ", , " + oCuentasHistorialEstado.Id_usuario + ")";
                     comando.Connection = conector;
                     comando.ExecuteNonQuery();
                 }
+                return "OPERACION DE INSERCION EXITOSA";
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                Console.Write("CATCH");
+                Console.WriteLine(e.Message);
+                return "NO SE PUDO COMPLETAR LA OPERACION  DE INSERCION";
             }
         }
 
         // PUT: api/Rol/5
-        public void Put(int id, [FromBody] Models.CuentasHistorialEstado oCuentasHistorialEstado)
+        public string Put(int id, [FromBody] Models.CuentasHistorialEstado oCuentasHistorialEstado)
         {
-            using (SqlConnection conector = new SqlConnection(mi_conexion))
+            try
             {
-                try
+                using (SqlConnection conector = new SqlConnection(mi_conexion))
                 {
                     string fechaHora = DateTime.Now.ToString();
-
                     conector.Open();
                     SqlCommand comando = new SqlCommand();
-
-                    comando.CommandText = "UPDATE cuentas_historial_estado SET fecha_hora = '" +fechaHora + "', id_estado_cuenta =" + oCuentasHistorialEstado.Id_estado_cuenta + ", id_cuenta = " + oCuentasHistorialEstado.Id_cuenta + ",  id_usuario = " + oCuentasHistorialEstado.Id_usuario + " WHERE id_historia_cuenta = " + id;
+                    comando.CommandText = "UPDATE cuentas_historial_estado SET Fecha_hora = '" + fechaHora + "', Id_estado_cuenta =" + oCuentasHistorialEstado.Id_estado_cuenta + ", Id_cuenta = " + oCuentasHistorialEstado.Id_cuenta + ",  Id_usuario = " + oCuentasHistorialEstado.Id_usuario + " WHERE Id_historia_cuenta = " + id;
                     comando.Connection = conector;//
-
                     comando.ExecuteNonQuery();
                 }
-                catch (Exception)
-                {
-                }
+
+                return "OPERACION DE ACUALIZACION EXITOSA";
             }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return "NO SE PUDO COMPLETAR LA OPERACION DE ACUALIZACION";
+            }
+
         }
 
         // DELETE: api/Rol/5
-        public void Delete(int id)
+        public string Delete(int id)
         {
             try
             {
                 using (SqlConnection conector = new SqlConnection(mi_conexion))
                 {
                     conector.Open();
-                    SqlCommand comando = new SqlCommand("DELETE FROM cuentas_historial_estado WHERE id_historia_cuenta = " + id, conector);
+                    SqlCommand comando = new SqlCommand("DELETE FROM cuentas_historial_estado WHERE Id_historia_cuenta = " + id, conector);
                     comando.ExecuteNonQuery();
                 }
+                return "OPERACION DE BORRADO EXITOSA";
             }
             catch (Exception e)
             {
-                throw e;
+                Console.WriteLine(e.Message);
+                //throw new KeyNotFoundException("No pudo completar la operacion, Id erroneo o inexistente");
+                return "NO SE PUDO COMPLETAR LA OPERACION DE BORRADO";
             }
 
         }

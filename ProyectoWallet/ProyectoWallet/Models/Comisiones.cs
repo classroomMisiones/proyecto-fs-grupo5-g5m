@@ -10,8 +10,8 @@ namespace ProyectoWallet.Models
         public int Id_comision { get; set; }
         public int Id_transaccion { get; set; }
         public int Id_moneda { get; set; }
-        public float Porcentaje_comision { get; set; }
-        public float Monto_comision { get; set; }
+        public Double Porcentaje_comision { get; set; }
+        public Double Monto_comision { get; set; }
         public string Fecha { get; set; }
     }
 }

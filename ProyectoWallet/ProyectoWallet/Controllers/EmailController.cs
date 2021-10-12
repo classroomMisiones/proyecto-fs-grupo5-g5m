@@ -11,7 +11,7 @@ using System.Web.Http.Cors;
 
 namespace ProyectoWallet.Controllers
 {
-    [EnableCors(origins: "http//localhost:4200", headers: "*", methods: "*")]
+    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public class EmailController : ApiController
     {
         public string mi_conexion = ConfigurationManager.ConnectionStrings["kepuaBDConexion"].ConnectionString;
@@ -29,42 +29,37 @@ namespace ProyectoWallet.Controllers
                     adaptador.Fill(dataTableResultado);
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Console.WriteLine(e.Message);
             }
-
             return Ok(dataTableResultado);
-
         }
 
-
-
-
+        [HttpGet]
         // GET: api/Usuario/5
-        public string Get(int id)
+        public IHttpActionResult Get(int id)
         {
             DataTable dataTableResultado = new DataTable();
-
             try
             {
                 using (SqlConnection conector = new SqlConnection(mi_conexion))
                 {
                     conector.Open();
-                    SqlDataAdapter adaptador = new SqlDataAdapter("SELECT mail FROM email WHERE id_email = " + id, conector);
+                    SqlDataAdapter adaptador = new SqlDataAdapter("SELECT Id_email, Mail FROM email WHERE Id_email = " + id, conector);
                     adaptador.Fill(dataTableResultado);
                 }
-                return dataTableResultado.Rows[0]["mail"].ToString();
-                
+                //return dataTableResultado.Rows[0]["Mail"].ToString();    
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return "No se pudo realizar la operacion, Numero de Indice Erroneo";
+                Console.WriteLine(e.Message);
             }
-
+            return Ok(dataTableResultado);
         }
 
         // POST: api/Rol
-        public void Post([FromBody] Models.Email oEmail)
+        public string Post([FromBody] Models.Email oEmail)
         {
             try
             {
@@ -72,19 +67,21 @@ namespace ProyectoWallet.Controllers
                 {
                     conector.Open();
                     SqlCommand comando = new SqlCommand();
-                    comando.CommandText = "INSERT INTO email (mail, id_usuario) VALUES ('" + oEmail.Mail + "', " + oEmail.Id_usuario + ")";
+                    comando.CommandText = "INSERT INTO email (Mail, Id_usuario) VALUES ('" + oEmail.Mail + "', " + oEmail.Id_usuario + ")";
                     comando.Connection = conector;
                     comando.ExecuteNonQuery();
                 }
+                return "OPERACION DE INSERCION EXITOSA";
             }
-            catch (Exception)
+            catch (Exception e)
             {
-
+                Console.WriteLine(e.Message);
+                return "NO SE PUDO COMPLETAR LA OPERACION  DE INSERCION";
             }
         }
 
         // PUT: api/Rol/5
-        public void Put(int id, [FromBody] Models.Email oEmail)
+        public string Put(int id, [FromBody] Models.Email oEmail)
         {
             try
             {
@@ -92,34 +89,40 @@ namespace ProyectoWallet.Controllers
                 {
                     conector.Open();
                     SqlCommand comando = new SqlCommand();
-                    comando.CommandText = "UPDATE email SET mail = '" + oEmail.Mail + "', id_usuario = "+ oEmail.Id_usuario + " WHERE id_email = " + id;
+                    comando.CommandText = "UPDATE email SET Mail = '" + oEmail.Mail + "', Id_usuario = "+ oEmail.Id_usuario + " WHERE Id_email = " + id;
                     comando.Connection = conector;
                     //comando.BeginExecuteNonQuery();
                     comando.ExecuteNonQuery();
                 }
+                return "OPERACION DE ACUALIZACION EXITOSA";
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Console.WriteLine(e.Message);
+                return "NO SE PUDO COMPLETAR LA OPERACION DE ACUALIZACION";
             }
 
         }
 
         // DELETE: api/Rol/5
-        public void Delete(int id)
+        public string Delete(int id)
         {
             try
             {
                 using (SqlConnection conector = new SqlConnection(mi_conexion))
                 {
                     conector.Open();
-                    SqlCommand comando = new SqlCommand("DELETE FROM email WHERE id_email = " + id, conector);
+                    SqlCommand comando = new SqlCommand("DELETE FROM email WHERE Id_email = " + id, conector);
                     comando.ExecuteNonQuery();
 
                 }
+                return "OPERACION DE BORRADO EXITOSA";
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Console.WriteLine(e.Message);
                 //throw new KeyNotFoundException("No pudo completar la operacion, Id erroneo o inexistente");
+                return "NO SE PUDO COMPLETAR LA OPERACION DE BORRADO";
             }
         }
     }

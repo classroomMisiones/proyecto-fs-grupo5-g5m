@@ -9,7 +9,7 @@ namespace ProyectoWallet.Models
     {
         public int Id_tipo_transaccion { get; set; }
         public string Descripcion { get; set; }
-        public float Valor_comision { get; set; }
+        public Double Valor_comision { get; set; }
 
     }
 }

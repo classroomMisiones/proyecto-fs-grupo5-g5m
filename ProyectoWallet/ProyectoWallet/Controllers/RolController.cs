@@ -11,7 +11,7 @@ using System.Web.Http.Cors;
 
 namespace ProyectoWallet.Controllers
 {
-    [EnableCors(origins: "http//localhost:4200", headers: "*", methods: "*")]
+   [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public class RolController : ApiController
     {
         public string mi_conexion = ConfigurationManager.ConnectionStrings["kepuaBDConexion"].ConnectionString;
@@ -29,42 +29,37 @@ namespace ProyectoWallet.Controllers
                     adaptador.Fill(dataTableResultado);
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Console.WriteLine(e.Message);
             }
-
-            return Ok(dataTableResultado);
-                            
+            return Ok(dataTableResultado);      
         }
 
-    
-
-
+        [HttpGet]
         // GET: api/Usuario/5
-        public string Get(int id)
+        public IHttpActionResult Get(int id)
         {
             DataTable dataTableResultado = new DataTable();
-
             try
             {
                 using (SqlConnection conector = new SqlConnection(mi_conexion))
                 {
                     conector.Open();
-                    SqlDataAdapter adaptador = new SqlDataAdapter("SELECT descripcion FROM rol WHERE id_rol = " + id, conector);
+                    SqlDataAdapter adaptador = new SqlDataAdapter("SELECT Id_rol, Descripcion FROM rol WHERE Id_rol = " + id, conector);
                     adaptador.Fill(dataTableResultado);
                 }
-                return dataTableResultado.Rows[0]["descripcion"].ToString();
-                //return ok(dataTableResultado);
+                //return dataTableResultado.Rows[0]["descripcion"].ToString();   
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return "No se pudo realizar la operacion, Numero de Indice Erroneo";
+                Console.WriteLine(e.Message);
             }
-            
+            return Ok(dataTableResultado);
         }
 
         // POST: api/Rol
-        public void Post([FromBody] Models.Rol oRol)
+        public string Post([FromBody] Models.Rol oRol)
         {
             try 
             {
@@ -72,19 +67,21 @@ namespace ProyectoWallet.Controllers
                 {
                         conector.Open();
                         SqlCommand comando = new SqlCommand();
-                        comando.CommandText = "INSERT INTO rol (descripcion) VALUES ('" + oRol.Descripcion + "')";
+                        comando.CommandText = "INSERT INTO rol (Descripcion) VALUES ('" + oRol.Descripcion + "')";
                         comando.Connection = conector;
                         comando.ExecuteNonQuery();
                 }
+                return "OPERACION DE INSERCION EXITOSA";
             }
-            catch (Exception) 
+            catch (Exception e) 
             {
-           
+                Console.WriteLine(e.Message);
+                return "NO SE PUDO COMPLETAR LA OPERACION  DE INSERCION";
             }
         }
 
         // PUT: api/Rol/5
-        public void Put(int id, [FromBody] Models.Rol oRol)
+        public string Put(int id, [FromBody] Models.Rol oRol)
         {
             try 
             {
@@ -92,34 +89,39 @@ namespace ProyectoWallet.Controllers
                 {
                         conector.Open();
                         SqlCommand comando = new SqlCommand();
-                        comando.CommandText = "UPDATE rol SET descripcion = '" + oRol.Descripcion + "' WHERE id_rol = " + id;
+                        comando.CommandText = "UPDATE rol SET Descripcion = '" + oRol.Descripcion + "' WHERE Id_rol = " + id;
                         comando.Connection = conector;
                         //comando.BeginExecuteNonQuery();
                         comando.ExecuteNonQuery();
                 }
+                return "OPERACION DE ACUALIZACION EXITOSA";
             } 
-            catch (Exception)
+            catch (Exception e)
             {
+                Console.WriteLine(e.Message);
+                return "NO SE PUDO COMPLETAR LA OPERACION DE ACUALIZACION";
             }
-            
         }
 
         // DELETE: api/Rol/5
-        public void Delete(int id)
+        public string Delete(int id)
         {
             try 
             {
                 using (SqlConnection conector = new SqlConnection(mi_conexion))
                 {
                         conector.Open();
-                        SqlCommand comando = new SqlCommand("DELETE FROM rol WHERE id_rol = " + id, conector);
+                        SqlCommand comando = new SqlCommand("DELETE FROM rol WHERE Id_rol = " + id, conector);
                         comando.ExecuteNonQuery();
 
                 }
+                return "OPERACION DE BORRADO EXITOSA";
             }
-            catch (Exception) 
+            catch (Exception e)
             {
+                Console.WriteLine(e.Message);
                 //throw new KeyNotFoundException("No pudo completar la operacion, Id erroneo o inexistente");
+                return "NO SE PUDO COMPLETAR LA OPERACION DE BORRADO";
             }
         }
     }

@@ -14,9 +14,9 @@ namespace ProyectoWallet.Models
         public int Id_tipo_transaccion { get; set; }
         public int Id_cuenta_origen { get; set; }
         public int Id_moneda_origen { get; set; }
-        public float Monto_origen { get; set; }
+        public Double Monto_origen { get; set; }
         public int Id_cuenta_destino { get; set; }
         public int Id_moneda_destino { get; set; }
-        public float Monto_destino { get; set; }
+        public Double Monto_destino { get; set; }
     }
 }

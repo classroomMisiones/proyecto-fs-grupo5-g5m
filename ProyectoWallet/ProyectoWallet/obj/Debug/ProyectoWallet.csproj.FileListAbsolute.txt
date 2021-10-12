@@ -96,3 +96,11 @@ E:\Proyecto-Angular\proyecto-fs-grupo5-g5m\ProyectoWallet\ProyectoWallet\obj\Deb
 E:\Proyecto-Angular\proyecto-fs-grupo5-g5m\ProyectoWallet\ProyectoWallet\bin\System.Web.Cors.dll
 E:\Proyecto-Angular\proyecto-fs-grupo5-g5m\ProyectoWallet\ProyectoWallet\bin\System.Web.Http.Cors.dll
 E:\Proyecto-Angular\proyecto-fs-grupo5-g5m\ProyectoWallet\ProyectoWallet\bin\System.Web.Http.Cors.xml
+E:\Proyecto-Angular\proyecto-fs-grupo5-g5m\ProyectoWallet\ProyectoWallet\bin\Microsoft.IdentityModel.JsonWebTokens.dll
+E:\Proyecto-Angular\proyecto-fs-grupo5-g5m\ProyectoWallet\ProyectoWallet\bin\Microsoft.IdentityModel.Logging.dll
+E:\Proyecto-Angular\proyecto-fs-grupo5-g5m\ProyectoWallet\ProyectoWallet\bin\Microsoft.IdentityModel.Tokens.dll
+E:\Proyecto-Angular\proyecto-fs-grupo5-g5m\ProyectoWallet\ProyectoWallet\bin\System.IdentityModel.Tokens.Jwt.dll
+E:\Proyecto-Angular\proyecto-fs-grupo5-g5m\ProyectoWallet\ProyectoWallet\bin\Microsoft.IdentityModel.JsonWebTokens.xml
+E:\Proyecto-Angular\proyecto-fs-grupo5-g5m\ProyectoWallet\ProyectoWallet\bin\Microsoft.IdentityModel.Logging.xml
+E:\Proyecto-Angular\proyecto-fs-grupo5-g5m\ProyectoWallet\ProyectoWallet\bin\Microsoft.IdentityModel.Tokens.xml
+E:\Proyecto-Angular\proyecto-fs-grupo5-g5m\ProyectoWallet\ProyectoWallet\bin\System.IdentityModel.Tokens.Jwt.xml

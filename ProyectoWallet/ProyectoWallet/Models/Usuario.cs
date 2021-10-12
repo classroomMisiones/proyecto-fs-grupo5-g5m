@@ -26,6 +26,7 @@ namespace ProyectoWallet.Models
         public string Clave { get; set; }
         public string Fecha_clave { get; set; }
         public string Nombre_de_usuario { get; set; }
+        public string Token { get; set; }
 
     }
 }

@@ -17,6 +17,7 @@ export class Usuarios {
   public Clave : string
   public Fecha_clave : string
   public Nombre_de_usuario : string
+  public Token : string
   constructor(
     // _Id_usuario : number,
     // _Nombre : string,
@@ -35,7 +36,8 @@ export class Usuarios {
     // _Id_rol : number,
     // _Clave : string,
     // _Fecha_clave : string,
-    // _Nombre_de_usuario : string
+    // _Nombre_de_usuario : string,
+    // _Token : string
   )
   {
     this.Id_usuario = 0;
@@ -56,6 +58,7 @@ export class Usuarios {
     this.Clave = "";
     this.Fecha_clave = "";
     this.Nombre_de_usuario = "";
+    this.Token = "";
     // this.Id_usuario = _Id_usuario;
     // this.Nombre = _Nombre;
     // this.Apellido = _Apellido;
@@ -74,5 +77,6 @@ export class Usuarios {
     // this.Clave = _Clave;
     // this.Fecha_clave = _Fecha_clave;
     // this.Nombre_de_usuario = _Nombre_de_usuario;
+    // this.Token = _Token;
   }
 }

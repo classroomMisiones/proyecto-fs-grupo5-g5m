@@ -7,8 +7,8 @@ import { Rol } from '../Modelos/rol.model';
 @Injectable({
   providedIn: 'root'
 })
+
 export class RolService {
-  
   
   private rootURL = "https://localhost:44344/api/Rol";
   

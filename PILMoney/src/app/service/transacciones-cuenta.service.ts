@@ -2,13 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { TransaccionesCuenta } from '../Modelos/transaccionesCuenta.model';
+import { environment }  from 'src/environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class TransaccionesCuentaService {
-
-  private rootURL = "https://localhost:44344/api/TransaccionesCuenta";
+    private rootURL = environment.UrlBaseApi;
+  //private rootURL = "https://localhost:44344/api/TransaccionesCuenta";
     
   constructor(private httprequest : HttpClient) { }
 
@@ -20,7 +22,7 @@ export class TransaccionesCuentaService {
   //  ***** GET POR ID
   getxId(id:number):Promise<TransaccionesCuenta[]>{
     // hago el get indico que recibo un array de objetos tipo Rol
-    return this.httprequest.get<TransaccionesCuenta[]>(`${this.rootURL}/${id}`).toPromise();
+    return this.httprequest.get<TransaccionesCuenta[]>(`${this.rootURL}/TransaccionesCuenta/${id}`).toPromise();
   }
   //  ***** POST
   postRol(datos : TransaccionesCuenta):Promise<any>{

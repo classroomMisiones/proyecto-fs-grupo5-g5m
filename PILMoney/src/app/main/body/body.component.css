@@ -15,12 +15,14 @@ body{
 h1{
     font-size: 35px;
     margin-top: 10px;
+    /*margin-bottom: 10px;*/
 }
 
 h2{
     font-family: "mansalva", sans-serif;
     font-size: 38px;
     letter-spacing: 5px;
+   /* margin-bottom: 100px;*/
 }
 
 .img-body{
@@ -35,6 +37,7 @@ p{
     letter-spacing: 3px;
     margin-left: 0.25rem;
     margin-right: 0.25rem;
+    
 }
 
 .text-descripcion{
@@ -49,6 +52,7 @@ p{
     background-color: #dc143c;
 }
 .rebote{
+    
     animation: rebote 2s infinite;
 }
 
@@ -62,6 +66,7 @@ p{
     border-style: none;
     color: #000; 
     background-color: #ffc107;
+    
 }
 
 @keyframes rebote{
@@ -106,7 +111,8 @@ p{
         margin-bottom: 20px;
     }   
     .row-Link-registro{
-        height: 5.5rem;        
+        height: 5.5rem;   
+       /* margin-bottom: 45px;  */
     }
     
     .Link-registro{

@@ -7,35 +7,38 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace ProyectoWallet.Controllers
 {
+    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public class LocalidadController : ApiController
     {
-        public string mi_conexion = ConfigurationManager.ConnectionStrings["CadenaConexion"].ConnectionString;
+        public string mi_conexion = ConfigurationManager.ConnectionStrings["kepuaBDConexion"].ConnectionString;
 
         [HttpGet]
         public IHttpActionResult Get()
         {
             DataTable dataTableResultado = new DataTable();
-            using (SqlConnection conector = new SqlConnection(mi_conexion))
+            try 
             {
-                try
+                using (SqlConnection conector = new SqlConnection(mi_conexion))
                 {
-                    conector.Open();
-                    SqlDataAdapter adaptador = new SqlDataAdapter("SELECT * FROM localidad", conector);
-                    adaptador.Fill(dataTableResultado);
+                        conector.Open();
+                        SqlDataAdapter adaptador = new SqlDataAdapter("SELECT * FROM localidad", conector);
+                        adaptador.Fill(dataTableResultado);
                 }
-                catch (Exception)
-                {
-                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
             }
             return Ok(dataTableResultado);
         }
 
-
+        [HttpGet]
         // GET: api/Usuario/5
-        public string Get(int id)
+        public IHttpActionResult Get(int id)
         {
             DataTable dataTableResultado = new DataTable();
             try
@@ -43,22 +46,22 @@ namespace ProyectoWallet.Controllers
                 using (SqlConnection conector = new SqlConnection(mi_conexion))
                 {
                     conector.Open();
-                    SqlDataAdapter adaptador = new SqlDataAdapter("SELECT nombre FROM localidad WHERE id_localidad = " + id, conector);
+                    SqlDataAdapter adaptador = new SqlDataAdapter("SELECT Id_localidad, Nombre, Id_provincia FROM localidad WHERE Id_localidad = " + id, conector);
                     adaptador.Fill(dataTableResultado);
 
                 }
-                //return dataTableResultado;
-                return dataTableResultado.Rows[0]["nombre"].ToString();
+                //return dataTableResultado.Rows[0]["Nombre"].ToString()+" "+ dataTableResultado.Rows[0]["Id_provincia"].ToString();
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return "No se pudo realizar la operacion, Numero de Indice Erroneo";
-                //return null;
+                //return "No se pudo realizar la operacion, Numero de Indice Erroneo";
+                Console.WriteLine(e.Message);
             }
+            return Ok(dataTableResultado);
         }
 
         // POST: api/Rol
-        public void Post([FromBody] Models.Localidad oLocalidad)
+        public string Post([FromBody] Models.Localidad oLocalidad)
         {
             try
             {
@@ -66,53 +69,63 @@ namespace ProyectoWallet.Controllers
                 {
                     conector.Open();
                     SqlCommand comando = new SqlCommand();
-                    comando.CommandText = "INSERT INTO localidad (nombre, id_provincia) VALUES ('" + oLocalidad.Nombre + "', " + oLocalidad.Id_provincia + ")";
+                    comando.CommandText = "INSERT INTO localidad (Nombre, Id_provincia) VALUES ('" + oLocalidad.Nombre + "', " + oLocalidad.Id_provincia + ")";
                     comando.Connection = conector;
                     comando.ExecuteNonQuery();
                 }
+                return "OPERACION DE INSERCION EXITOSA";
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Console.WriteLine(e.Message);
+                return "NO SE PUDO COMPLETAR LA OPERACION  DE INSERCION";
             }
         }
 
         // PUT: api/Rol/5
-        public void Put(int id, [FromBody] Models.Localidad oLocalidad)
+        public string Put(int id, [FromBody] Models.Localidad oLocalidad)
         {
-            using (SqlConnection conector = new SqlConnection(mi_conexion))
+            try 
             {
-                try
+                using (SqlConnection conector = new SqlConnection(mi_conexion))
                 {
-                    conector.Open();
-                    SqlCommand comando = new SqlCommand();
-                    comando.CommandText = "UPDATE localidad SET nombre = '" + oLocalidad.Nombre + "',  id_provincia = " + oLocalidad.Id_provincia + " WHERE id_localidad = " + id;
-                    comando.Connection = conector;
-                    //comando.BeginExecuteNonQuery();
-                    comando.ExecuteNonQuery();
+                    
+                        conector.Open();
+                        SqlCommand comando = new SqlCommand();
+                        comando.CommandText = "UPDATE localidad SET Nombre = '" + oLocalidad.Nombre + "',  Id_provincia = " + oLocalidad.Id_provincia + " WHERE Id_localidad = " + id;
+                        comando.Connection = conector;
+                        //comando.BeginExecuteNonQuery();
+                        comando.ExecuteNonQuery();
+
                 }
-                catch (Exception)
-                {
-                }
+                return "OPERACION DE ACUALIZACION EXITOSA";
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return "NO SE PUDO COMPLETAR LA OPERACION DE ACUALIZACION";
             }
         }
 
         // DELETE: api/Rol/5
-        public void Delete(int id)
+        public string Delete(int id)
         {
             try
             {
                 using (SqlConnection conector = new SqlConnection(mi_conexion))
                 {
                     conector.Open();
-                    SqlCommand comando = new SqlCommand("DELETE FROM localidad WHERE id_localidad = " + id, conector);
+                    SqlCommand comando = new SqlCommand("DELETE FROM localidad WHERE Id_localidad = " + id, conector);
                     comando.ExecuteNonQuery();
                 }
+                return "OPERACION DE BORRADO EXITOSA";
             }
-            catch (Exception)
+            catch (Exception e)
             {
-
+                Console.WriteLine(e.Message);
+                //throw new KeyNotFoundException("No pudo completar la operacion, Id erroneo o inexistente");
+                return "NO SE PUDO COMPLETAR LA OPERACION DE BORRADO";
             }
-
         }
     }
 }

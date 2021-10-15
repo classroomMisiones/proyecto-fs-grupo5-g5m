@@ -1,19 +1,4 @@
 
-<html >
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <title>Dashboard</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
-
-</head>
-
-<body>
-
-
-
-
   <input type="checkbox" id="sidebar-toggle">
   <div class="sidebar">
     <div class="sidebar-header">
@@ -186,8 +171,6 @@
                 <a class="btn btn-secondary" data-bs-toggle="modal" href="#exampleModalToggle"   role="button">Realizar Deposito  </a>
                  </div>
 
-
-
           </div>
 
         </div>
@@ -204,9 +187,8 @@
             <!--<a href="">Consultar</a>-->
 
                   <div class="pop">
-                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Consultar</button>
-
-
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" (onclick)="movimientosPesos()">Consultar</button>
+                    {{this.arrTransacciones[0].Fecha}}
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                       <div class="modal-dialog">
                         <div class="modal-content">
@@ -226,7 +208,7 @@
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  <tr>
+                                  <tr *ngForm = "let registro of arrTransacciones">
                                     <th scope="row">1</th>
                                     <td>Deposito</td>
                                     <td>$55633</td>
@@ -353,7 +335,7 @@
         </div>
 
       </div>
-	   <h2 class="dash-title">Operaciones con Bitcoins</h2>
+      <h2 class="dash-title">Operaciones con Bitcoins <span [ngStyle]= "ColorActualizoCriptos"> valor actual:  {{valoresCripto[0]}}</span></h2>
       <div class="dash-cards">
         <div class="card-single">
           <div class="card-body">
@@ -364,7 +346,6 @@
             </div>
           </div>
           <div class="card-footer">
-            <!--<a href="">Cantidad a adquirir</a>-->
 
             <div class="popu">
 
@@ -377,13 +358,13 @@
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="staticBackdropLabel">BTC a Comprar</h5>
+                      <h5 class="modal-title" id="staticBackdropLabel">BTC a Comprar:  {{compraBTC.value}}</h5>
                       
                     </div>
                     <div class="modal-body">
                       <label class="form-label" for="customRange1">Indique la cantidad a comprar</label>
                         <div class="range">
-                           <input type="range" class="form-range" id="customRange1" />
+                          <input type="range" class="form-range" id="customRange1" min="100" max="1000" step="100" #compraBTC/>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -393,15 +374,15 @@
                   </div>
                 </div>
               </div> 
-             </div>
-
+            </div>
           </div>
         </div>
+        
         <div class="card-single">
           <div class="card-body">
             <span class="ti-export"></span>
             <div>
-              <h5>Vender Bitcoins</h5>
+              <h5>Vender Bitcoins:  {{ventaBTC.value}}</h5>
               <h4>BTC</h4>
             </div>
           </div>
@@ -424,7 +405,7 @@
                     </div>
                     <div class="modal-body">
                       <label for="customRange2" class="form-label">Indique la cantidad a vender</label>
-                      <input type="range" class="form-range" id="customRange2">
+                      <input type="range" class="form-range" id="customRange2"  min="100" max="1000" step="100" #ventaBTC>
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -449,15 +430,14 @@
             <!--<a href="">Ver</a>-->
 
             <div class="pop">
-              <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#ej" data-bs-whatever="@mdo">Consultar</button>
-             
-             
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ej" data-bs-whatever="@mdo"  (onclick)="movimientosCriptos()">Consultar</button>
+
               <div class="modal fade" id="ej" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
                       <h5 class="modal-title" id="exampleModalLabel">Últimos movimientos</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                       <form>
@@ -575,7 +555,7 @@
 
 
       </div>
-	  <div class="chart-grid">
+	<div class="chart-grid">
         <div class="chart-followers">
           <div class="chart-head">
             <h4>Evolución de BTC vs Peso</h4>
@@ -585,20 +565,35 @@
             style="width: 100% "> 
       </div>
         </div>
-		 <div class="chart-sales">
-          <div class="chart-head">
+      <div class="chart-sales">
+        <div class="chart-head">
             <h4>Consultar Cotizaciones </h4>
             <span class="las la-cog"></span>
-          </div>
-          <iframe id="inlineFrameExample"
-
-          src="https://cotizadordecriptomonedasprueba.netlify.app/">
-      </iframe>
         </div>
+        <div class="text-center">
+          <div class="row text-center text-white fs-5">
+            <label class="mt-2" id="moneda" name="moneda">Cotizacion en Peso argentino</label>
+          </div>
+          <div class="row text-center text-white  fs-5">
+            <div>
+              
+              <P class="text-white">Bitcoin - BTC</P>
+              <label>Cotizacion Actual</label>
+            </div>
+          </div>
+          <div id="resultado" class="resultado text-white fs-6">
+            <p class="precio m-2" [ngStyle]= "ColorActualizoCripto">Precio Actual: {{valoresCripto[0]}}</p>
+            <p class="precioAlto m-1">Mayor Cotizacion del día: {{valoresCripto[1]}}</p>
+            <p class="precioBajo m-1">Menor Cotizacion del día: {{valoresCripto[2]}}</p>
+            <p class="ultimasHoras m-1">Porcentaje de Variacion: {{valoresCripto[3]}} %</p>
+            <p class="ultimaActualizacion m-1"  [ngStyle]= "ColorActualizoCripto">Ultima Actualizacion: {{valoresCripto[4]}}</p>
+          </div > 
+      </div>
+      </div>
       </div>
 
 
-         <section class="recent">
+      <section class="recent">
             <div class="activity-grid">
 
               <div class="activity-card">
@@ -714,7 +709,7 @@
                         <div class="bday-info">
                             <h5>Juan Carlos Batman</h5>
                             <small>Cumpleaños hoy</small>
-                         </div>
+                        </div>
                       </div>
 
                       <div class="text-center">
@@ -725,13 +720,7 @@
                   </div>
               </div>
             </div>
-         </section>
+        </section>
     </main>
 
   </div>
-
-
-
-</body>
-
-</html>

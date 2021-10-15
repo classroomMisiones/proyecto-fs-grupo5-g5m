@@ -23,9 +23,10 @@ namespace ProyectoWallet.Models
         public int Id_localidad { get; set; }
         public int Id_estado_cuenta { get; set; }
         public int Id_rol { get; set; }
-        public string Passw { get; set; }
-        public string Fecha_passw { get; set; }
+        public string Clave { get; set; }
+        public string Fecha_clave { get; set; }
         public string Nombre_de_usuario { get; set; }
+        public string Token { get; set; }
 
     }
 }

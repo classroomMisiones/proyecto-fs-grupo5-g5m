@@ -7,35 +7,40 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace ProyectoWallet.Controllers
 {
+    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public class EstadoCuentaController : ApiController
     {
-        public string mi_conexion = ConfigurationManager.ConnectionStrings["CadenaConexion"].ConnectionString;
+        public string mi_conexion = ConfigurationManager.ConnectionStrings["kepuaBDConexion"].ConnectionString;
 
         [HttpGet]
         public IHttpActionResult Get()
         {
             DataTable dataTableResultado = new DataTable();
-            using (SqlConnection conector = new SqlConnection(mi_conexion))
+            try 
             {
-                try
+                using (SqlConnection conector = new SqlConnection(mi_conexion))
                 {
-                    conector.Open();
-                    SqlDataAdapter adaptador = new SqlDataAdapter("SELECT * FROM estado_cuenta", conector);
-                    adaptador.Fill(dataTableResultado);
-                }
-                catch (Exception)
-                {
+                        conector.Open();
+                        SqlDataAdapter adaptador = new SqlDataAdapter("SELECT * FROM estado_cuenta", conector);
+                        adaptador.Fill(dataTableResultado);
+                    
                 }
             }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
             return Ok(dataTableResultado);
         }
 
 
         // GET: api/Usuario/5
-        public string Get(int id)
+        public IHttpActionResult Get(int id)
         {
             DataTable dataTableResultado = new DataTable();
             try
@@ -43,21 +48,21 @@ namespace ProyectoWallet.Controllers
                 using (SqlConnection conector = new SqlConnection(mi_conexion))
                 {
                     conector.Open();
-                    SqlDataAdapter adaptador = new SqlDataAdapter("SELECT nombre FROM estado_cuenta WHERE id_estado_cuenta = " + id, conector);
+                    SqlDataAdapter adaptador = new SqlDataAdapter("SELECT Id_estado_cuenta, Nombre FROM estado_cuenta WHERE Id_estado_cuenta = " + id, conector);
                     adaptador.Fill(dataTableResultado);
 
                 }
                 //return ok(dataTableResultado);
-                return dataTableResultado.Rows[0]["nombre"].ToString();
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return "No se pudo realizar la operacion, Numero de Indice Erroneo";
+                Console.WriteLine(e.Message);
             }
+            return Ok(dataTableResultado);
         }
 
         // POST: api/Rol
-        public void Post([FromBody] Models.EstadoCuenta oEstadoCuenta)
+        public string Post([FromBody] Models.EstadoCuenta oEstadoCuenta)
         {
             try
             {
@@ -65,18 +70,21 @@ namespace ProyectoWallet.Controllers
                 {
                     conector.Open();
                     SqlCommand comando = new SqlCommand();
-                    comando.CommandText = "INSERT INTO estado_cuenta (nombre) VALUES ('" + oEstadoCuenta.Nombre +"')";
+                    comando.CommandText = "INSERT INTO estado_cuenta (Nombre) VALUES ('" + oEstadoCuenta.Nombre + "')";
                     comando.Connection = conector;
                     comando.ExecuteNonQuery();
                 }
+                return "OPERACION DE INSERCION EXITOSA";
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Console.WriteLine(e.Message);
+                return "NO SE PUDO COMPLETAR LA OPERACION  DE INSERCION";
             }
         }
 
         // PUT: api/Rol/5
-        public void Put(int id, [FromBody] Models.EstadoCuenta oEstadoCuenta)
+        public string Put(int id, [FromBody] Models.EstadoCuenta oEstadoCuenta)
         {
             using (SqlConnection conector = new SqlConnection(mi_conexion))
             {
@@ -84,34 +92,39 @@ namespace ProyectoWallet.Controllers
                 {
                     conector.Open();
                     SqlCommand comando = new SqlCommand();
-                    comando.CommandText = "UPDATE estado_cuenta SET nombre= '" + oEstadoCuenta.Nombre + "' WHERE id_estado_cuenta = " + id;
+                    comando.CommandText = "UPDATE estado_cuenta SET Nombre= '" + oEstadoCuenta.Nombre + "' WHERE Id_estado_cuenta = " + id;
                     comando.Connection = conector;
                     //comando.BeginExecuteNonQuery();
                     comando.ExecuteNonQuery();
+                    return "OPERACION DE ACUALIZACION EXITOSA";
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
+                    Console.WriteLine(e.Message);
+                    return "NO SE PUDO COMPLETAR LA OPERACION DE ACUALIZACION";
                 }
             }
         }
 
         // DELETE: api/Rol/5
-        public void Delete(int id)
+        public string Delete(int id)
         {
             try
             {
                 using (SqlConnection conector = new SqlConnection(mi_conexion))
                 {
                     conector.Open();
-                    SqlCommand comando = new SqlCommand("DELETE FROM estado_cuenta WHERE id_estado_cuenta = " + id, conector);
+                    SqlCommand comando = new SqlCommand("DELETE FROM estado_cuenta WHERE Id_estado_cuenta = " + id, conector);
                     comando.ExecuteNonQuery();
                 }
+                return "OPERACION DE BORRADO EXITOSA";
             }
-            catch (Exception)
+            catch (Exception e)
             {
-
+                Console.WriteLine(e.Message);
+                //throw new KeyNotFoundException("No pudo completar la operacion, Id erroneo o inexistente");
+                return "NO SE PUDO COMPLETAR LA OPERACION DE BORRADO";
             }
-
         }
     }
 }

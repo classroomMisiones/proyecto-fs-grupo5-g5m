@@ -1,39 +1,29 @@
-<html>
 <div> <a [routerLink]="['']"><img class="img-responsive" src="assets/img/logo3.svg" alt="logo kepúa"
       style="width:35%"> </a>
 </div>
 
 <div class="login">
+  <form class="custom-form" [formGroup]="form" (ngSubmit)="onSubmit()">
 
-  <!--<form class="custom-form" method="post">
-    <h1>Login</h1>
-    <input type="email" [(ngModel)]="email" name="email" placeholder="Email" required="required" />
-    <input type="password" [(ngModel)]="password" name="password" placeholder="Contraseña" required="required" />
-    <button type="submit" (click)="login()" >Ingresar</button>
-    <div class="form-group">
-      <p> <a [routerLink]="'/forgot-password'" style='color: #1dca73'>Recuperar contraseña</a></p>
-    </div>
-  </form> -->
-  <form class="custom-form" [formGroup]="form">
     <h1>Login</h1>
     <input type="email" name="email" placeholder="Email" formControlName="email" />
     <div class="alert-danger" *ngIf="email!.invalid && (email!.dirty || email!.touched)">
       <div class="container-error-message" *ngIf="email!.errors!.required"> Email requerido </div>
       <div class="container-error-message" *ngIf="email!.invalid && !email!.errors!.required"> Ingrese un email valido </div>
     </div>
+
     <input type="password" name="password" placeholder="Contraseña" formControlName="password" />
     <div class="alert-danger" *ngIf="password!.invalid && (password!.dirty || password!.touched)">
       <div class="container-error-message" *ngIf="password!.errors!.required"> Contraseña requerida </div>
       <div class="container-error-message" *ngIf="password!.errors!.minlength"> La contraseña debe tener al menos 8 caracteres </div>
       <div class="container-error-message" *ngIf="password!.invalid && !password!.errors!.required"> Debe tener letras mayusculas, minusculas y números </div>
     </div>
+
     <button [disabled]="form.invalid" type="submit" class="btn btn-info" ><a  class="ex2 nav-link" style='color: #030303' [routerLink]="'/dashboard'">Ingresar</a></button>
+
     <div class="form-group">
       <p> <a [routerLink]="'/forgot-password'" style='color: #1dca73'>Recuperar contraseña</a></p>
     </div>
-  </form>
-       
-            
-</div>
 
-</html>
+  </form>
+</div>

@@ -6,9 +6,6 @@ import { TransaccionesCuentaService } from '../service/transacciones-cuenta.serv
 
 import { TransaccionesCuenta } from '../Modelos/transaccionesCuenta.model';
 
-
-
-
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -48,18 +45,7 @@ export class DashboardComponent implements OnInit {
   };
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+// **************** CONSULTA API CRIPTO
   consultarAPI(){
     this.ColorActualizoCripto.color =  this.ColorActualizoCriptos.color = '#0907B8';
     this.criptoaApiService.getCotizacion() // RECIBO LAS RESPUESTA DEL POST
@@ -74,7 +60,7 @@ export class DashboardComponent implements OnInit {
             
             setTimeout(() => {
               this.ColorActualizoCripto.color = '#fff'
-              this.ColorActualizoCriptos.color = '#E10101 '
+              this.ColorActualizoCriptos.color = '#E10101'
             }, 800);
             
           }

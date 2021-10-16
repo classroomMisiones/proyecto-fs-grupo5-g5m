@@ -183,6 +183,7 @@
     <Compile Include="Controllers\LocalidadController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\LoginUsuariosController.cs" />
+    <Compile Include="Controllers\N_tokenController.cs" />
     <Compile Include="Controllers\PaisController.cs" />
     <Compile Include="Controllers\ProvinciaController.cs" />
     <Compile Include="Controllers\RolController.cs" />
@@ -218,6 +219,7 @@
     <Compile Include="Models\TipoDocumentoIdentidad.cs" />
     <Compile Include="Models\TipoMoneda.cs" />
     <Compile Include="Models\TipoTransaccion.cs" />
+    <Compile Include="Models\N_token.cs" />
     <Compile Include="Models\TransaccionesCuenta.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

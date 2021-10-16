@@ -8,9 +8,11 @@ using System.Threading;
 //using WebApiSegura.Models;
 //using WebApiSegura.Security;
 using ProyectoWallet.Models;
+using System.Web.Http.Cors;
 
 namespace ProyectoWallet.Controllers
 {
+    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     /// <summary>
     /// login controller class for authenticate users
     /// </summary>
@@ -34,35 +36,25 @@ namespace ProyectoWallet.Controllers
 
         [HttpPost]
         [Route("authenticate")]
-        public IHttpActionResult Authenticate(LoginRequest login)
+        public IHttpActionResult Authenticate(LoginRequest ologin)
         {
-            if (login == null)
+            if (ologin == null)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
-            //TODO: This code is only for demo - extract method in new class & validate
-            //correctly in your application !!
-             var isUserValid = (login.Email == "user" && login.Password == "123456");
-            if (isUserValid)
-            {
-                var rolename = "Developer";
-                var token = TokenGenerator.GenerateTokenJwt(login.Email, rolename);
-                return Ok(token);
+            
+            // Llamo a la funcion del UsuarioController y verifico los datos
+            var oGetLoginUsuarios = new UsuariosController();
+            // Obtengo la respuesta en un string
+            var respuesta = oGetLoginUsuarios.GetLoginUsuarios(ologin);
+            // Verifico y genero el tocken
+            if (respuesta == "Usuario") {
+                    var rolename = "2021/G-5/Ke-Púa/usuario";
+                    var token = TokenGenerator.GenerateTokenJwt(ologin.Mail, rolename);
+                    return Ok(token);
             }
-            //TODO: This code is only for demo - extract method in new class & validate
-            //correctly in your application !!
-             var isTesterValid = (login.Email == "test" && login.Password == "123456");
-            if (isTesterValid)
+            if (respuesta == "Administrador")
             {
-                var rolename = "Tester";
-                var token = TokenGenerator.GenerateTokenJwt(login.Email, rolename);
-                return Ok(token);
-            }
-            //TODO: This code is only for demo - extract method in new class & validate
-            //correctly in your application !!
-             var isAdminValid = (login.Email == "admin" && login.Password == "123456");
-            if (isAdminValid)
-            {
-                var rolename = "Administrator";
-                var token = TokenGenerator.GenerateTokenJwt(login.Email, rolename);
+                var rolename = "2021/G-5/Ke-Púa/administrador";
+                var token = TokenGenerator.GenerateTokenJwt(ologin.Mail, rolename);
                 return Ok(token);
             }
             // Unauthorized access
@@ -70,3 +62,31 @@ namespace ProyectoWallet.Controllers
         }
     }
 }
+
+//TODO: This code is only for demo - extract method in new class & validate
+//correctly in your application !!
+//var isUserValid = (login.Mail == "Usuario@usuario" && login.Clave == "123456AAa");
+//if (isUserValid)
+//{
+//    var rolename = "Usuario";
+//    var token = TokenGenerator.GenerateTokenJwt(login.Mail, rolename);
+//    return Ok(token);
+//}
+//TODO: This code is only for demo - extract method in new class & validate
+//correctly in your application !!
+//var isTesterValid = (login.Mail == "test" && login.Clave == "123456");
+//if (isTesterValid)
+//{
+//    var rolename = "Tester";
+//    var token = TokenGenerator.GenerateTokenJwt(login.Mail, rolename);
+//    return Ok(token);
+//}
+//TODO: This code is only for demo - extract method in new class & validate
+//correctly in your application !!
+//var isAdminValid = (login.Mail == "admin" && login.Clave == "123456");
+//if (isAdminValid)
+//{
+//    var rolename = "Administrator";
+//    var token = TokenGenerator.GenerateTokenJwt(login.Mail, rolename);
+//    return Ok(token);
+//}

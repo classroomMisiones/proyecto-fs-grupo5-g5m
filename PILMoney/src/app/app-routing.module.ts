@@ -11,7 +11,6 @@ import { ConfiguracionComponent } from './configuracion/configuracion.component'
 import { FaqComponent } from './faq/faq.component';
 
 const routes: Routes = [
-
   { path: '', component: BodyComponent, pathMatch:'full' },
   { path: "login", component: LoginComponent, pathMatch: "full" },
   { path: "registro", component: RegistroUsuarioComponent, pathMatch: "full" },
@@ -20,7 +19,6 @@ const routes: Routes = [
   { path:"configuracion", component: ConfiguracionComponent, pathMatch: 'full' },
   { path:"faq", component: FaqComponent, pathMatch: 'full' },
   { path:'**', component:ErrorComponent }
-
 ];
 
 @NgModule({

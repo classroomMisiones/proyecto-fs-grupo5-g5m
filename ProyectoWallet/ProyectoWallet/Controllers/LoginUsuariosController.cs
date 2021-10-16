@@ -60,17 +60,25 @@ namespace ProyectoWallet.Controllers
         }
 
         // POST: api/Rol
-        public string Post([FromBody] Models.LoginUsuarios oLoginUsuarios)
+        public string Post([FromBody] Models.LoginRequest oLogin)
         {
             try
             {
                 using (SqlConnection conector = new SqlConnection(mi_conexion))
                 {
+                    if (oLogin == null)
+                        throw new HttpResponseException(HttpStatusCode.BadRequest);
+
+                    // Llamo a la funcion del UsuarioController y verifico los datos
+                    var oGetLoginID = new UsuariosController();
+                    // Obtengo la respuesta en un string
+                    var respuestaID = oGetLoginID.GetLoginID(oLogin);
+                    // Verifico y genero el tocken
+
                     string fechaHora = DateTime.Now.ToString();
-                    
                     conector.Open();
                     SqlCommand comando = new SqlCommand();
-                    comando.CommandText = "INSERT INTO login_usuarios (Id_usuario, Fecha_hora_inicio) VALUES (" + oLoginUsuarios.Id_usuario + ", '" + fechaHora + "')";
+                    comando.CommandText = "INSERT INTO login_usuarios (Id_usuario, Fecha_hora_inicio) VALUES (" + respuestaID + ", '" + fechaHora + "')";
                     comando.Connection = conector;
                     comando.ExecuteNonQuery();
                 }
@@ -81,6 +89,7 @@ namespace ProyectoWallet.Controllers
                 Console.WriteLine(e.Message);
                 return "NO SE PUDO COMPLETAR LA OPERACION  DE INSERCION";
             }
+            
         }
 
         // PUT: api/Rol/5

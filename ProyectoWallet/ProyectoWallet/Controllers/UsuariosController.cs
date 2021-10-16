@@ -1,103 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
+using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Helpers;
 using System.Web.Http;
 using System.Web.Http.Cors;
 
 namespace ProyectoWallet.Controllers
 {
-    //[EnableCors(origins: "*", headers: "*", methods: "*")]
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public class UsuariosController : ApiController
     {
         public string mi_conexion = ConfigurationManager.ConnectionStrings["kepuaBDConexion"].ConnectionString;
 
-        [HttpPost]
-        public IHttpActionResult GetLoginUsuarios(string mail, string clave)
-        {
-            
-            DataTable tablaEmail = new DataTable();
-            DataTable tablaUsuario = new DataTable();
-            DataTable tablaRol = new DataTable();
-            try
-            {
-                using (SqlConnection conector = new SqlConnection(mi_conexion))
-                {
-                    conector.Open();
-                    SqlDataAdapter adaptadorEmail = new SqlDataAdapter("SELECT Mail, Id_usuario FROM Email WHERE Mail = " + mail, conector);
-                    adaptadorEmail.Fill(tablaEmail);
-                    SqlDataAdapter adaptadorUsuario = new SqlDataAdapter("SELECT Id_rol FROM usuarios WHERE Id_usuario = "+ tablaEmail.Rows[0]["Id_usuario"], conector);
-                    adaptadorUsuario.Fill(tablaUsuario);
-                    SqlDataAdapter adaptadorRol = new SqlDataAdapter("SELECT Id_rol, descripcion FROM rol WHERE Id_rol = "+ tablaUsuario.Rows[0]["Id_rol"], conector);
-                    adaptadorRol.Fill(tablaRol);
-
-                    if (mail == tablaEmail.Rows[0]["Mail"].ToString() && Crypto.VerifyHashedPassword(tablaUsuario.Rows[0]["Clave"].ToString(), clave) && tablaRol.Rows[0]["Descripcion"].ToString() == "Usuario")
-                    {
-                        return Ok();
-                    }
-                    else 
-                    {
-                        return NotFound();
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-                return NotFound();
-            }
-        }
-
-        //public IHttpActionResult GetLoginAdmin(string mail, string clave)
-        //{
-        //    DataTable tablaEmail = new DataTable();
-        //    DataTable tablaUsuario = new DataTable();
-        //    DataTable tablaRol = new DataTable();
-        //    try
-        //    {
-        //        using (SqlConnection conector = new SqlConnection(mi_conexion))
-        //        {
-        //            conector.Open();
-        //            SqlDataAdapter adaptadorEmail = new SqlDataAdapter("SELECT mail, id_usuario FROM email WHERE mail = " + mail, conector);
-        //            adaptadorEmail.Fill(tablaEmail);
-        //            SqlDataAdapter adaptadorUsuario = new SqlDataAdapter("SELECT id_rol FROM usuarios WHERE id_usuario = " + tablaEmail.Rows[0]["id_usuario"], conector);
-        //            adaptadorUsuario.Fill(tablaUsuario);
-        //            SqlDataAdapter adaptadorRol = new SqlDataAdapter("SELECT id_rol, descripcion FROM rol WHERE id_rol = " + tablaUsuario.Rows[0]["id_rol"], conector);
-        //            adaptadorRol.Fill(tablaRol);
-
-        //            if ( mail == tablaEmail.Rows[0]["mail"].ToString() && Crypto.VerifyHashedPassword(tablaUsuario.Rows[0]["clave"].ToString(), clave) && tablaRol.Rows[0]["descripcion"].ToString() == "Administrador")
-        //            {
-        //                return Ok();
-        //            }
-        //            else
-        //            {
-        //                return NotFound();
-        //            }
-
-        //        }
-
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Console.WriteLine(e.Message);
-        //        return NotFound();
-        //    }
-        //}
-
-        // ***********************************
-
-        // GET: api/Usuario
         [HttpGet]
+        // GET: api/Usuario
         public IHttpActionResult Get()
         {
             DataTable dataTableResultado = new DataTable();
-            try 
+            try
             {
                 using (SqlConnection conector = new SqlConnection(mi_conexion))
                 {
@@ -120,17 +42,16 @@ namespace ProyectoWallet.Controllers
         {
             DataTable dataTableResultado = new DataTable();
             try
-            { 
-                
-               using (SqlConnection conector = new SqlConnection(mi_conexion))
-               {
+            {
+                using (SqlConnection conector = new SqlConnection(mi_conexion))
+                {
                     conector.Open();
                     SqlDataAdapter adaptador = new SqlDataAdapter("SELECT Id_usuario, Nombre, Apellido, Dni_numero, Direccion, Nro_direccion, Piso_departamento, Fecha_clave, Nombre_de_usuario FROM usuarios WHERE Id_usuario = " + id, conector);
-                    
+
                     //SqlCommand comando = new SqlCommand("SELECT nombre FROM usuarios WHERE id_usuario = " + id, conector);
                     adaptador.Fill(dataTableResultado);
-                   //nombre = comando.ExecuteScalar().ToString();
-               }
+                    //nombre = comando.ExecuteScalar().ToString();
+                }
             }
             catch (Exception e)
             {
@@ -142,20 +63,20 @@ namespace ProyectoWallet.Controllers
         // POST: api/Usuario
         public string Post([FromBody] Models.Usuario oUsuario)
         {
-            try 
+            try
             {
                 // otra forma de encriptacion string Key = Models.Encrypt.GetSHA256(oUsuario.Clave);
                 // tomo solo la fecha n el formato dia-mes-año
                 string fecha = DateTime.Now.ToString("dd-MM-yyyy");
                 using (SqlConnection conector = new SqlConnection(mi_conexion))
                 {
-                   conector.Open();
-                   SqlCommand comando = new SqlCommand();
+                    conector.Open();
+                    SqlCommand comando = new SqlCommand();
                     //Encripto la clave con el metodo HashSalt
-                   comando.CommandText = "INSERT INTO usuarios (Nombre, Apellido, Id_email, Id_rol, Clave, fecha_Clave, Nombre_de_usuario ) VALUES ('" + oUsuario.Nombre + "','" + oUsuario.Apellido + "'," + oUsuario.Id_email + ", " + oUsuario.Id_rol + " ,'" + Crypto.HashPassword(oUsuario.Clave) + "', '" + fecha + "', '" + oUsuario.Nombre.Substring(0, 1) + "." + oUsuario.Apellido + "')";
-                   comando.Connection = conector;
-                   comando.ExecuteNonQuery();
-                 
+                    comando.CommandText = "INSERT INTO usuarios (Nombre, Apellido, Id_email, Id_rol, Clave, fecha_Clave, Nombre_de_usuario ) VALUES ('" + oUsuario.Nombre + "','" + oUsuario.Apellido + "'," + oUsuario.Id_email + ", " + oUsuario.Id_rol + " ,'" + Crypto.HashPassword(oUsuario.Clave) + "', '" + fecha + "', '" + oUsuario.Nombre.Substring(0, 1) + "." + oUsuario.Apellido + "')";
+                    comando.Connection = conector;
+                    comando.ExecuteNonQuery();
+
                 }
                 return "OPERACION DE INSERCION EXITOSA";
             }
@@ -166,9 +87,8 @@ namespace ProyectoWallet.Controllers
             }
         }
 
-
         // PUT: api/Usuario/5
-        public string Put (int id, [FromBody] Models.Usuario oUsuario)
+        public string Put(int id, [FromBody] Models.Usuario oUsuario)
         {
             string fecha = DateTime.Now.ToString("dd-MM-yyyy");
             try
@@ -184,7 +104,8 @@ namespace ProyectoWallet.Controllers
                     adaptador.Fill(dataTableResultado);
 
                     //verifico que exista el id buscado
-                    if (dataTableResultado.Rows[0]["Clave"].ToString() != null ) {
+                    if (dataTableResultado.Rows[0]["Clave"].ToString() != null)
+                    {
 
                         //Verifico si las claves son iguales
                         // otra forma de verificascion - if (dataTableResultado.Rows[0]["clave"].ToString() == Models.Encrypt.GetSHA256(oUsuario.Clave))
@@ -213,6 +134,7 @@ namespace ProyectoWallet.Controllers
             }
         }
 
+        // DELETE: api/Usuario/5
         public string Delete(int id)
         {
             try
@@ -232,5 +154,84 @@ namespace ProyectoWallet.Controllers
                 return "NO SE PUDO COMPLETAR LA OPERACION DE BORRADO";
             }
         }
+
+        //************************************************
+        //*************** TODOS NUEVOS *******************
+        //************************************************
+        internal string GetLoginUsuarios([FromBody] Models.LoginRequest oLogin)
+        {
+            DataTable tablaEmail = new DataTable();
+            DataTable tablaUsuario = new DataTable();
+            DataTable tablaRol = new DataTable();
+            try
+            {
+                using (SqlConnection conector = new SqlConnection(mi_conexion))
+                {
+                    conector.Open();
+                    // Hago un select de la tabla email y obtengo el Id usuario
+                    SqlDataAdapter adaptadorEmail = new SqlDataAdapter("SELECT * FROM email WHERE Mail = '" + oLogin.Mail + "'", conector);
+                    adaptadorEmail.Fill(tablaEmail);
+                    // Hago un select de la tabla usuario y obtengo la clave
+                    SqlDataAdapter adaptadorUsuario = new SqlDataAdapter("SELECT Clave, Id_rol FROM usuarios WHERE Id_usuario = '" + tablaEmail.Rows[0]["Id_usuario"] + "'", conector);
+                    adaptadorUsuario.Fill(tablaUsuario);
+                    // Hago un select de la tabla rol y obtengo el rol del usuario
+                    SqlDataAdapter adaptadorRol = new SqlDataAdapter("SELECT Descripcion FROM rol WHERE Id_rol = '" + tablaUsuario.Rows[0]["Id_rol"] + "'", conector);
+                    adaptadorRol.Fill(tablaRol);
+
+                    //SqlDataAdapter adaptadorEmailUsuario = new SqlDataAdapter("SELECT email.Mail, usuarios.Clave FROM email INNER JOIN usuarios ON email.Id_usuario =  '" +tablaEmail.Rows[0]["Id_usuario"].ToString()+"' && usuarios.Id_usuario = '"+tablaEmail.Rows[0]["Id_usuario"].ToString()+"' ", conector);
+                    //adaptadorEmailUsuario.Fill(tablaJOIN);
+                    //(oLogin.Mail == tablaJOIN.Rows[0]["Mail"].ToString() && Crypto.VerifyHashedPassword(tablaJOIN.Rows[0]["Clave"].ToString(), oLogin.Clave))
+
+                    if (oLogin.Mail == tablaEmail.Rows[0]["Mail"].ToString() && Crypto.VerifyHashedPassword(tablaUsuario.Rows[0]["Clave"].ToString(), oLogin.Clave))
+                    {
+                        return tablaRol.Rows[0]["Descripcion"].ToString();
+                    }
+                    else
+                    {
+                        return "Datos no encontrados!";
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return "Datos no encontrados!";
+            }
+        }
+
+
+        internal int GetLoginID([FromBody] Models.LoginRequest oLogin)
+        {
+            DataTable tablaEmail = new DataTable();
+            DataTable tablaUsuario = new DataTable();
+            try
+            {
+                using (SqlConnection conector = new SqlConnection(mi_conexion))
+                {
+                    conector.Open();
+                    // Hago un select de la tabla email y obtengo el Id usuario
+                    SqlDataAdapter adaptadorEmail = new SqlDataAdapter("SELECT * FROM email WHERE Mail = '" + oLogin.Mail + "'", conector);
+                    adaptadorEmail.Fill(tablaEmail);
+                    // Hago un select de la tabla usuario y obtengo la clave
+                    SqlDataAdapter adaptadorUsuario = new SqlDataAdapter("SELECT Clave, Id_rol FROM usuarios WHERE Id_usuario = '" + tablaEmail.Rows[0]["Id_usuario"] + "'", conector);
+                    adaptadorUsuario.Fill(tablaUsuario);
+
+                    if (oLogin.Mail == tablaEmail.Rows[0]["Mail"].ToString() && Crypto.VerifyHashedPassword(tablaUsuario.Rows[0]["Clave"].ToString(), oLogin.Clave))
+                    {
+                        return (int)tablaEmail.Rows[0]["Id_usuario"];
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return 0;
+            }
+        }
+
     }
 }

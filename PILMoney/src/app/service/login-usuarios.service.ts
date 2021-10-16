@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 
 import { LoginUsuarios } from '../Modelos/loginUsuarios.model';
 
+import { N_token } from '../Interfaces/N_token.interface';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -23,15 +25,15 @@ export class LoginLoginRequestService {
     return this.httprequest.get<LoginUsuarios[]>(`${this.rootURL}/${id}`).toPromise();
   }
   //  ***** POST
-  postRol(datos : LoginUsuarios):Promise<any>{
-    return this.httprequest.post<LoginUsuarios>(this.rootURL, datos).toPromise();
+  postLoginUsuario(datos : N_token):Promise<any>{
+    return this.httprequest.post<N_token>(this.rootURL, datos).toPromise();
   }
   // ***** PUT POR ID
-  putRol(id:number, datos : LoginUsuarios):Promise<any>{
+  putLoginUsuario(id:number, datos : LoginUsuarios):Promise<any>{
     return this.httprequest.put<LoginUsuarios>(`${this.rootURL}/${id}`, datos).toPromise();
   }
   //  ***** DELETE POR ID
-  deleteRol(id:number):Promise<any>{
+  deletepostLoginUsuario(id:number):Promise<any>{
     return this.httprequest.delete<LoginUsuarios>(`${this.rootURL}/${id}`).toPromise();
   }
 

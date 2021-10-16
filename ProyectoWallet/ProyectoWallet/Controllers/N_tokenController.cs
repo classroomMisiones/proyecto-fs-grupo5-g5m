@@ -24,9 +24,9 @@ namespace ProyectoWallet.Controllers
         //}
 
         // GET: api/N_token/5
-        public int Get([FromBody] Models.N_Token oN_Token)
+        [HttpGet]
+        public int Get(string cadena)
         {
-            DataTable tablaEmail = new DataTable();
             DataTable tablaUsuario = new DataTable();
             try
             {
@@ -34,24 +34,12 @@ namespace ProyectoWallet.Controllers
                 {
                     conector.Open();
                     SqlCommand comando = new SqlCommand();
-                    //****************
-                    // Hago un select de la tabla email y obtengo el Id usuario
-                    SqlDataAdapter adaptadorEmail = new SqlDataAdapter("SELECT Mail, Id_usuario FROM email WHERE Mail = '" + oN_Token.Mail + "'", conector);
-                    adaptadorEmail.Fill(tablaEmail);
-                    // Hago un select de la tabla usuario y obtengo la clave
-                    SqlDataAdapter adaptadorUsuario = new SqlDataAdapter("SELECT Clave, Id_usuario FROM usuarios WHERE Id_usuario = '" + tablaEmail.Rows[0]["Id_usuario"] + "'", conector);
+                    // Hago un select de la tabla usuario y obtengo el ID por el tocken
+                    SqlDataAdapter adaptadorUsuario = new SqlDataAdapter("SELECT Id_usuario FROM usuarios WHERE N_token = '" + cadena +"' ", conector);
                     adaptadorUsuario.Fill(tablaUsuario);
-                    // verifico que coincidan
-                    if (oN_Token.Mail == tablaEmail.Rows[0]["Mail"].ToString() && Crypto.VerifyHashedPassword(tablaUsuario.Rows[0]["Clave"].ToString(), oN_Token.Clave))
-                    {
-                        return (int)tablaEmail.Rows[0]["Id_usuario"];
-                    }
-                    else {
-                        return 0;
-                    }
-
+                    // retorno el Id
+                       return (int)tablaUsuario.Rows[0]["Id_usuario"];
                 }
-                
             }
             catch (Exception e)
             {

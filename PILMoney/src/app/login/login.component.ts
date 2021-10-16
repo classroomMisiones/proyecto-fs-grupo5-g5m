@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
     Mail : ['sophiagonazalez@hotmail.com',{ validators:[Validators.required, Validators.email,Validators.minLength(5)], updateOn: 'blur' }],
     Clave : ['Password55',[Validators.required, Validators.minLength(8), createPasswordStrengthValidator() ]]
   });
-
+  // Objeto para el envio de la solicitud de tocken
   grabarToken = {
     "Mail" : "",
     "Clave" : "",
@@ -37,7 +37,6 @@ export class LoginComponent implements OnInit {
   
   get Mail(){return this.form.get('Mail');}
   get Clave(){return this.form.get('Clave');}
-  
 
   // ***************************************
   // ***** HAGO EL SUBMIT DE LOS DATOS *****

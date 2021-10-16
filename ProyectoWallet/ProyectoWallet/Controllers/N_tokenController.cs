@@ -17,22 +17,53 @@ namespace ProyectoWallet.Controllers
     {
         public string mi_conexion = ConfigurationManager.ConnectionStrings["kepuaBDConexion"].ConnectionString;
 
-        // GET: api/N_token
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
+        //// GET: api/N_token
+        //public IEnumerable<string> Get()
+        //{
+        //    return new string[] { "value1", "value2" };
+        //}
 
         // GET: api/N_token/5
-        public string Get(int id)
+        public int Get([FromBody] Models.N_Token oN_Token)
         {
-            return "value";
+            DataTable tablaEmail = new DataTable();
+            DataTable tablaUsuario = new DataTable();
+            try
+            {
+                using (SqlConnection conector = new SqlConnection(mi_conexion))
+                {
+                    conector.Open();
+                    SqlCommand comando = new SqlCommand();
+                    //****************
+                    // Hago un select de la tabla email y obtengo el Id usuario
+                    SqlDataAdapter adaptadorEmail = new SqlDataAdapter("SELECT Mail, Id_usuario FROM email WHERE Mail = '" + oN_Token.Mail + "'", conector);
+                    adaptadorEmail.Fill(tablaEmail);
+                    // Hago un select de la tabla usuario y obtengo la clave
+                    SqlDataAdapter adaptadorUsuario = new SqlDataAdapter("SELECT Clave, Id_usuario FROM usuarios WHERE Id_usuario = '" + tablaEmail.Rows[0]["Id_usuario"] + "'", conector);
+                    adaptadorUsuario.Fill(tablaUsuario);
+                    // verifico que coincidan
+                    if (oN_Token.Mail == tablaEmail.Rows[0]["Mail"].ToString() && Crypto.VerifyHashedPassword(tablaUsuario.Rows[0]["Clave"].ToString(), oN_Token.Clave))
+                    {
+                        return (int)tablaEmail.Rows[0]["Id_usuario"];
+                    }
+                    else {
+                        return 0;
+                    }
+
+                }
+                
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return 0;
+            }
         }
 
-        // POST: api/N_token
-        public void Post([FromBody]string value)
-        {
-        }
+        //// POST: api/N_token
+        //public void Post([FromBody]string value)
+        //{
+        //}
 
         // PUT: api/Usuario/
         public void Put([FromBody] Models.N_Token oN_Token)
@@ -72,9 +103,9 @@ namespace ProyectoWallet.Controllers
             }
         }
 
-        // DELETE: api/N_token/5
-        public void Delete(int id)
-        {
-        }
+        //// DELETE: api/N_token/5
+        //public void Delete(int id)
+        //{
+        //}
     }
 }

@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 import { CriptoaApiService } from '../service/moneda-api.service';
 import { TransaccionesCuentaService } from '../service/transacciones-cuenta.service';
 
 import { TransaccionesCuenta } from '../Modelos/transaccionesCuenta.model';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -18,12 +20,15 @@ export class DashboardComponent implements OnInit {
     ColorActualizoCriptos  : any;
     arrTransacciones : TransaccionesCuenta[];
     
-    constructor(private criptoaApiService : CriptoaApiService, private transaccionesCuentaService : TransaccionesCuentaService) { 
+    constructor(private criptoaApiService : CriptoaApiService, 
+                private transaccionesCuentaService : TransaccionesCuentaService,
+                private route : Router) 
+    { 
       this.ColorActualizoCripto = {color: '#fff'};
       this.ColorActualizoCriptos =  {color: '#0907B8'};
       this.valoresCripto = ["","","","",""]      
       this.arrTransacciones = [];
-  }
+    }
 
   // ****** VER MOVIMIENTOS EN PESOS
   movimientosPesos(){
@@ -75,6 +80,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnDestroy(){
     clearInterval();
+    localStorage.removeItem('miToken');
   }
 
 }

@@ -61,10 +61,10 @@ ul li a:hover {
 	box-shadow: 10px 10px 5px #033247;
     text-shadow: 2px 2px 10px #033247;
     border: 2px solid grey;
-  border-radius: 8px;
- background: rgb(100, 100, 100);
+    border-radius: 8px;
+    background: rgb(100, 100, 100);
 }
- .sidebar .sidebar-header h4 span {
+    .sidebar .sidebar-header h4 span {
     
     margin-right: 0.5rem;
 }
@@ -72,8 +72,8 @@ ul li a:hover {
     margin-bottom: 1.2rem;
 }
 .sidebar a {
-   color: #fff;
-   font-size: 1.2rem;
+    color: #fff;
+    font-size: 1.2rem;
 }
 
 .sidebar a span {

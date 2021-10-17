@@ -7,10 +7,13 @@ import { LoginLoginRequestService } from '../service/login-usuarios.service';
 import { NTokenService } from '../service/n-token.service'; 
 import { TransaccionesCuentaService } from '../service/transacciones-cuenta.service';
 import { TipoTransaccionService } from '../service/tipo-transaccion.service'; 
+import { SaldoCuentaService } from '../service/saldo-cuenta.service'
+
+
 
 import { TransaccionesCuenta } from '../Modelos/transaccionesCuenta.model';
 import { TipoTransaccion } from '../Modelos/tipoTransaccion.model';
-
+import { SaldoCuenta } from '../Modelos/saldoCuenta.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -24,12 +27,16 @@ export class DashboardComponent implements OnInit {
     ColorActualizoCriptos  : any;
     arrTransacciones : TransaccionesCuenta[];
     arrComionesVigentes : TipoTransaccion[];
+    private token : any;
+    private ID : number;
+    arrSaldoCuenta : SaldoCuenta[];
         
     constructor(private criptoaApiService : CriptoaApiService, 
                 private transaccionesCuentaService : TransaccionesCuentaService,
                 private loginLoginRequestService : LoginLoginRequestService,
                 private nTokenService : NTokenService,
-                private tipoTransaccionService : TipoTransaccionService, 
+                private tipoTransaccionService : TipoTransaccionService,
+                private saldoCuentaService : SaldoCuentaService,
                 private route : Router
     ) 
     { 
@@ -38,7 +45,16 @@ export class DashboardComponent implements OnInit {
       this.valoresCripto = ["","","","",""]      
       this.arrTransacciones = [];
       this.arrComionesVigentes = [];
+      this.ID = 0;
+      this.arrSaldoCuenta = [];
+      
     }
+
+// ***************************************************************
+// ******************** SALDO EN CUENTA *************************
+// ***************************************************************
+
+    
 
   // ****** VER MOVIMIENTOS EN PESOS
   movimientosPesos(){
@@ -71,39 +87,19 @@ export class DashboardComponent implements OnInit {
   };
   
 
-// ***************************************************************
-// ************** Acciones al salir del dashboard ****************
-// ***************************************************************
-  onClickLogOut(){
-    // ***** OBtengo el token desde local storage
-    const token = localStorage.getItem('miToken');
-    console.log("EL TOKEN: " + token)
-    // // ***** OBtengo el Id usuario
-    // if (token){
-    //   this.nTokenService.getId(token)
-    //   .then( IdUsuario =>{
-    //       // **** Grabo el login out en la BBDD
-    //       this.loginLoginRequestService.putLoginUsuario(IdUsuario)
-    //       .then(() =>{
-    //           console.log('OK; SE GRABO EL LogOut EN BBDD')
-    //       })
-    //       .catch(error => console.log("NO SE PUDO GRABAR EL LOGOUT ERROR: " + error)
-    //       );
-    //   })
-    //   .catch(error => {
-    //       console.log("NO SE PUDO OBTENER EL ID: " + error)
-    //   });      
-    // }
-  }
+
 
   // ***************************************************************
   // ***************** CONSULTA API CRIPTO *************************
   // ***************************************************************
 
   consultarAPI(){
+    // ***** cambio el color del texto
     this.ColorActualizoCripto.color =  this.ColorActualizoCriptos.color = '#0907B8';
+    // ***** Hago la consulta a la API por los valores de la cripto
     this.criptoaApiService.getCotizacion() // RECIBO LAS RESPUESTA DEL POST
         .then(respuesta => {
+          // ***** Guardo los datos en un array
           this.valoresCripto[0]=respuesta.DISPLAY.BTC.ARS.PRICE;
           this.valoresCripto[1]=respuesta.DISPLAY.BTC.ARS.HIGHDAY;
           this.valoresCripto[2]=respuesta.DISPLAY.BTC.ARS.LOWDAY;
@@ -114,25 +110,68 @@ export class DashboardComponent implements OnInit {
         );
             
         setTimeout(() => {
+          // ***** ciclo de espera para cambiar el color del texto
           this.ColorActualizoCripto.color = '#fff'
           this.ColorActualizoCriptos.color = '#E10101'
         }, 1000); 
   }
 
-  ngOnInit(): void {
-    this.consultarAPI()
+  ngOnInit() {
+    // ***** Hago la consulta a la API por los valores de la cripto
+    this.consultarAPI();
 
     setInterval(()=>{
+      // ***** Inicio un interval que cada 10 segundos actualiza los valores de la cripto
       this.consultarAPI()
-    },8000);
+    },10000);
+
+    
+    this.onClikComisiones();
+          // ***** tomo el token desde local storage
+          // ***** Guardo el token en un atributo privado  
+          this.token = localStorage.getItem('miToken');
+          //console.log(this.token);
+    
+          // ***** tomo el ID del usuario desde la BBDD
+          this.nTokenService.getId(this.token)
+          .then( IdUsuario =>{
+            // ***** Guardo el ID en un atributo privado  
+            this.ID = IdUsuario;
+             //console.log(`ID RECUPERADO: ${this.ID}`);
+              // ***** Busco los registros de saldos
+              this.saldoCuentaService.getxId(this.ID) // RECIBO LAS RESPUESTA DEL POST
+              .then(respuesta => {
+                  // ***** Guardo los registroe en un array
+                  this.arrSaldoCuenta = respuesta;
+                  console.log(this.arrSaldoCuenta);
+              })
+              .catch(error => console.log(`Error desde el POST ${error}`)
+              );
+          })
+          .catch(error => {
+              console.log( `NO SE PUDO OBTENER EL ID:  ${error}`)
+          });        
+
   }
 
+  // ***************************************************************
+  // ************** Acciones al salir del dashboard ****************
+  // ***************************************************************
+  onClickLogOut(){
+    // ***** Realizo el put de la fecha y hora del LogOut
+    // **** Grabo el login out en la BBDD
+    this.loginLoginRequestService.putLoginUsuario(this.ID)
+    .then(() =>{
+    console.log('OK; SE GRABO EL LogOut EN BBDD')
+    })
+    .catch(error => console.log("NO SE PUDO GRABAR EL LOGOUT ERROR: " + error)
+    );
+  }
 
   ngOnDestroy(){
     clearInterval();
     localStorage.removeItem('miToken');
   }
-
 }
 
 // "DISPLAY":{"BTC":

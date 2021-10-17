@@ -30,7 +30,7 @@ export class LoginLoginRequestService {
   }
   // ***** PUT POR ID
   putLoginUsuario(id:number):Promise<any>{
-    return this.httprequest.put(`${this.rootURL}/${id}`, 0).toPromise();
+    return this.httprequest.put(`${this.rootURL}/${id}`, {Id_login:0,Id_usuario:0,Fecha_hora_inicio:"",Fecha_hora_final:""}).toPromise();
   }
   //  ***** DELETE POR ID
   deletepostLoginUsuario(id:number):Promise<any>{

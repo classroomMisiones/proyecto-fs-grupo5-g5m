@@ -88,7 +88,8 @@
             <span class="ti-wallet"></span>
             <div>
               <h5>Dinero disponible</h5>
-              <h4>$325.212</h4>
+              <h4>Pesos: {{this.arrSaldoCuenta[0].Saldo}}</h4>
+              
             </div>
           </div>
           <div class="card-footer">
@@ -602,7 +603,7 @@
             <span class="ti-export"></span>
             <div>
               <h5>Vender Bitcoins: {{ ventaBTC.value }}</h5>
-              <h4>BTC</h4>
+              <h4>BTC Disponible: {{this.arrSaldoCuenta[1].Saldo}}</h4>
             </div>
           </div>
           <div class="card-footer">
@@ -778,8 +779,8 @@
                 data-bs-toggle="modal"
                 data-bs-target="#comi"
                 data-bs-whatever="@mdo"
-                (click)="onClikComisiones()"
-              >
+                
+              ><!-- (click)="onClikComisiones()" -->
                 Consultar
               </button>
 
@@ -815,7 +816,7 @@
                             </tr>
                           </thead>
                           <tbody>
-                            <tr  *ngFor = "let registro of arrComionesVigentes">
+                            <tr *ngFor = "let registro of arrComionesVigentes">
                               <td scope="row">{{registro.Id_tipo_transaccion}}</td>
                               <td>{{registro.Descripcion}}</td>
                               <td>{{registro.Valor_comision}}% + IVA</td>

@@ -99,12 +99,19 @@ namespace ProyectoWallet.Controllers
             {
                 try
                 {
-                    string fechaHora = DateTime.Now.ToString();
-                    
+                    DataTable dataTableResultado = new DataTable();
                     conector.Open();
-                    SqlCommand comando = new SqlCommand();
+                    
+                    SqlDataAdapter adaptador = new SqlDataAdapter("SELECT Id_login from login_usuarios WHERE Id_usuario = " + id, conector);
+                    adaptador.Fill(dataTableResultado);
+                    var registro = dataTableResultado.Rows.Count;
+                    var IdLogin = dataTableResultado.Rows[registro - 1]["Id_usuario"];
 
-                    comando.CommandText = "UPDATE login_usuarios SET Fecha_hora_final = '" + fechaHora + "' WHERE Id_login = " + id;
+
+                    string fechaHora = DateTime.Now.ToString();
+                                       
+                    SqlCommand comando = new SqlCommand();
+                    comando.CommandText = "UPDATE login_usuarios SET Fecha_hora_final = '" + fechaHora + "' WHERE Id_login = " + IdLogin;
                     comando.Connection = conector;
                     comando.ExecuteNonQuery();
                     return "OPERACION DE ACUALIZACION EXITOSA";

@@ -21,7 +21,8 @@ export class NTokenService {
   
   // ***** GET ID POR token
   getId(token:string):Promise<number>{
-    return this.httprequest.get<number>(`${this.rootURL}/N_token/${token}`).toPromise();
+    //return this.httprequest.get<number>(`${this.rootURL}/N_token/${token}`).toPromise();
+    return this.httprequest.get<number>(`${this.rootURL}/N_token?cadena=${token}`).toPromise();
   }
 
   // ***** GET GENERAL

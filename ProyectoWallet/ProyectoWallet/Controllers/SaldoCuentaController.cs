@@ -45,7 +45,7 @@ namespace ProyectoWallet.Controllers
                 using (SqlConnection conector = new SqlConnection(mi_conexion))
                 {
                     conector.Open();
-                    SqlDataAdapter adaptador = new SqlDataAdapter("SELECT Id_saldo, Id_usuario, Id_moneda, Saldo, Fecha, Hora FROM saldo_cuenta WHERE Id_saldo = " + id, conector);
+                    SqlDataAdapter adaptador = new SqlDataAdapter("SELECT Id_saldo, Id_usuario, Id_moneda, Saldo, Fecha, Hora FROM saldo_cuenta WHERE Id_usuario = " + id, conector);
                     adaptador.Fill(dataTableResultado);
 
                 }

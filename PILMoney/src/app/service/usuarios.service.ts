@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { N_token } from '../Interfaces/N_token.interface';
 import { loginInterface } from '../Interfaces/login.interface';
 
+
 import { Usuarios } from '../Modelos/usuarios.model';
 
 @Injectable({
@@ -14,7 +15,8 @@ import { Usuarios } from '../Modelos/usuarios.model';
 
 export class UsuariosService {
   
-  private rootURL = "https://localhost:44344/api/Usuario";
+  private rootURL = environment.UrlBaseApi + "/Usuario";
+  //private rootURL = "https://localhost:44344/api/Usuario";
     
   constructor(private httprequest : HttpClient) { }
 
@@ -29,8 +31,8 @@ export class UsuariosService {
     return this.httprequest.get<Usuarios[]>(`${this.rootURL}/${id}`).toPromise();
   }
   //  ***** POST
-  postUsuario(datos : N_token):Promise<any>{
-    return this.httprequest.post<N_token>(this.rootURL, datos).toPromise();
+  postUsuario(datos : Usuarios):Promise<any>{
+    return this.httprequest.post<Usuarios>(this.rootURL, datos).toPromise();
   }
   // ***** PUT POR ID
   putUsuario(id:number, datos : Usuarios):Promise<any>{

@@ -24,13 +24,13 @@ export class LoginLoginRequestService {
     // hago el get indico que recibo un array de objetos tipo Rol
     return this.httprequest.get<LoginUsuarios[]>(`${this.rootURL}/${id}`).toPromise();
   }
-  //  ***** POST
+  //  ***** POST LogIn
   postLoginUsuario(datos : N_token):Promise<any>{
     return this.httprequest.post<N_token>(this.rootURL, datos).toPromise();
   }
   // ***** PUT POR ID
-  putLoginUsuario(id:number, datos : LoginUsuarios):Promise<any>{
-    return this.httprequest.put<LoginUsuarios>(`${this.rootURL}/${id}`, datos).toPromise();
+  putLoginUsuario(id:number):Promise<any>{
+    return this.httprequest.put(`${this.rootURL}/${id}`, 0).toPromise();
   }
   //  ***** DELETE POR ID
   deletepostLoginUsuario(id:number):Promise<any>{

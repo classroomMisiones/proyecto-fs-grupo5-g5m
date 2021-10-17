@@ -30,13 +30,11 @@ get password(){return this.form.get('password');}
 get nombre(){return this.form.get('nombre');}
 get apellido(){return this.form.get('apellido');}
 
+  // **** ENVIO EL FORMULARIO PARA EL POST
+  onSubmit(){
 
- /* registrarse(){
-    this.submitted = true;
-    if(this.createRegistro.invalid){
-      return;
-    }
-  }*/
+  }
+
 }
 export function createPasswordStrengthValidator(): ValidatorFn {
   return (control:AbstractControl) : ValidationErrors | null => {

@@ -1,30 +1,33 @@
-<html >
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <title>Dashboard</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
-
-</head>
-  <input type="checkbox" id="sidebar-toggle">
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <title>Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css"
+    />
+  </head>
+  <input type="checkbox" id="sidebar-toggle" />
   <div class="sidebar">
     <div class="sidebar-header">
       <h4 class="brand">
         <span class="ti-wallet"></span>
         <span>KePúa</span>
-
       </h4>
 
-      <label for = "sidebar-toggle" ><span class="ti-menu-alt"></span></label>
-
+      <label for="sidebar-toggle"><span class="ti-menu-alt"></span></label>
     </div>
-    <hr>
+    <hr />
     <div class="sidebar-menu">
       <ul>
         <li>
           <a href="">
-            <span class="ti-home" ></span>
+            <span class="ti-home"></span>
             <span>HOME</span>
           </a>
         </li>
@@ -48,8 +51,8 @@
             <span>Cuenta</span>
           </a>
         </li>
-		<li>
-          <a [routerLink]="''">
+        <li>
+          <a (click)="onClickLogOut()" [routerLink]="''">
             <span class="ti-power-off"></span>
             <span>Logout</span>
           </a>
@@ -62,17 +65,22 @@
     <header>
       <div class="search-wrapper">
         <span class="ti-search">
-          <input type="search" placeholder="Buscar">
+          <input type="search" placeholder="Buscar" />
         </span>
       </div>
-      <div class="social-icons" >
+      <div class="social-icons">
         <span class="ti-bell"></span>
         <span class="ti-comment"> </span>
-        <div class="foto-perfil"> <img class="img-responsive" src="assets/img/1.JPG" alt="foto perfil" ></div>
+        <div class="foto-perfil">
+          <img
+            class="img-responsive"
+            src="assets/img/1.JPG"
+            alt="foto perfil"
+          />
+        </div>
       </div>
     </header>
     <main>
-
       <h2 class="dash-title">Operaciones en Pesos</h2>
       <div class="dash-cards">
         <div class="card-single">
@@ -87,35 +95,59 @@
             <!--<a href="">Retirar Dinero</a>-->
 
             <div class="popu">
-
-              <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-toggle="modal"
+                data-bs-target="#staticBackdrop"
+              >
                 Retirar Dinero
               </button>
 
               <!-- Modal -->
-              <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div
+                class="modal fade"
+                id="staticBackdrop"
+                data-bs-backdrop="static"
+                data-bs-keyboard="false"
+                tabindex="-1"
+                aria-labelledby="staticBackdropLabel"
+                aria-hidden="true"
+              >
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="staticBackdropLabel">Dinero a Retirar</h5>
-
+                      <h5 class="modal-title" id="staticBackdropLabel">
+                        Dinero a Retirar
+                      </h5>
                     </div>
                     <div class="modal-body">
                       <div class="input-group mb-3">
                         <span class="input-group-text">$</span>
-                        <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                        <input
+                          type="text"
+                          class="form-control"
+                          aria-label="Amount (to the nearest dollar)"
+                        />
                         <span class="input-group-text">.00</span>
                       </div>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                      <button type="button" class="btn btn-primary">Confirmar</button>
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                      >
+                        Cerrar
+                      </button>
+                      <button type="button" class="btn btn-primary">
+                        Confirmar
+                      </button>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-
           </div>
         </div>
         <div class="card-single">
@@ -129,45 +161,92 @@
           <div class="card-footer">
             <!--<a href="">Ingrese una suma de dinero</a>-->
 
-                <div class="popu">
-                  <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-                    <div class="modal-dialog modal-dialog-centered">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalToggleLabel">Dinero a Depositar</h5>
-                          <div class="input-group mb-3">
-                            <span class="input-group-text">$</span>
-                            <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-                            <span class="input-group-text">.00</span>
-                          </div>
-
-                        </div>
-                        <div class="modal-body">
-                          Realizar la operación
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                          <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Aceptar</button>
-                        </div>
+            <div class="popu">
+              <div
+                class="modal fade"
+                id="exampleModalToggle"
+                aria-hidden="true"
+                aria-labelledby="exampleModalToggleLabel"
+                tabindex="-1"
+              >
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalToggleLabel">
+                        Dinero a Depositar
+                      </h5>
+                      <div class="input-group mb-3">
+                        <span class="input-group-text">$</span>
+                        <input
+                          type="text"
+                          class="form-control"
+                          aria-label="Amount (to the nearest dollar)"
+                        />
+                        <span class="input-group-text">.00</span>
                       </div>
                     </div>
-                  </div>
-                  <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-                    <div class="modal-dialog modal-dialog-centered">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalToggleLabel2">Confirmar operación</h5>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-
-                        <div class="modal-footer">
-                          <button class="btn btn-primary" data-bs-dismiss="modal" data-bs-toggle="modal">Confirmar</button>
-                        </div>
-                      </div>
+                    <div class="modal-body">Realizar la operación</div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                      >
+                        Cerrar
+                      </button>
+                      <button
+                        class="btn btn-primary"
+                        data-bs-target="#exampleModalToggle2"
+                        data-bs-toggle="modal"
+                        data-bs-dismiss="modal"
+                      >
+                        Aceptar
+                      </button>
                     </div>
                   </div>
-                <a class="btn btn-secondary" data-bs-toggle="modal" href="#exampleModalToggle"   role="button">Realizar Deposito  </a>
                 </div>
+              </div>
+              <div
+                class="modal fade"
+                id="exampleModalToggle2"
+                aria-hidden="true"
+                aria-labelledby="exampleModalToggleLabel2"
+                tabindex="-1"
+              >
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalToggleLabel2">
+                        Confirmar operación
+                      </h5>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+
+                    <div class="modal-footer">
+                      <button
+                        class="btn btn-primary"
+                        data-bs-dismiss="modal"
+                        data-bs-toggle="modal"
+                      >
+                        Confirmar
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <a
+                class="btn btn-secondary"
+                data-bs-toggle="modal"
+                href="#exampleModalToggle"
+                role="button"
+                >Realizar Deposito
+              </a>
+            </div>
           </div>
         </div>
 
@@ -181,61 +260,91 @@
           <div class="card-footer">
             <!--<a href="">Consultar</a>-->
 
-                  <div class="pop">
-                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" (onclick)="movimientosPesos()">Consultar</button>
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Últimos movimientos</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                          </div>
-                          <div class="modal-body">
-                            <form>
-                              <table class="table">
-                                <thead>
-                                  <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Tipo</th>
-                                    <th scope="col">Monto</th>
-                                    <th scope="col">Moneda</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <tr *ngForm = "let registro of arrTransacciones">
-                                    <th scope="row">1</th>
-                                    <td>Deposito</td>
-                                    <td>$55633</td>
-                                    <td>Dolar</td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">2</th>
-                                    <td>Retiro</td>
-                                    <td>$4582</td>
-                                    <td>Peso</td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">3</th>
-                                    <td >Transferencia</td>
-                                    <td>$78582</td>
-                                    <td>Peso</td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                            </form>
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                            <button type="button" class="btn btn-primary">Aceptar</button>
-                          </div>
-                        </div>
-                      </div>
+            <div class="pop">
+              <button
+                type="button"
+                class="btn btn-danger"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+                data-bs-whatever="@mdo"
+                (onclick)="movimientosPesos()"
+              >
+                Consultar
+              </button>
+              <div
+                class="modal fade"
+                id="exampleModal"
+                tabindex="-1"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">
+                        Últimos movimientos
+                      </h5>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <div class="modal-body">
+                      <form>
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th scope="col">#</th>
+                              <th scope="col">Tipo</th>
+                              <th scope="col">Monto</th>
+                              <th scope="col">Moneda</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngForm="let registro of arrTransacciones">
+                              <th scope="row">1</th>
+                              <td>Deposito</td>
+                              <td>$55633</td>
+                              <td>Dolar</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">2</th>
+                              <td>Retiro</td>
+                              <td>$4582</td>
+                              <td>Peso</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">3</th>
+                              <td>Transferencia</td>
+                              <td>$78582</td>
+                              <td>Peso</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                      >
+                        Cerrar
+                      </button>
+                      <button type="button" class="btn btn-primary">
+                        Aceptar
+                      </button>
                     </div>
                   </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
-		<div class="card-single">
+        <div class="card-single">
           <div class="card-body">
             <span class="ti-sharethis"></span>
             <div>
@@ -245,90 +354,177 @@
           </div>
           <div class="card-footer">
             <!--<a href="">Cantidad a enviar</a>-->
-                <div class="poup">
-
-                      <!-- Button trigger modal -->
-<button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#ejModal">
-  Ingrese Cantidad
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="ejModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Transferencia</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="accordion accordion-flush" id="accordionFlushExample">
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="flush-headingOne">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                INGRESE CBU
+            <div class="poup">
+              <!-- Button trigger modal -->
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-toggle="modal"
+                data-bs-target="#ejModal"
+              >
+                Ingrese Cantidad
               </button>
-            </h2>
-            <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-              <div class="accordion-body">
 
-                  <h5 class="modal-title" id="exampleModalToggleLabel">Ingrese CBU</h5>
+              <!-- Modal -->
+              <div
+                class="modal fade"
+                id="ejModal"
+                tabindex="-1"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">
+                        Transferencia
+                      </h5>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <div class="modal-body">
+                      <div
+                        class="accordion accordion-flush"
+                        id="accordionFlushExample"
+                      >
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="flush-headingOne">
+                            <button
+                              class="accordion-button collapsed"
+                              type="button"
+                              data-bs-toggle="collapse"
+                              data-bs-target="#flush-collapseOne"
+                              aria-expanded="false"
+                              aria-controls="flush-collapseOne"
+                            >
+                              INGRESE CBU
+                            </button>
+                          </h2>
+                          <div
+                            id="flush-collapseOne"
+                            class="accordion-collapse collapse"
+                            aria-labelledby="flush-headingOne"
+                            data-bs-parent="#accordionFlushExample"
+                          >
+                            <div class="accordion-body">
+                              <h5
+                                class="modal-title"
+                                id="exampleModalToggleLabel"
+                              >
+                                Ingrese CBU
+                              </h5>
 
-                  <input class="form-control" type="text" placeholder="CBU" aria-label="CBU">
+                              <input
+                                class="form-control"
+                                type="text"
+                                placeholder="CBU"
+                                aria-label="CBU"
+                              />
 
-                  <h5 class="modal-title" id="exampleModalToggleLabel">Dinero a Tranferir</h5>
+                              <h5
+                                class="modal-title"
+                                id="exampleModalToggleLabel"
+                              >
+                                Dinero a Tranferir
+                              </h5>
 
-                  <div class="input-group mb-3">
-                    <span class="input-group-text">$</span>
-                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-                    <span class="input-group-text">.00</span>
+                              <div class="input-group mb-3">
+                                <span class="input-group-text">$</span>
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  aria-label="Amount (to the nearest dollar)"
+                                />
+                                <span class="input-group-text">.00</span>
+                              </div>
+                              &nbsp;
+                            </div>
+                          </div>
+                        </div>
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="flush-headingTwo">
+                            <button
+                              class="accordion-button collapsed"
+                              type="button"
+                              data-bs-toggle="collapse"
+                              data-bs-target="#flush-collapseTwo"
+                              aria-expanded="false"
+                              aria-controls="flush-collapseTwo"
+                            >
+                              CUENTA MERCADOPAGO
+                            </button>
+                          </h2>
+                          <div
+                            id="flush-collapseTwo"
+                            class="accordion-collapse collapse"
+                            aria-labelledby="flush-headingTwo"
+                            data-bs-parent="#accordionFlushExample"
+                          >
+                            <div class="accordion-body">
+                              <h5
+                                class="modal-title"
+                                id="exampleModalToggleLabel"
+                              >
+                                Ingrese Número de Cuenta
+                              </h5>
+
+                              <input
+                                class="form-control"
+                                type="text"
+                                placeholder="N° DE CUENTA"
+                                aria-label="CBU"
+                              />
+
+                              <h5
+                                class="modal-title"
+                                id="exampleModalToggleLabel"
+                              >
+                                Dinero a Tranferir
+                              </h5>
+
+                              <div class="input-group mb-3">
+                                <span class="input-group-text">$</span>
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  aria-label="Amount (to the nearest dollar)"
+                                />
+                                <span class="input-group-text">.00</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                      >
+                        Cerrar
+                      </button>
+                      <button type="button" class="btn btn-primary">
+                        Confirmar
+                      </button>
+                    </div>
                   </div>
-                  &nbsp;
-
+                </div>
               </div>
             </div>
           </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="flush-headingTwo">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                CUENTA MERCADOPAGO
-              </button>
-            </h2>
-            <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-              <div class="accordion-body">
-
-                <h5 class="modal-title" id="exampleModalToggleLabel">Ingrese Número de Cuenta</h5>
-                  
-                <input class="form-control" type="text" placeholder="N° DE CUENTA" aria-label="CBU">
-                
-                <h5 class="modal-title" id="exampleModalToggleLabel">Dinero a Tranferir</h5>
-
-                <div class="input-group mb-3">
-                  <span class="input-group-text">$</span>
-                  <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-                  <span class="input-group-text">.00</span>
-                </div>
-
-              </div>
-            </div>
-          </div>
-
         </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Confirmar</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-                </div>
-
-          </div>
-        </div>
-
-      </div>
-      <h2 class="dash-title">Operaciones con Bitcoins <span [ngStyle]= "ColorActualizoCriptos"> valor actual:  {{valoresCripto[0]}}</span></h2>
+      <h2 class="dash-title">
+        Operaciones con Bitcoins
+        <span [ngStyle]="ColorActualizoCriptos">
+          valor actual: {{ valoresCripto[0] }}</span
+        >
+      </h2>
       <div class="dash-cards">
         <div class="card-single">
           <div class="card-body">
@@ -339,43 +535,73 @@
             </div>
           </div>
           <div class="card-footer">
-
             <div class="popu">
-
-              <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#BTC">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-toggle="modal"
+                data-bs-target="#BTC"
+              >
                 Comprar Bitcoins
               </button>
-              
+
               <!-- Modal -->
-              <div class="modal fade" id="BTC" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div
+                class="modal fade"
+                id="BTC"
+                data-bs-backdrop="static"
+                data-bs-keyboard="false"
+                tabindex="-1"
+                aria-labelledby="staticBackdropLabel"
+                aria-hidden="true"
+              >
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="staticBackdropLabel">BTC a Comprar:  {{compraBTC.value}}</h5>
-                      
+                      <h5 class="modal-title" id="staticBackdropLabel">
+                        BTC a Comprar: {{ compraBTC.value }}
+                      </h5>
                     </div>
                     <div class="modal-body">
-                      <label class="form-label" for="customRange1">Indique la cantidad a comprar</label>
-                        <div class="range">
-                          <input type="range" class="form-range" id="customRange1" min="100" max="1000" step="100" #compraBTC/>
-                        </div>
+                      <label class="form-label" for="customRange1"
+                        >Indique la cantidad a comprar</label
+                      >
+                      <div class="range">
+                        <input
+                          type="range"
+                          class="form-range"
+                          id="customRange1"
+                          min="100"
+                          max="1000"
+                          step="100"
+                          #compraBTC
+                        />
+                      </div>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                      <button type="button" class="btn btn-primary">Confirmar</button>
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                      >
+                        Cerrar
+                      </button>
+                      <button type="button" class="btn btn-primary">
+                        Confirmar
+                      </button>
                     </div>
                   </div>
                 </div>
-              </div> 
+              </div>
             </div>
           </div>
         </div>
-        
+
         <div class="card-single">
           <div class="card-body">
             <span class="ti-export"></span>
             <div>
-              <h5>Vender Bitcoins:  {{ventaBTC.value}}</h5>
+              <h5>Vender Bitcoins: {{ ventaBTC.value }}</h5>
               <h4>BTC</h4>
             </div>
           </div>
@@ -383,32 +609,62 @@
             <!--<a href="">Cantidad a vender</a>-->
 
             <div class="popu">
-
-              <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#BTCventa">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-toggle="modal"
+                data-bs-target="#BTCventa"
+              >
                 Vender Bitcoins
               </button>
-              
+
               <!-- Modal -->
-              <div class="modal fade" id="BTCventa" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div
+                class="modal fade"
+                id="BTCventa"
+                data-bs-backdrop="static"
+                data-bs-keyboard="false"
+                tabindex="-1"
+                aria-labelledby="staticBackdropLabel"
+                aria-hidden="true"
+              >
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="staticBackdropLabel">BTC a Vender</h5>
-                      
+                      <h5 class="modal-title" id="staticBackdropLabel">
+                        BTC a Vender
+                      </h5>
                     </div>
                     <div class="modal-body">
-                      <label for="customRange2" class="form-label">Indique la cantidad a vender</label>
-                      <input type="range" class="form-range" id="customRange2"  min="100" max="1000" step="100" #ventaBTC>
+                      <label for="customRange2" class="form-label"
+                        >Indique la cantidad a vender</label
+                      >
+                      <input
+                        type="range"
+                        class="form-range"
+                        id="customRange2"
+                        min="100"
+                        max="1000"
+                        step="100"
+                        #ventaBTC
+                      />
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                      <button type="button" class="btn btn-primary">Confirmar</button>
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                      >
+                        Cerrar
+                      </button>
+                      <button type="button" class="btn btn-primary">
+                        Confirmar
+                      </button>
                     </div>
                   </div>
                 </div>
-              </div> 
-             </div>
-
+              </div>
+            </div>
           </div>
         </div>
         <div class="card-single">
@@ -416,21 +672,42 @@
             <span class="ti-check-box"></span>
             <div>
               <h5>Operaciones Realizadas</h5>
-              
             </div>
           </div>
           <div class="card-footer">
             <!--<a href="">Ver</a>-->
 
             <div class="pop">
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ej" data-bs-whatever="@mdo"  (onclick)="movimientosCriptos()">Consultar</button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#ej"
+                data-bs-whatever="@mdo"
+                (onclick)="movimientosCriptos()"
+              >
+                Consultar
+              </button>
 
-              <div class="modal fade" id="ej" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div
+                class="modal fade"
+                id="ej"
+                tabindex="-1"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Últimos movimientos</h5>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      <h5 class="modal-title" id="exampleModalLabel">
+                        Últimos movimientos
+                      </h5>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
                     </div>
                     <div class="modal-body">
                       <form>
@@ -458,7 +735,7 @@
                             </tr>
                             <tr>
                               <th scope="row">3</th>
-                              <td >Compra</td>
+                              <td>Compra</td>
                               <td>฿ 0.00078582</td>
                               <td>Peso</td>
                             </tr>
@@ -467,14 +744,19 @@
                       </form>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                      >
+                        Cerrar
+                      </button>
                       <!--<button type="button" class="btn btn-primary">Aceptar</button>-->
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-
           </div>
         </div>
 
@@ -490,15 +772,36 @@
             <!--<a href="">Consultar</a>-->
 
             <div class="pop">
-              <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#comi" data-bs-whatever="@mdo">Consultar</button>
-             
-             
-              <div class="modal fade" id="comi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-toggle="modal"
+                data-bs-target="#comi"
+                data-bs-whatever="@mdo"
+                (click)="onClikComisiones()"
+              >
+                Consultar
+              </button>
+
+              <div
+                class="modal fade"
+                id="comi"
+                tabindex="-1"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Comisiones Vigentes</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      <h5 class="modal-title" id="exampleModalLabel">
+                        Comisiones Vigentes
+                      </h5>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
                     </div>
                     <div class="modal-body">
                       <form>
@@ -507,212 +810,247 @@
                             <tr>
                               <th scope="col">#</th>
                               <th scope="col">Operación</th>
-                              <th scope="col">Cantidad</th>
-                              <th scope="col">Pagás</th>
+                              <th scope="col">Monto</th>
+                              
                             </tr>
                           </thead>
                           <tbody>
-                            <tr>
-                              <th scope="row">1</th>
-                              <td>Compra</td>
-                              <td>$1000</td>
-                              <td>4,29% + IVA</td>
+                            <tr  *ngFor = "let registro of arrComionesVigentes">
+                              <td scope="row">{{registro.Id_tipo_transaccion}}</td>
+                              <td>{{registro.Descripcion}}</td>
+                              <td>{{registro.Valor_comision}}% + IVA</td>
                             </tr>
-                            <tr>
-                              <th scope="row">2</th>
-                              <td>Venta</td>
-                              <td>$1000</td>
-                              <td>3,39% + IVA</td>
-                            </tr>
-                            <tr>
-                              <th scope="row">3</th>
-                              <td>Compra</td>
-                              <td>฿ 0.00000001</td>
-                              <td>6,39% + IVA</td>
-                            </tr>
+                            
                           </tbody>
                         </table>
                       </form>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                      >
+                        Cerrar
+                      </button>
                       <!--<button type="button" class="btn btn-primary">Aceptar</button>-->
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-
           </div>
         </div>
-
-
       </div>
-	<div class="chart-grid">
+      <div class="chart-grid">
         <div class="chart-followers">
           <div class="chart-head">
             <h4>Evolución de BTC vs Peso</h4>
             <span class="las la-cog"></span>
           </div>
-          <div> <img class="img-responsive" src="assets/img/4.jpg" alt="logo kepúa"
-            style="width: 100% "> 
-      </div>
-        </div>
-      <div class="chart-sales">
-        <div class="chart-head">
-            <h4>Consultar Cotizaciones </h4>
-            <span class="las la-cog"></span>
-        </div>
-        <div class="text-center">
-          <div class="row text-center text-white fs-5">
-            <label class="mt-2" id="moneda" name="moneda">Cotizacion en Peso argentino</label>
+          <div>
+            <img
+              class="img-responsive"
+              src="assets/img/4.jpg"
+              alt="logo kepúa"
+              style="width: 100%"
+            />
           </div>
-          <div class="row text-center text-white  fs-5">
-            <div>
-              
-              <P class="text-white">Bitcoin - BTC</P>
-              <label>Cotizacion Actual</label>
+        </div>
+        <div class="chart-sales">
+          <div class="chart-head">
+            <h4>Consultar Cotizaciones</h4>
+            <span class="las la-cog"></span>
+          </div>
+          <div class="text-center">
+            <div class="row text-center text-white fs-5">
+              <label class="mt-2" id="moneda" name="moneda"
+                >Cotizacion en Peso argentino</label
+              >
+            </div>
+            <div class="row text-center text-white fs-5">
+              <div>
+                <P class="text-white">Bitcoin - BTC</P>
+                <label>Cotizacion Actual</label>
+              </div>
+            </div>
+            <div id="resultado" class="resultado text-white fs-6">
+              <p class="precio m-2" [ngStyle]="ColorActualizoCripto">
+                Precio Actual: {{ valoresCripto[0] }}
+              </p>
+              <p class="precioAlto m-1">
+                Mayor Cotizacion del día: {{ valoresCripto[1] }}
+              </p>
+              <p class="precioBajo m-1">
+                Menor Cotizacion del día: {{ valoresCripto[2] }}
+              </p>
+              <p class="ultimasHoras m-1">
+                Porcentaje de Variacion: {{ valoresCripto[3] }} %
+              </p>
+              <p
+                class="ultimaActualizacion m-1"
+                [ngStyle]="ColorActualizoCripto"
+              >
+                Ultima Actualizacion: {{ valoresCripto[4] }}
+              </p>
             </div>
           </div>
-          <div id="resultado" class="resultado text-white fs-6">
-            <p class="precio m-2" [ngStyle]= "ColorActualizoCripto">Precio Actual: {{valoresCripto[0]}}</p>
-            <p class="precioAlto m-1">Mayor Cotizacion del día: {{valoresCripto[1]}}</p>
-            <p class="precioBajo m-1">Menor Cotizacion del día: {{valoresCripto[2]}}</p>
-            <p class="ultimasHoras m-1">Porcentaje de Variacion: {{valoresCripto[3]}} %</p>
-            <p class="ultimaActualizacion m-1"  [ngStyle]= "ColorActualizoCripto">Ultima Actualizacion: {{valoresCripto[4]}}</p>
-          </div > 
-      </div>
-      </div>
+        </div>
       </div>
 
       <section class="recent">
-            <div class="activity-grid">
+        <div class="activity-grid">
+          <div class="activity-card">
+            <h4>Actividad reciente</h4>
 
-              <div class="activity-card">
-
-                <h4>Actividad reciente</h4>
-
-                <table>
-                    <thead>
-                        <tr>
-                          <th>Transacción</th>
-                          <th>Fecha de operación</th>
-                          <th>Fecha de cierre</th>
-                          <th>Moneda</th>
-                          <th>Estatus</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                          <td>Compra</td>
-                          <td>15 July, 2021</td>
-                          <td>22 Aug, 2021</td>
-                          <td class="td-team">
-
-
-                            <div class="img-3" ><img class="img-responsive" src="assets/img/3.jpg" alt="foto moneda" ></div>
-                          </td>
-                          <td>
-                              <span class="badge success">Realizado</span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Deposito</td>
-                          <td>15 July, 2021</td>
-                          <td>22 Aug, 2021</td>
-                          <td class="td-team">
-
-                            <div class="img-2"><img class="img-responsive" src="assets/img/2.jpg" alt="foto moneda" ></div>
-
-                          </td>
-                          <td>
-                              <span class="badge warning">Procesando</span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Venta</td>
-                          <td>15 July, 2021</td>
-                          <td>22 Aug, 2021</td>
-                          <td class="td-team">
-
-                            <div class="img-3"><img class="img-responsive" src="assets/img/3.jpg" alt="foto moneda" ></div>
-                          </td>
-                          <td>
-                              <span class="badge success">Realizado</span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Transferencia</td>
-                          <td>15 July, 2021</td>
-                          <td>22 Aug, 2021</td>
-                          <td class="td-team">
-
-                            <div class="img-2" ><img class="img-responsive" src="assets/img/2.jpg" alt="foto moneda" ></div>
-
-                          </td>
-                          <td>
-                              <span class="badge warning">Procesando</span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Compra</td>
-                          <td>15 July, 2021</td>
-                          <td>22 Aug, 2021</td>
-                          <td class="td-team">
-
-                            <div class="img-3" ><img class="img-responsive" src="assets/img/3.jpg" alt="foto moneda" ></div>
-                          </td>
-                          <td>
-                              <span class="badge success">Realizado</span>
-                          </td>
-                        </tr>
-                    </tbody>
-                </table>
-
+            <table>
+              <thead>
+                <tr>
+                  <th>Transacción</th>
+                  <th>Fecha de operación</th>
+                  <th>Fecha de cierre</th>
+                  <th>Moneda</th>
+                  <th>Estatus</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Compra</td>
+                  <td>15 July, 2021</td>
+                  <td>22 Aug, 2021</td>
+                  <td class="td-team">
+                    <div class="img-3">
+                      <img
+                        class="img-responsive"
+                        src="assets/img/3.jpg"
+                        alt="foto moneda"
+                      />
+                    </div>
+                  </td>
+                  <td>
+                    <span class="badge success">Realizado</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Deposito</td>
+                  <td>15 July, 2021</td>
+                  <td>22 Aug, 2021</td>
+                  <td class="td-team">
+                    <div class="img-2">
+                      <img
+                        class="img-responsive"
+                        src="assets/img/2.jpg"
+                        alt="foto moneda"
+                      />
+                    </div>
+                  </td>
+                  <td>
+                    <span class="badge warning">Procesando</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Venta</td>
+                  <td>15 July, 2021</td>
+                  <td>22 Aug, 2021</td>
+                  <td class="td-team">
+                    <div class="img-3">
+                      <img
+                        class="img-responsive"
+                        src="assets/img/3.jpg"
+                        alt="foto moneda"
+                      />
+                    </div>
+                  </td>
+                  <td>
+                    <span class="badge success">Realizado</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Transferencia</td>
+                  <td>15 July, 2021</td>
+                  <td>22 Aug, 2021</td>
+                  <td class="td-team">
+                    <div class="img-2">
+                      <img
+                        class="img-responsive"
+                        src="assets/img/2.jpg"
+                        alt="foto moneda"
+                      />
+                    </div>
+                  </td>
+                  <td>
+                    <span class="badge warning">Procesando</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Compra</td>
+                  <td>15 July, 2021</td>
+                  <td>22 Aug, 2021</td>
+                  <td class="td-team">
+                    <div class="img-3">
+                      <img
+                        class="img-responsive"
+                        src="assets/img/3.jpg"
+                        alt="foto moneda"
+                      />
+                    </div>
+                  </td>
+                  <td>
+                    <span class="badge success">Realizado</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="sumary">
+            <div class="sumary-card">
+              <div class="sumary-single">
+                <span class="ti-id-badge"></span>
+                <div>
+                  <h5>196</h5>
+                  <small>Numero del staff</small>
+                </div>
               </div>
-              <div class="sumary">
-                  <div class="sumary-card">
-                      <div class="sumary-single">
-                        <span class="ti-id-badge"></span>
-                        <div>
-                            <h5>196</h5>
-                            <small>Numero del staff</small>
-                        </div>
-
-                      </div>
-                      <div class="sumary-single">
-                        <span class="ti-calendar"></span>
-                        <div>
-                            <h5>16</h5>
-                            <small>Numero de licencia</small>
-                        </div>
-                      </div>
-                      <div class="sumary-single">
-                        <span class="ti-face-smile"></span>
-                        <div>
-                            <h5>12</h5>
-                            <small>Solicitar actualización del perfil</small>
-                        </div>
-                      </div>
-                  </div>
-                  <div class="bday-card">
-                      <div class="bday-flex">
-                        <div class="bday-img" ><img class="img-responsive" src="assets/img/1.JPG" alt="foto moneda" ></div>
-                        <div class="bday-info">
-                            <h5>Juan Carlos Batman</h5>
-                            <small>Cumpleaños hoy</small>
-                        </div>
-                      </div>
-
-                      <div class="text-center">
-                        <button><span class="ti-gift"></span>
-                          Saludalo
-                        </button>
-                      </div>
-                  </div>
+              <div class="sumary-single">
+                <span class="ti-calendar"></span>
+                <div>
+                  <h5>16</h5>
+                  <small>Numero de licencia</small>
+                </div>
+              </div>
+              <div class="sumary-single">
+                <span class="ti-face-smile"></span>
+                <div>
+                  <h5>12</h5>
+                  <small>Solicitar actualización del perfil</small>
+                </div>
               </div>
             </div>
-        </section>
-    </main>
+            <div class="bday-card">
+              <div class="bday-flex">
+                <div class="bday-img">
+                  <img
+                    class="img-responsive"
+                    src="assets/img/1.JPG"
+                    alt="foto moneda"
+                  />
+                </div>
+                <div class="bday-info">
+                  <h5>Juan Carlos Batman</h5>
+                  <small>Cumpleaños hoy</small>
+                </div>
+              </div>
 
+              <div class="text-center">
+                <button>
+                  <span class="ti-gift"></span>
+                  Saludalo
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
   </div>
+</html>

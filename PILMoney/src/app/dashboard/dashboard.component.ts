@@ -3,9 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 import { CriptoaApiService } from '../service/moneda-api.service';
+import { LoginLoginRequestService } from '../service/login-usuarios.service'; 
+import { NTokenService } from '../service/n-token.service'; 
 import { TransaccionesCuentaService } from '../service/transacciones-cuenta.service';
+import { TipoTransaccionService } from '../service/tipo-transaccion.service'; 
 
 import { TransaccionesCuenta } from '../Modelos/transaccionesCuenta.model';
+import { TipoTransaccion } from '../Modelos/tipoTransaccion.model';
 
 
 @Component({
@@ -19,15 +23,21 @@ export class DashboardComponent implements OnInit {
     ColorActualizoCripto : any;
     ColorActualizoCriptos  : any;
     arrTransacciones : TransaccionesCuenta[];
-    
+    arrComionesVigentes : TipoTransaccion[];
+        
     constructor(private criptoaApiService : CriptoaApiService, 
                 private transaccionesCuentaService : TransaccionesCuentaService,
-                private route : Router) 
+                private loginLoginRequestService : LoginLoginRequestService,
+                private nTokenService : NTokenService,
+                private tipoTransaccionService : TipoTransaccionService, 
+                private route : Router
+    ) 
     { 
       this.ColorActualizoCripto = {color: '#fff'};
       this.ColorActualizoCriptos =  {color: '#0907B8'};
       this.valoresCripto = ["","","","",""]      
       this.arrTransacciones = [];
+      this.arrComionesVigentes = [];
     }
 
   // ****** VER MOVIMIENTOS EN PESOS
@@ -40,35 +50,74 @@ export class DashboardComponent implements OnInit {
       console.log(respuesta);
     })
     .catch(error => console.log(`Error desde el POST ${error}`) );
-
-
-
   };
+
 // ****** VER MOVIMIENTOS EN CRIPTO
   movimientosCriptos(){
 
   };
+// ***************************************************************
+// ************ COMISIONES VIGENTES ***********************
+// ***************************************************************
+  onClikComisiones(){
+    console.log("******************** BUSCO LAS COMISIONES")
+    this.tipoTransaccionService.getTodos() // RECIBO LAS RESPUESTA DEL POST
+    .then(respuesta => {
+      this.arrComionesVigentes = respuesta;
+      console.log(respuesta);
+      console.log(this.arrComionesVigentes);
+    })
+    .catch(error => console.log(`Error desde el POST ${error}`) );
+  };
+  
 
+// ***************************************************************
+// ************** Acciones al salir del dashboard ****************
+// ***************************************************************
+  onClickLogOut(){
+    // ***** OBtengo el token desde local storage
+    const token = localStorage.getItem('miToken');
+    console.log("EL TOKEN: " + token)
+    // // ***** OBtengo el Id usuario
+    // if (token){
+    //   this.nTokenService.getId(token)
+    //   .then( IdUsuario =>{
+    //       // **** Grabo el login out en la BBDD
+    //       this.loginLoginRequestService.putLoginUsuario(IdUsuario)
+    //       .then(() =>{
+    //           console.log('OK; SE GRABO EL LogOut EN BBDD')
+    //       })
+    //       .catch(error => console.log("NO SE PUDO GRABAR EL LOGOUT ERROR: " + error)
+    //       );
+    //   })
+    //   .catch(error => {
+    //       console.log("NO SE PUDO OBTENER EL ID: " + error)
+    //   });      
+    // }
+  }
 
-// **************** CONSULTA API CRIPTO
+  // ***************************************************************
+  // ***************** CONSULTA API CRIPTO *************************
+  // ***************************************************************
+
   consultarAPI(){
     this.ColorActualizoCripto.color =  this.ColorActualizoCriptos.color = '#0907B8';
     this.criptoaApiService.getCotizacion() // RECIBO LAS RESPUESTA DEL POST
-            .then(respuesta => {
-              this.valoresCripto[0]=respuesta.DISPLAY.BTC.ARS.PRICE;
-              this.valoresCripto[1]=respuesta.DISPLAY.BTC.ARS.HIGHDAY;
-              this.valoresCripto[2]=respuesta.DISPLAY.BTC.ARS.LOWDAY;
-              this.valoresCripto[3]=respuesta.DISPLAY.BTC.ARS.CHANGEPCT24HOUR;
-              this.valoresCripto[4]=respuesta.DISPLAY.BTC.ARS.LASTUPDATE;
-            })
-            .catch(error => console.log(`Error desde el POST ${error}`) );
+        .then(respuesta => {
+          this.valoresCripto[0]=respuesta.DISPLAY.BTC.ARS.PRICE;
+          this.valoresCripto[1]=respuesta.DISPLAY.BTC.ARS.HIGHDAY;
+          this.valoresCripto[2]=respuesta.DISPLAY.BTC.ARS.LOWDAY;
+          this.valoresCripto[3]=respuesta.DISPLAY.BTC.ARS.CHANGEPCT24HOUR;
+          this.valoresCripto[4]=respuesta.DISPLAY.BTC.ARS.LASTUPDATE;
+        })
+        .catch(error => console.log(`Error desde el POST ${error}`) 
+        );
             
-            setTimeout(() => {
-              this.ColorActualizoCripto.color = '#fff'
-              this.ColorActualizoCriptos.color = '#E10101'
-            }, 800);
-            
-          }
+        setTimeout(() => {
+          this.ColorActualizoCripto.color = '#fff'
+          this.ColorActualizoCriptos.color = '#E10101'
+        }, 1000); 
+  }
 
   ngOnInit(): void {
     this.consultarAPI()
@@ -77,6 +126,7 @@ export class DashboardComponent implements OnInit {
       this.consultarAPI()
     },8000);
   }
+
 
   ngOnDestroy(){
     clearInterval();
@@ -97,4 +147,3 @@ export class DashboardComponent implements OnInit {
 // }
 // }
 // }
-

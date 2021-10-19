@@ -22,16 +22,15 @@ export class EmailService {
     // hago el get indico que recibo un array de objetos tipo Rol
     return this.httprequest.get<Email[]>(`${this.rootURL}/${id}`).toPromise();
   }
+  //  ***** GET BUSCA EL ID MAIL POR EL MAIL
   getId(email:string):Promise<number>{
     // hago el get indico que recibo un array de objetos tipo Rol
     return this.httprequest.get<number>(`${this.rootURL}/Email?cadena=${email}`).toPromise();
   }
   //  ***** POST
-  postMail(datos : Email):Promise<any>{
-    return this.httprequest.post<Email>(this.rootURL, datos).toPromise();
+  postMail(datos : Email):Promise<number>{
+    return this.httprequest.post<number>(this.rootURL, datos).toPromise();
   }
-
-  
   // ***** PUT POR ID
   putMail(id:number, datos : Email):Promise<any>{
     return this.httprequest.put<Email>(`${this.rootURL}/${id}`, datos).toPromise();

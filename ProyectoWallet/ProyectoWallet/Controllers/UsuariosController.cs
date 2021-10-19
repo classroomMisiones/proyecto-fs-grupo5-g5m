@@ -46,7 +46,8 @@ namespace ProyectoWallet.Controllers
                 using (SqlConnection conector = new SqlConnection(mi_conexion))
                 {
                     conector.Open();
-                    SqlDataAdapter adaptador = new SqlDataAdapter("SELECT Id_usuario, Nombre, Apellido, Dni_numero, Direccion, Nro_direccion, Piso_departamento, Fecha_clave, Nombre_de_usuario FROM usuarios WHERE Id_usuario = " + id, conector);
+                    SqlDataAdapter adaptador = new SqlDataAdapter("SELECT Id_usuario, Nombre, Apellido, Dni_numero, Id_tipo_dni , Direccion, Nro_direccion, Piso_departamento, Id_email, Id_rol, Id_telefono, Id_pais, Id_provincia, Id_localidad, Id_estado_cuenta , Id_rol ,Fecha_clave, Nombre_de_usuario FROM usuarios WHERE Id_usuario = " + id, conector);
+                                                                                                                                                                                       
                     //SqlCommand comando = new SqlCommand("SELECT nombre FROM usuarios WHERE id_usuario = " + id, conector);
                     adaptador.Fill(dataTableResultado);
                     //nombre = comando.ExecuteScalar().ToString();
@@ -60,11 +61,12 @@ namespace ProyectoWallet.Controllers
         }
 
         // POST: api/Usuario
-        public string Post([FromBody] Models.Usuario oUsuario)
+        public int Post([FromBody] Models.Usuario oUsuario)
         {
+
             try
             {
-                
+                int Id;
                 // otra forma de encriptacion string Key = Models.Encrypt.GetSHA256(oUsuario.Clave);
                 // tomo solo la fecha n el formato dia-mes-año
                 string fecha = DateTime.Now.ToString("dd-MM-yyyy");
@@ -74,17 +76,17 @@ namespace ProyectoWallet.Controllers
                     SqlCommand comando = new SqlCommand();
                     //Encripto la clave con el metodo HashSalt
                     //comando.CommandText = "INSERT INTO usuarios (Nombre, Apellido, Id_email, Id_rol, Clave, fecha_Clave, Nombre_de_usuario ) VALUES ('" + oUsuario.Nombre + "','" + oUsuario.Apellido + "'," + oUsuario.Id_email + ", " + oUsuario.Id_rol + " ,'" + Crypto.HashPassword(oUsuario.Clave) + "', '" + fecha + "', '" + oUsuario.Nombre.Substring(0, 1) + "." + oUsuario.Apellido + "')";
-                    comando.CommandText = "INSERT INTO usuarios (Nombre, Apellido, Id_email, Id_rol, Clave, fecha_Clave, Nombre_de_usuario ) VALUES ('" + oUsuario.Nombre + "','" + oUsuario.Apellido + "'," + oUsuario.Id_email + "," + oUsuario.Id_rol + " ,'" + Crypto.HashPassword(oUsuario.Clave) + "', '" + fecha + "', '" + oUsuario.Nombre.Substring(0, 1) + "." + oUsuario.Apellido + "')";
+                    comando.CommandText = "INSERT INTO usuarios (Nombre, Apellido, Id_email, Id_rol, Clave, fecha_Clave, Nombre_de_usuario ) VALUES ('" + oUsuario.Nombre + "','" + oUsuario.Apellido + "'," + oUsuario.Id_email + "," + oUsuario.Id_rol + " ,'" + Crypto.HashPassword(oUsuario.Clave) + "', '" + fecha + "', '" + oUsuario.Nombre.Substring(0, 1) + "." + oUsuario.Apellido + "') SELECT @@IDENTITY";
                     comando.Connection = conector;
-                    comando.ExecuteNonQuery();
+                    Id = int.Parse(comando.ExecuteScalar().ToString());
 
                 }
-                return "OPERACION DE INSERCION EXITOSA";
+                return Id; // "OPERACION DE INSERCION EXITOSA";
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                return "NO SE PUDO COMPLETAR LA OPERACION  DE INSERCION";
+                return 0; // "NO SE PUDO COMPLETAR LA OPERACION  DE INSERCION";
             }
         }
 

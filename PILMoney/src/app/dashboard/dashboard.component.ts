@@ -8,12 +8,14 @@ import { NTokenService } from '../service/n-token.service';
 import { TransaccionesCuentaService } from '../service/transacciones-cuenta.service';
 import { TipoTransaccionService } from '../service/tipo-transaccion.service'; 
 import { SaldoCuentaService } from '../service/saldo-cuenta.service'
+import { UsuariosService } from '../service/usuarios.service'
 
 
 
 import { TransaccionesCuenta } from '../Modelos/transaccionesCuenta.model';
 import { TipoTransaccion } from '../Modelos/tipoTransaccion.model';
 import { SaldoCuenta } from '../Modelos/saldoCuenta.model';
+import { Usuarios } from '../Modelos/usuarios.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -21,12 +23,14 @@ import { SaldoCuenta } from '../Modelos/saldoCuenta.model';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-    
+    UsuarioActual = new Usuarios();
+
     valoresCripto : Array<string>;
     ColorActualizoCripto : any;
     ColorActualizoCriptos  : any;
     arrTransacciones : TransaccionesCuenta[];
     arrComionesVigentes : TipoTransaccion[];
+    
     private token : any;
     private ID : number;
     arrSaldoCuenta : SaldoCuenta[];
@@ -37,6 +41,7 @@ export class DashboardComponent implements OnInit {
                 private nTokenService : NTokenService,
                 private tipoTransaccionService : TipoTransaccionService,
                 private saldoCuentaService : SaldoCuentaService,
+                private usuarioService : UsuariosService,
                 private route : Router
     ) 
     { 
@@ -108,6 +113,8 @@ export class DashboardComponent implements OnInit {
         }, 1000); 
   };
 
+
+
   ngOnInit() {
     console.log("estoy en el ngOnInit DashBoard");
     // ***** Hago la consulta a la API por los valores de la cripto
@@ -124,11 +131,25 @@ export class DashboardComponent implements OnInit {
     // ***** tomo el token desde local storage
     // ***** Guardo el token en un atributo privado  
     this.token = localStorage.getItem('miToken'); // console.log("ESTE ES EL TOKEN" + this.token);
+
     // ***** tomo el ID del usuario desde la BBDD
     this.nTokenService.getId(this.token)
     .then( IdUsuario =>{
     // ***** Guardo el ID en un atributo privado  
-        this.ID = IdUsuario; // console.log(`ID RECUPERADO: ${this.ID}`);
+        this.ID = IdUsuario;  // console.log(`ID RECUPERADO: ${this.ID}`);
+
+        // ***************************************************************
+        // ***** Busco los datos del Usuario Actual **********************
+        // **************************************************************
+        //console.log("Usuario a Buscar:" + this.ID);
+        this.usuarioService.getxId(this.ID) // RECIBO LAS RESPUESTA DEL POST
+        .then(respuesta => {
+            // ***** Guardo los registroe en un array console.log(respuesta);
+            this.UsuarioActual = respuesta;  // console.log(`Usuario Actual: ${respuesta}`);  console.log(`Usuario Actual: ${this.UsuarioActual}`);
+        })
+        .catch(error => console.log(`Error desde el POST ${error}`)
+        );
+
         // ***** Busco los registros de saldos de la cuenta
         // ***************************************************************
         // ******************** SALDO EN CUENTA *************************
@@ -143,7 +164,8 @@ export class DashboardComponent implements OnInit {
     })
     .catch(error => {
         console.log( `NO SE PUDO OBTENER EL ID:  ${error}`)
-    });        
+    });  
+
   }
 
   // ***************************************************************

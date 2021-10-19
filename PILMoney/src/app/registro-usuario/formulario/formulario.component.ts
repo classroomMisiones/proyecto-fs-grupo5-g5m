@@ -89,26 +89,29 @@ export class FormularioComponent implements OnInit {
       if (this.loginRequestService.getPing()){      // console.log("OK, PING RECIBIDO");
         // ********** GUARDO EL MAIL **********
         this.emailService.postMail(this.ObjBusqueda)
-        .then(() =>{
+        .then(IdMail =>{
           console.log("Registro de Email Exitoso!");
-              // ********** Busco el Id_usuario **********
-              this.mailCrearCuentaService.getId()
-              .then(idmail =>{
-                  console.log(`Obtengo el Id mail : ${idmail}`);
-                  this.ObjMail.Id_email = idmail;
-                  this.ObjBusqueda.Id_email = idmail;
-                  console.log(this.ObjBusqueda);
+          this.ObjBusqueda.Id_usuario = IdMail;
+          console.log(IdMail);
+
+              // // ********** Busco el Id_mail **********
+              // this.mailCrearCuentaService.getId()
+              // .then(idmail =>{
+              //     console.log(`Obtengo el Id mail : ${idmail}`);
+                  this.ObjMail.Id_email = IdMail;
+                  this.ObjBusqueda.Id_email = IdMail;
+              //     console.log(this.ObjBusqueda);
                       // ********** GUARDO EL USUARIO **********
                       this.usuariosService.postUsuario(this.ObjBusqueda)
-                      .then(() =>{
+                      .then(IdUsuario =>{
                           console.log("Registro de Usuario Exitoso!");
                           // ********** Busco el Id_usuario **********
-                              this.usuarioCrearCuentaService.getId()
-                              .then(idusuario =>{
-                                  console.log(`Obtengo el Id usuario : ${idusuario}`);
-                                  this.ObjMail.Id_usuario = idusuario;
+                              // this.usuarioCrearCuentaService.getId()
+                              // .then(idusuario =>{
+                              //     console.log(`Obtengo el Id usuario : ${idusuario}`);
+                                  this.ObjMail.Id_usuario = IdUsuario;
                                       // ********** Actualizo el mail **********
-                                      this.emailService.putMail(idmail, this.ObjMail)
+                                      this.emailService.putMail(IdMail, this.ObjMail)
                                       .then(() =>{
                                           console.log("Actualizacion del MAil Exitosa!");
                                        //*************** HAGO EL PEDIDO DEL TOKEN ******************* */
@@ -151,26 +154,26 @@ export class FormularioComponent implements OnInit {
                                                     console.log("ERROR AL OBTRENER EL TOKEN" + error)
                                                     this.controlProcesos = false;
                                                 });
-                                        }) // put mail
+                                       }) // put mail
                                       .catch(error => {
                                             console.log("No se Pudo Actualizar el MAIL" + error)
                                             this.controlProcesos = false;
                                       });
-                                }) // busco el id usuario
-                                .catch(error => {
-                                    console.log("No se Pudo Registrar al Usuario" + error)
-                                    this.controlProcesos = false;
-                                });
+                                // }) // busco el id usuario
+                                // .catch(error => {
+                                //     console.log("No se Pudo Obtener el ID" + error)
+                                //     this.controlProcesos = false;
+                                // });
                       }) // post usuario
                       .catch(error => {
                           console.log("No se Pudo Registrar al Usuario" + error)
                           this.controlProcesos = false;
                       });
-                }) // buscar id
-                .catch(error => {
-                    console.log("No se Pudo Registrar al Usuario" + error)
-                    this.controlProcesos = false;
-                });   
+                // }) // buscar id
+                // .catch(error => {
+                //     console.log("No se Pudo Registrar al Usuario" + error)
+                //     this.controlProcesos = false;
+                // });   
         }) // email post
         .catch(error => {
           console.log("NO SE PUDO GRABAR EL MAIL: " + error)

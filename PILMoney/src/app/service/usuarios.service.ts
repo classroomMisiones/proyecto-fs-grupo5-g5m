@@ -26,9 +26,9 @@ export class UsuariosService {
     return this.httprequest.get<Usuarios[]>(this.rootURL).toPromise();
   }
   //  ***** GET POR ID
-  getxId(id:number):Promise<Usuarios[]>{
+  getxId(id:number):Promise<Usuarios>{
     // hago el get indico que recibo un array de objetos tipo Rol
-    return this.httprequest.get<Usuarios[]>(`${this.rootURL}/${id}`).toPromise();
+    return this.httprequest.get<Usuarios>(`${this.rootURL}/${id}`).toPromise();
   }
 
   //  ***** GET EL ID Por Clave  lo uso en el Login
@@ -44,8 +44,8 @@ export class UsuariosService {
   }
 
   //  ***** POST 
-  postUsuario(datos : Registro):Promise<any>{
-    return this.httprequest.post<Registro>(this.rootURL, datos).toPromise();
+  postUsuario(datos : Registro):Promise<number>{
+    return this.httprequest.post<number>(this.rootURL, datos).toPromise();
   }
   // ***** PUT POR ID
   putUsuario(id:number, datos : Usuarios):Promise<any>{

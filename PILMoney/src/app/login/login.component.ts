@@ -48,8 +48,7 @@ export class LoginComponent implements OnInit {
         
         this.loginRequestService.postToken(this.form.value)
         .then(token =>{
-            //console.log("Token recibido"+ token);
-            console.log('OK; GUARDO EN EL LOCAL STORAGE')
+            //console.log("Token recibido"+ token); console.log('OK; GUARDO EN EL LOCAL STORAGE')
             localStorage.setItem('miToken', token);
             // ***** coloco la bandera de control en true
             this.controlProcesos = true;
@@ -58,21 +57,14 @@ export class LoginComponent implements OnInit {
             this.grabarToken.N_token = token;
         //************************************************************************************* */
             // ********** GUARGO EL LOGIN EN LA TABLA "login_usuarios" EN LA BBDD ***************************************            
-            if (this.controlProcesos){
-              console.log("VOY A GRABAR EL LOGIN DEL USUARIO EN LA BBDD")
-              console.log(this.grabarToken);
+            if (this.controlProcesos){ //   console.log("VOY A GRABAR EL LOGIN DEL USUARIO EN LA BBDD")       console.log(this.grabarToken);
               this.loginLoginRequestService.postLoginUsuario(this.grabarToken)
-              .then(respuesta =>{
-                  console.log("Login grabado en la BBDD");
-                  //************************************************************************************* */
-                  console.log('OK; A ENTRAR GRABAR EL TOKEN EN BBDD')
+              .then(respuesta =>{ //             console.log("Login grabado en la BBDD"); 
+                  //************************************************************************************* */  console.log('OK; A ENTRAR GRABAR EL TOKEN EN BBDD')
                   // ********** SI RECIBI EL TOKENN LO GUARGO EN LA BBDD ***************************************
-                  if (this.controlProcesos){
-                      console.log("OK, VOY A GRABAR EL TOKEN EN LA BBDD")
-                      console.log(this.grabarToken);
+                  if (this.controlProcesos){ //        console.log("OK, VOY A GRABAR EL TOKEN EN LA BBDD")       console.log(this.grabarToken);
                       this.nTokenService.PutToken(this.grabarToken)
-                      .then(() =>{
-                          console.log("Token grabado en la BBDD");
+                      .then(() =>{ //        console.log("Token grabado en la BBDD");
                           this.router.navigate(['/dashboard']);
                       })
                       .catch(error => {

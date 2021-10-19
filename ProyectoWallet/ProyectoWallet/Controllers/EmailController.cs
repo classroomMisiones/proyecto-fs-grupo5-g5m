@@ -59,25 +59,26 @@ namespace ProyectoWallet.Controllers
         }
 
         // POST: api/Rol
-        public string Post([FromBody] Models.Email oEmail)
+        public int Post([FromBody] Models.Email oEmail)
         {
             try
             {
+                int Id;
                 using (SqlConnection conector = new SqlConnection(mi_conexion))
                 {
-
+                    
                     conector.Open();
                     SqlCommand comando = new SqlCommand();
-                    comando.CommandText = "INSERT INTO email (Mail, Id_usuario) VALUES ('" + oEmail.Mail + "', " + oEmail.Id_usuario + ")";
+                    comando.CommandText = "INSERT INTO email (Mail, Id_usuario) VALUES ('" + oEmail.Mail + "', " + oEmail.Id_usuario + ") SELECT @@IDENTITY";
                     comando.Connection = conector;
-                    comando.ExecuteNonQuery();
+                    Id = int.Parse(comando.ExecuteScalar().ToString());
                 }
-                return "OPERACION DE INSERCION EXITOSA";
+                return Id; //"OPERACION DE INSERCION EXITOSA";
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                return "NO SE PUDO COMPLETAR LA OPERACION  DE INSERCION";
+                return 0; //"NO SE PUDO COMPLETAR LA OPERACION  DE INSERCION";
             }
         }
 

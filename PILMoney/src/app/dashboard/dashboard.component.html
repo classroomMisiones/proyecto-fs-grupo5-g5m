@@ -88,7 +88,7 @@
             <span class="ti-wallet"></span>
             <div>
               <h5>Dinero disponible</h5>
-              <h4 *ngIf="this.arrSaldoCuenta[0].Saldo">Pesos: {{this.arrSaldoCuenta[0].Saldo}}</h4>
+              <h4>Pesos: {{this.arrSaldoCuenta[0].Saldo}}</h4>
               
             </div>
           </div>
@@ -779,8 +779,7 @@
                 data-bs-toggle="modal"
                 data-bs-target="#comi"
                 data-bs-whatever="@mdo"
-                
-              ><!-- (click)="onClikComisiones()" -->
+                (click)="onClikComisiones()">
                 Consultar
               </button>
 

@@ -76,9 +76,9 @@ export class DashboardComponent implements OnInit {
     console.log("******************** BUSCO LAS COMISIONES")
     this.tipoTransaccionService.getTodos() // RECIBO LAS RESPUESTA DEL POST
     .then(respuesta => {
-      this.arrComionesVigentes = respuesta;
-      //console.log(respuesta);
-      //console.log(this.arrComionesVigentes);
+      this.arrComionesVigentes = respuesta; 
+      console.log(respuesta);  
+      console.log(this.arrComionesVigentes);
     })
     .catch(error => console.log(`Error desde el POST ${error}`) );
   };
@@ -123,23 +123,20 @@ export class DashboardComponent implements OnInit {
 
     // ***** tomo el token desde local storage
     // ***** Guardo el token en un atributo privado  
-    this.token = localStorage.getItem('miToken');
-    console.log("ESTE ES EL TOKEN" + this.token);
+    this.token = localStorage.getItem('miToken'); // console.log("ESTE ES EL TOKEN" + this.token);
     // ***** tomo el ID del usuario desde la BBDD
     this.nTokenService.getId(this.token)
     .then( IdUsuario =>{
     // ***** Guardo el ID en un atributo privado  
-        this.ID = IdUsuario;
-        console.log(`ID RECUPERADO: ${this.ID}`);
+        this.ID = IdUsuario; // console.log(`ID RECUPERADO: ${this.ID}`);
         // ***** Busco los registros de saldos de la cuenta
         // ***************************************************************
         // ******************** SALDO EN CUENTA *************************
         // **************************************************************
         this.saldoCuentaService.getxId(this.ID) // RECIBO LAS RESPUESTA DEL POST
         .then(respuesta => {
-            // ***** Guardo los registroe en un array
-            this.arrSaldoCuenta = respuesta;
-            console.log(`Objeto de los saldos por ID ${this.arrSaldoCuenta}`);
+            // ***** Guardo los registroe en un array console.log(respuesta);
+            this.arrSaldoCuenta = respuesta; //  console.log(`Objeto de los saldos por ID ${this.arrSaldoCuenta}`);
         })
         .catch(error => console.log(`Error desde el POST ${error}`)
         );

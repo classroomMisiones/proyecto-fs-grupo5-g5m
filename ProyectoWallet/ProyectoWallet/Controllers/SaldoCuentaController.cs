@@ -138,30 +138,30 @@ namespace ProyectoWallet.Controllers
         // *********** GET POR TIPO DE MONEDA **********
         // *********************************************
 
-        [HttpGet]
-        // GET: api/Usuario/
-        public IHttpActionResult GetSaldoxMoneda(int id, [FromBody] Models.SaldoCuenta oSaldoCuenta)
-        {
-            DataTable dataTableResultado = new DataTable();
-            try
-            {
-                using (SqlConnection conector = new SqlConnection(mi_conexion))
-                {
-                    conector.Open();
-                    SqlDataAdapter adaptador = new SqlDataAdapter("SELECT Id_saldo, Saldo, Fecha, Hora FROM saldo_cuenta WHERE Id_usuario = '" +
-                        id + "' &&  Id_moneda = '" + oSaldoCuenta.Id_moneda + "' ", conector);
-                    adaptador.Fill(dataTableResultado);
-                }
-                return Ok(dataTableResultado);
-                //return dataTableResultado;
-                //return dataTableResultado.Rows[0]["id_usuario"].ToString();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-                return Ok(e.Message);
-            }
-            //return Ok(dataTableResultado);
-        }
+        //[HttpGet]
+        //// GET: api/Usuario/
+        //public IHttpActionResult GetSaldoxMoneda(int id, [FromBody] Models.SaldoCuenta oSaldoCuenta)
+        //{
+        //    DataTable dataTableResultado = new DataTable();
+        //    try
+        //    {
+        //        using (SqlConnection conector = new SqlConnection(mi_conexion))
+        //        {
+        //            conector.Open();
+        //            SqlDataAdapter adaptador = new SqlDataAdapter("SELECT Id_saldo, Saldo, Fecha, Hora FROM saldo_cuenta WHERE Id_usuario = '" +
+        //                id + "' &&  Id_moneda = '" + oSaldoCuenta.Id_moneda + "' ", conector);
+        //            adaptador.Fill(dataTableResultado);
+        //        }
+        //        return Ok(dataTableResultado);
+        //        //return dataTableResultado;
+        //        //return dataTableResultado.Rows[0]["id_usuario"].ToString();
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Console.WriteLine(e.Message);
+        //        return Ok(e.Message);
+        //    }
+        //    //return Ok(dataTableResultado);
+        //}
     }
 }

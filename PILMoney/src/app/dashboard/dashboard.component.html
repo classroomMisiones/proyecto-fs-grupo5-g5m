@@ -89,7 +89,7 @@
             <div>
               <h5>Dinero disponible</h5>
               <h4>Pesos: {{this.arrSaldoCuenta[0].Saldo}}</h4>
-              
+
             </div>
           </div>
           <div class="card-footer">
@@ -240,13 +240,8 @@
                   </div>
                 </div>
               </div>
-              <a
-                class="btn btn-secondary"
-                data-bs-toggle="modal"
-                href="#exampleModalToggle"
-                role="button"
-                >Realizar Deposito
-              </a>
+              <a class="btn btn-primary" data-bs-toggle="modal" [routerLink]="'../ingresar-dinero'"S role="button">Realizar
+                Deposito </a>
             </div>
           </div>
         </div>
@@ -811,7 +806,7 @@
                               <th scope="col">#</th>
                               <th scope="col">Operación</th>
                               <th scope="col">Monto</th>
-                              
+
                             </tr>
                           </thead>
                           <tbody>
@@ -820,7 +815,7 @@
                               <td>{{registro.Descripcion}}</td>
                               <td>{{registro.Valor_comision}}% + IVA</td>
                             </tr>
-                            
+
                           </tbody>
                         </table>
                       </form>

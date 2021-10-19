@@ -1,0 +1,134 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
+
+</head>
+
+<body>
+
+
+
+
+  <input type="checkbox" id="sidebar-toggle">
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <h4 class="brand">
+        <span class="ti-wallet"></span>
+        <span>KePúa</span>
+
+      </h4>
+
+      <label for="sidebar-toggle"><span class="ti-menu-alt"></span></label>
+
+    </div>
+    <hr>
+    <div class="sidebar-menu">
+      <ul>
+        <li>
+          <a href="">
+            <span class="ti-home"></span>
+            <span>HOME</span>
+          </a>
+        </li>
+        <li>
+          <a [routerLink]="'/nosotros'">
+            <span class="ti-face-smile"></span>
+            <span>Equipo</span>
+          </a>
+        </li>
+
+        <li>
+          <a [routerLink]="'/faq'">
+            <span class="ti-help-alt"></span>
+            <span>Ayuda</span>
+          </a>
+        </li>
+
+        <li>
+          <a [routerLink]="'/configuracion'">
+            <span class="ti-settings"></span>
+
+            <span>Cuenta</span>
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <span class="ti-power-off"></span>
+            <span>Logout</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+
+
+  <div class="main-content">
+
+    <header>
+      <div class="search-wrapper">
+        <span class="ti-search">
+          <input type="search" placeholder="Buscar">
+        </span>
+      </div>
+      <div class="social-icons">
+        <span class="ti-bell"></span>
+        <span class="ti-comment"> </span>
+        <div class="foto-perfil"> <img class="img-responsive" src="assets/img/1.JPG" alt="foto perfil"></div>
+      </div>
+    </header>
+    <main>
+
+
+
+
+      <h2 class="title">Ingresar Dinero en efectivo</h2>
+
+
+        <div class="card-single">
+          <div class="card-body">
+            <div>
+              <h5>Dirijase con este codigo a un rapipago para depositar el monto en efectivo </h5>
+              <br>
+              <div class="row">
+
+
+              </div>
+
+              <div class="row" >
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col">
+                  <div class="input-group mb-3">
+                    <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal"
+                    data-bs-dismiss="modal">Aceptar</button>
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+
+
+    </main>
+  </div>
+</body>
+
+</html>
+<script>
+  function numRandom(){
+    var num = Math.floor(Math.random() * 90000) + 10000;
+    return num;
+  }
+
+</script>

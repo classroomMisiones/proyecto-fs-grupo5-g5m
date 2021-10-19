@@ -17,6 +17,7 @@ import { NosotrosComponent } from './nosotros/nosotros.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ConfiguracionComponent } from './configuracion/configuracion.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

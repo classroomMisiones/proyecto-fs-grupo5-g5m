@@ -9,6 +9,7 @@ import { NTokenService } from '../service/n-token.service';
 import { LoginLoginRequestService } from '../service/login-usuarios.service';
 
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -43,8 +44,8 @@ export class LoginComponent implements OnInit {
   onSubmit(){
     // ********* VERIFICO SI EL SERVIDOR RESPONDE
     console.log('HAGO EL PING')
-    if (this.loginRequestService.getPing()){
-        console.log('OK; HAGO EL PEDIDO DEL TOKEN')
+    if (this.loginRequestService.getPing()){          console.log('OK; HAGO EL PEDIDO DEL TOKEN')
+        
         this.loginRequestService.postToken(this.form.value)
         .then(token =>{
             //console.log("Token recibido"+ token);

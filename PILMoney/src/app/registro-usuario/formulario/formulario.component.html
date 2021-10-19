@@ -1,13 +1,13 @@
 
   <div class="card-body">
-    <form class="custom-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <form class="custom-form" [formGroup] = "form" (ngSubmit)="onSubmit()">
       <div class="row">
         <h3>Registrarse</h3>
 
         <div class="col">
           <div class="form-group row">
             <div class="col-md-9">
-              <input id="name" type="text" class="form-control" name="name" placeholder="Nombre"  formControlName="nombre" required pattern="[A-Za-z0-9]+">
+              <input id="name" type="text" class="form-control" name="name" placeholder="Nombre"  formControlName="Nombre" required pattern="[A-Za-z0-9]+">
               <div class="alert-danger" *ngIf="nombre!.invalid && (nombre!.dirty || nombre!.touched)">
                 <div class="container-error-message" *ngIf="nombre!.errors!.required">
                   Ingrese nombre
@@ -15,10 +15,9 @@
               </div>
             </div>
           </div>
-          
           <div class="form-group row">
             <div class="col-md-9">
-              <input id="apellido" type="text" class="form-control"  placeholder="Apellido"  name="apellido" required pattern="[A-Za-z0-9]+" formControlName="apellido">
+              <input id="apellido" type="text" class="form-control"  placeholder="Apellido"  name="apellido" required pattern="[A-Za-z0-9]+" formControlName="Apellido">
               <div class="alert-danger" *ngIf="apellido!.invalid && (apellido!.dirty || apellido!.touched)">
                 <div class="container-error-message" *ngIf="apellido!.errors!.required">
                   Ingrese apellido
@@ -31,7 +30,7 @@
         <div class="col">
           <div class="form-group row">
             <div class="col-md-9">
-              <input id="email" type="email" class="form-control "  placeholder="Email"  name="email"formControlName="email" >
+              <input id="email" type="email" class="form-control "  placeholder="Email"  name="email"formControlName="Mail" >
               <div class="alert-danger" *ngIf="email!.invalid && (email!.dirty || email!.touched)">
                 <div class="container-error-message" *ngIf="email!.errors!.required">
                   Email requerido
@@ -45,16 +44,35 @@
 
           <div class="form-group row">
             <div class="col-md-9">
-              <input id="password-confirm" type="password"  placeholder="Contraseña"  class="form-control" formControlName="password" >
-              <div class="alert-danger" *ngIf="password!.invalid && (password!.dirty || password!.touched)">
-                <div class="container-error-message" *ngIf="password!.errors!.required">
+              <input id="password-confirm" type="password"  placeholder="Contraseña"  class="form-control" formControlName="Clave" >
+              <div class="alert-danger" *ngIf="clave!.invalid && (clave!.dirty || clave!.touched)">
+                <div class="container-error-message" *ngIf="clave!.errors!.required">
                   Contraseña requerida
                 </div>
-                <div class="container-error-message" *ngIf="password!.errors!.minlength">
+                <div class="container-error-message" *ngIf="clave!.errors!.minlength">
                   La contraseña debe tener al menos 8 caracteres
                 </div>
-                <div class="container-error-message" *ngIf="password!.invalid && !password!.errors!.required">
+                <div class="container-error-message" *ngIf="clave!.invalid && !clave!.errors!.required">
                   Debe tener letras mayusculas, minusculas y números
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-md-9">
+              <input id="password-confirm2" type="password"  placeholder="Contraseña"  class="form-control" formControlName="Clave2" >
+              <div class="alert-danger" *ngIf="clave2!.invalid && (clave2!.dirty || clave2!.touched)">
+                <div class="container-error-message" *ngIf="clave2!.errors!.required">
+                  Contraseña requerida
+                </div>
+                <div class="container-error-message" *ngIf="clave2!.errors!.minlength">
+                  La contraseña debe tener al menos 8 caracteres
+                </div>
+                <div class="container-error-message" *ngIf="clave2!.invalid && !clave2!.errors!.required">
+                  Debe tener letras mayusculas, minusculas y números
+                </div>
+                <div class="container-error-message" *ngIf="clave != clave2">
+                  Las contraseñas no coinciden!
                 </div>
               </div>
             </div>
@@ -64,7 +82,7 @@
       </div>
 
       <div style="text-align:center">
-        <button type="text" class="btn btn-primary">Registrarse</button>
+        <button type="submit" class="btn btn-primary">Registrarse</button>
       </div>
 
     </form>

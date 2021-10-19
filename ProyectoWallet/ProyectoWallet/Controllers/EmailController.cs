@@ -65,6 +65,7 @@ namespace ProyectoWallet.Controllers
             {
                 using (SqlConnection conector = new SqlConnection(mi_conexion))
                 {
+
                     conector.Open();
                     SqlCommand comando = new SqlCommand();
                     comando.CommandText = "INSERT INTO email (Mail, Id_usuario) VALUES ('" + oEmail.Mail + "', " + oEmail.Id_usuario + ")";
@@ -123,6 +124,30 @@ namespace ProyectoWallet.Controllers
                 Console.WriteLine(e.Message);
                 //throw new KeyNotFoundException("No pudo completar la operacion, Id erroneo o inexistente");
                 return "NO SE PUDO COMPLETAR LA OPERACION DE BORRADO";
+            }
+        }
+
+        [HttpGet]
+        public int GetID(string cadena)
+        {
+            DataTable tablaUsuario = new DataTable();
+            try
+            {
+                using (SqlConnection conector = new SqlConnection(mi_conexion))
+                {
+                    conector.Open();
+                    SqlCommand comando = new SqlCommand();
+                    // Hago un select de la tabla email y obtengo el ID por el mail
+                    SqlDataAdapter adaptadorUsuario = new SqlDataAdapter("SELECT Id_email FROM email WHERE Mail = '" + cadena + "' ", conector);
+                    adaptadorUsuario.Fill(tablaUsuario);
+                    // retorno el Id
+                    return (int)tablaUsuario.Rows[0]["Id_email"];
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return 0;
             }
         }
     }

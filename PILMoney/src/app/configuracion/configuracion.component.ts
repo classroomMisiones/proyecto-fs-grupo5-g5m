@@ -12,4 +12,8 @@ export class ConfiguracionComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onSubmit(){
+    
+  }
+
 }

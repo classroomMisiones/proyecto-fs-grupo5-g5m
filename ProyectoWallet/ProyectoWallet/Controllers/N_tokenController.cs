@@ -68,11 +68,17 @@ namespace ProyectoWallet.Controllers
                     // Hago un select de la tabla email y obtengo el Id usuario
                     SqlDataAdapter adaptadorEmail = new SqlDataAdapter("SELECT Mail, Id_usuario FROM email WHERE Mail = '" + oN_Token.Mail + "'", conector);
                     adaptadorEmail.Fill(tablaEmail);
+                    var ultregistro = tablaEmail.Rows.Count;
+                    if (ultregistro > 0 ) 
+                    {
+                        ultregistro--;
+                    }
+
                     // Hago un select de la tabla usuario y obtengo la clave
-                    SqlDataAdapter adaptadorUsuario = new SqlDataAdapter("SELECT Clave, Id_usuario FROM usuarios WHERE Id_usuario = '" + tablaEmail.Rows[0]["Id_usuario"] + "'", conector);
+                    SqlDataAdapter adaptadorUsuario = new SqlDataAdapter("SELECT Clave, Id_usuario FROM usuarios WHERE Id_usuario = '" + tablaEmail.Rows[ultregistro]["Id_usuario"] + "'", conector);
                     adaptadorUsuario.Fill(tablaUsuario);
                     // verifico que coincidan
-                    if (oN_Token.Mail == tablaEmail.Rows[0]["Mail"].ToString() && Crypto.VerifyHashedPassword(tablaUsuario.Rows[0]["Clave"].ToString(), oN_Token.Clave))
+                    if (oN_Token.Mail == tablaEmail.Rows[ultregistro]["Mail"].ToString() && Crypto.VerifyHashedPassword(tablaUsuario.Rows[0]["Clave"].ToString(), oN_Token.Clave))
                     {
                         //Grabo el nuevo Token
                         comando.CommandText = "UPDATE usuarios SET N_token = '" + oN_Token.N_token + "' WHERE Id_usuario = " + (int)tablaUsuario.Rows[0]["Id_usuario"];
@@ -95,5 +101,8 @@ namespace ProyectoWallet.Controllers
         //public void Delete(int id)
         //{
         //}
+
+        // GET: api/N_token/5
+        
     }
 }

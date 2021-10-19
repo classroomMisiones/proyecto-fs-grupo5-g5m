@@ -183,6 +183,7 @@
     <Compile Include="Controllers\LocalidadController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\LoginUsuariosController.cs" />
+    <Compile Include="Controllers\MailCrearCuentaController.cs" />
     <Compile Include="Controllers\N_tokenController.cs" />
     <Compile Include="Controllers\PaisController.cs" />
     <Compile Include="Controllers\ProvinciaController.cs" />
@@ -197,6 +198,7 @@
     <Compile Include="Controllers\TokenValidationHandler.cs" />
     <Compile Include="Controllers\TransaccionesCuentaController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
+    <Compile Include="Controllers\UsuariosCrearCuentaController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

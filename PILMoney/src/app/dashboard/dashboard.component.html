@@ -27,7 +27,7 @@
       <ul>
         <li>
           <a href="">
-            <span class="ti-home"></span>
+            <span (click)="onClickLogOut()" [routerLink]="''" class="ti-home"></span>
             <span>HOME</span>
           </a>
         </li>
@@ -88,7 +88,7 @@
             <span class="ti-wallet"></span>
             <div>
               <h5>Dinero disponible</h5>
-              <h4>Pesos: {{this.arrSaldoCuenta[0].Saldo}}</h4>
+              <h4 *ngIf="this.arrSaldoCuenta[0].Saldo">Pesos: {{this.arrSaldoCuenta[0].Saldo}}</h4>
               
             </div>
           </div>

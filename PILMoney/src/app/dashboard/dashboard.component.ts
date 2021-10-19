@@ -49,14 +49,10 @@ export class DashboardComponent implements OnInit {
       this.arrSaldoCuenta = [];
       
     }
-
-// ***************************************************************
-// ******************** SALDO EN CUENTA *************************
-// ***************************************************************
-
     
-
-  // ****** VER MOVIMIENTOS EN PESOS
+// ***************************************************************
+// ************ VER MOVIMIENTOS EN PESOS ***********************
+// ***************************************************************
   movimientosPesos(){
     console.log("******************** BUSCO MOVIMIENTOS")
     this.transaccionesCuentaService.getxId(6) // RECIBO LAS RESPUESTA DEL POST
@@ -67,8 +63,9 @@ export class DashboardComponent implements OnInit {
     })
     .catch(error => console.log(`Error desde el POST ${error}`) );
   };
-
-// ****** VER MOVIMIENTOS EN CRIPTO
+// ***************************************************************
+// ************ VER MOVIMIENTOS EN CRIPTO ***********************
+// ***************************************************************
   movimientosCriptos(){
 
   };
@@ -80,19 +77,14 @@ export class DashboardComponent implements OnInit {
     this.tipoTransaccionService.getTodos() // RECIBO LAS RESPUESTA DEL POST
     .then(respuesta => {
       this.arrComionesVigentes = respuesta;
-      console.log(respuesta);
-      console.log(this.arrComionesVigentes);
+      //console.log(respuesta);
+      //console.log(this.arrComionesVigentes);
     })
     .catch(error => console.log(`Error desde el POST ${error}`) );
   };
-  
-
-
-
   // ***************************************************************
   // ***************** CONSULTA API CRIPTO *************************
   // ***************************************************************
-
   consultarAPI(){
     // ***** cambio el color del texto
     this.ColorActualizoCripto.color =  this.ColorActualizoCriptos.color = '#0907B8';
@@ -114,9 +106,10 @@ export class DashboardComponent implements OnInit {
           this.ColorActualizoCripto.color = '#fff'
           this.ColorActualizoCriptos.color = '#E10101'
         }, 1000); 
-  }
+  };
 
   ngOnInit() {
+    console.log("estoy en el ngOnInit DashBoard");
     // ***** Hago la consulta a la API por los valores de la cripto
     this.consultarAPI();
 
@@ -125,33 +118,35 @@ export class DashboardComponent implements OnInit {
       this.consultarAPI()
     },10000);
 
-    
+    // ***** Cargo el array comisiones
     this.onClikComisiones();
-          // ***** tomo el token desde local storage
-          // ***** Guardo el token en un atributo privado  
-          this.token = localStorage.getItem('miToken');
-          //console.log(this.token);
-    
-          // ***** tomo el ID del usuario desde la BBDD
-          this.nTokenService.getId(this.token)
-          .then( IdUsuario =>{
-            // ***** Guardo el ID en un atributo privado  
-            this.ID = IdUsuario;
-             //console.log(`ID RECUPERADO: ${this.ID}`);
-              // ***** Busco los registros de saldos
-              this.saldoCuentaService.getxId(this.ID) // RECIBO LAS RESPUESTA DEL POST
-              .then(respuesta => {
-                  // ***** Guardo los registroe en un array
-                  this.arrSaldoCuenta = respuesta;
-                  console.log(this.arrSaldoCuenta);
-              })
-              .catch(error => console.log(`Error desde el POST ${error}`)
-              );
-          })
-          .catch(error => {
-              console.log( `NO SE PUDO OBTENER EL ID:  ${error}`)
-          });        
 
+    // ***** tomo el token desde local storage
+    // ***** Guardo el token en un atributo privado  
+    this.token = localStorage.getItem('miToken');
+    console.log("ESTE ES EL TOKEN" + this.token);
+    // ***** tomo el ID del usuario desde la BBDD
+    this.nTokenService.getId(this.token)
+    .then( IdUsuario =>{
+    // ***** Guardo el ID en un atributo privado  
+        this.ID = IdUsuario;
+        console.log(`ID RECUPERADO: ${this.ID}`);
+        // ***** Busco los registros de saldos de la cuenta
+        // ***************************************************************
+        // ******************** SALDO EN CUENTA *************************
+        // **************************************************************
+        this.saldoCuentaService.getxId(this.ID) // RECIBO LAS RESPUESTA DEL POST
+        .then(respuesta => {
+            // ***** Guardo los registroe en un array
+            this.arrSaldoCuenta = respuesta;
+            console.log(`Objeto de los saldos por ID ${this.arrSaldoCuenta}`);
+        })
+        .catch(error => console.log(`Error desde el POST ${error}`)
+        );
+    })
+    .catch(error => {
+        console.log( `NO SE PUDO OBTENER EL ID:  ${error}`)
+    });        
   }
 
   // ***************************************************************
@@ -162,10 +157,13 @@ export class DashboardComponent implements OnInit {
     // **** Grabo el login out en la BBDD
     this.loginLoginRequestService.putLoginUsuario(this.ID)
     .then(() =>{
-    console.log('OK; SE GRABO EL LogOut EN BBDD')
+      console.log('OK; SE GRABO EL LogOut EN BBDD')
     })
-    .catch(error => console.log("NO SE PUDO GRABAR EL LOGOUT ERROR: " + error)
+    .catch(error => 
+      console.log("NO SE PUDO GRABAR EL LOGOUT ERROR: " + error)
     );
+    clearInterval();
+    localStorage.removeItem('miToken');
   }
 
   ngOnDestroy(){

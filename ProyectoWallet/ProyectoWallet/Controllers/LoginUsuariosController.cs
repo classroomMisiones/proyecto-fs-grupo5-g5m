@@ -105,8 +105,7 @@ namespace ProyectoWallet.Controllers
                     SqlDataAdapter adaptador = new SqlDataAdapter("SELECT Id_login from login_usuarios WHERE Id_usuario = " + id, conector);
                     adaptador.Fill(dataTableResultado);
                     var registro = dataTableResultado.Rows.Count;
-                    var IdLogin = dataTableResultado.Rows[registro - 1]["Id_usuario"];
-
+                    var IdLogin = dataTableResultado.Rows[registro - 1]["Id_login"];
 
                     string fechaHora = DateTime.Now.ToString();
                                        

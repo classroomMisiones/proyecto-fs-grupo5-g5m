@@ -66,7 +66,9 @@ export class FormularioComponent implements OnInit {
               private mailCrearCuentaService : MailCrearCuentaService
               ){}
 
-  ngOnInit(){}
+  ngOnInit(){
+
+  }
 
   get nombre(){return this.form.get('Nombre');}
   get apellido(){return this.form.get('Apellido');}
@@ -198,16 +200,4 @@ export function createPasswordStrengthValidator(): ValidatorFn {
       const passwordValid = hasUpperCase && hasLowerCase && hasNumeric;
       return !passwordValid ? {passwordStrength:true}: null;
   }
-}
-export function passwordIguales(clave1: string, clave2: string){
-  return( formGrup: FormGroup){
-    const clave1Control = formGrup.get(clave1);
-    const clave2Control = formGrup.get(clave2);
-     if (clave1Control.value === clave2Control.value) {
-             clave2Control.setErrors(null);
-     } else {
-      clave2Control.setErrors({ noEsIgual: true});
-     }
-  }
-
 }

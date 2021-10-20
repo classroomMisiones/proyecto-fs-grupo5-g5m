@@ -90,30 +90,49 @@
       <h2 class="title">Ingresar Dinero</h2>
 
 
-        <div class="card-single">
-          <div class="card-body">
-            <div>
-              <h5>Elija metodo a utilizar</h5>
-              <br>
-              <div class="row">
-                <a [routerLink]="'../tarjeta-debito'">
-                  <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal"
-                  data-bs-dismiss="modal">Tarjeta de debito</button>
-                </a>
+      <div class="card-single">
+        <div class="card-body">
+          <form class="custom-form" [formGroup]="form">
+          <div>
+            <h5>¿Cuanto quieres ingresar?</h5>
+            <br>
+
+            <div class="row">
+
+              <div class="input-group mb-3">
+                <span class="input-group-text">Ingrese monto</span>
+                <span class="input-group-text">$</span>
+                <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)">
+                <span class="input-group-text">.00</span>
               </div>
-              <br>
-              <div class="row">
-                <a [routerLink]="'../efectivo'">
+            </div>
+            <br>
+            <div class="row">
+              <div class="input-group mb-3">
+                <span class="input-group-text">Numero de tarjeta</span>
+
+                <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)">
+
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col"></div>
+              <div class="col"></div>
+              <div class="col">
+                <div class="input-group mb-3">
                 <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal"
-                data-bs-dismiss="modal">Efectivo</button>
-                </a>
+                data-bs-dismiss="modal">Aceptar</button>
               </div>
+            </div>
 
             </div>
-          </div>
 
+          </div>
+        </form>
         </div>
 
+      </div>
 
 
     </main>

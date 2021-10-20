@@ -11,7 +11,7 @@ import { ConfiguracionComponent } from './configuracion/configuracion.component'
 import { FaqComponent } from './faq/faq.component';
 import { IngresarDineroComponent } from './ingresar-dinero/ingresar-dinero.component';
 
-import { EfectivoComponent } from './ingresar-dinero/efectivo/efectivo.component';
+
 import { TarjetaDebitoComponent } from './ingresar-dinero/tarjeta-debito/tarjeta-debito.component';
 
 const routes: Routes = [
@@ -21,7 +21,7 @@ const routes: Routes = [
   { path: "nosotros", component: NosotrosComponent, pathMatch: 'full' },
   { path: "dashboard", component: DashboardComponent, pathMatch: 'full' },
   { path: 'ingresar-dinero', component: IngresarDineroComponent, pathMatch: 'full'},
-  { path: "efectivo", component: EfectivoComponent, pathMatch: 'full' },
+
   { path: "tarjeta-debito", component: TarjetaDebitoComponent, pathMatch: 'full' },
   { path: "configuracion", component: ConfiguracionComponent, pathMatch: 'full' },
   { path: "faq", component: FaqComponent, pathMatch: 'full' },

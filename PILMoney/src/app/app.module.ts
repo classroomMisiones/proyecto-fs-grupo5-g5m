@@ -17,7 +17,7 @@ import { NosotrosComponent } from './nosotros/nosotros.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ConfiguracionComponent } from './configuracion/configuracion.component';
 import { IngresarDineroComponent } from './ingresar-dinero/ingresar-dinero.component';
-import { EfectivoComponent } from './ingresar-dinero/efectivo/efectivo.component';
+
 import { TarjetaDebitoComponent } from './ingresar-dinero/tarjeta-debito/tarjeta-debito.component';
 
 
@@ -35,9 +35,9 @@ import { TarjetaDebitoComponent } from './ingresar-dinero/tarjeta-debito/tarjeta
     DashboardComponent,
     ConfiguracionComponent,
     IngresarDineroComponent,
-    EfectivoComponent,
+
     TarjetaDebitoComponent
-    
+
   ],
   imports: [
     BrowserModule,

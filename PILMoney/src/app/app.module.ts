@@ -15,10 +15,8 @@ import { FormularioComponent } from './registro-usuario/formulario/formulario.co
 import { LoginComponent } from './login/login.component';
 import { NosotrosComponent } from './nosotros/nosotros.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { ConfiguracionComponent } from './configuracion/configuracion.component';
 import { IngresarDineroComponent } from './ingresar-dinero/ingresar-dinero.component';
-
-import { TarjetaDebitoComponent } from './ingresar-dinero/tarjeta-debito/tarjeta-debito.component';
+import { ConfiguracionComponent } from './configuracion/configuracion.component';
 
 
 @NgModule({
@@ -36,7 +34,6 @@ import { TarjetaDebitoComponent } from './ingresar-dinero/tarjeta-debito/tarjeta
     ConfiguracionComponent,
     IngresarDineroComponent,
 
-    TarjetaDebitoComponent
 
   ],
   imports: [

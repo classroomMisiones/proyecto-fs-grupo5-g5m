@@ -18,8 +18,8 @@ import { LoginLoginRequestService } from '../service/login-usuarios.service';
 
 export class LoginComponent implements OnInit {
   form = this.fb.group({
-    Mail : ['sophiagonazalez@hotmail.com',{ validators:[Validators.required, Validators.email,Validators.minLength(5)], updateOn: 'blur' }],
-    Clave : ['Password55',[Validators.required, Validators.minLength(8), createPasswordStrengthValidator() ]]
+    Mail : ['',{ validators:[Validators.required, Validators.email,Validators.minLength(5)], updateOn: 'blur' }],
+    Clave : ['',[Validators.required, Validators.minLength(8), createPasswordStrengthValidator() ]]
   });
   // Objeto para el envio de la solicitud de tocken
   grabarToken = {

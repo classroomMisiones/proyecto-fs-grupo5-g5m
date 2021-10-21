@@ -78,8 +78,8 @@ export class FormularioComponent implements OnInit {
   // ********* ENVIO EL FORMULARIO PARA EL POST *********
   // ****************************************************
   onSubmit(){ //this.router.navigate(['/dashboard']);
-      // ***** HAGO EL SUBMIT DE LOS DATOS *****
-      // ***asigno los valores del formulario al objeto
+    // ***** HAGO EL SUBMIT DE LOS DATOS *****
+    // ***asigno los valores del formulario al objeto
       this.ObjBusqueda = this.form.value;
       this.ObjMail = this.ObjBusqueda;
       this.ObjBusqueda.Id_rol = 1;
@@ -87,34 +87,34 @@ export class FormularioComponent implements OnInit {
       
       console.log('HAGO EL PING');
       if (this.loginRequestService.getPing()){      // console.log("OK, PING RECIBIDO");
-        // ********** GUARDO EL MAIL **********
+    // ********** GUARDO EL MAIL **********
         this.emailService.postMail(this.ObjBusqueda)
         .then(IdMail =>{
           console.log("Registro de Email Exitoso!");
           this.ObjBusqueda.Id_usuario = IdMail;
           console.log(IdMail);
 
-              // // ********** Busco el Id_mail **********
+    // ********** Busco el Id_mail **********
               // this.mailCrearCuentaService.getId()
               // .then(idmail =>{
               //     console.log(`Obtengo el Id mail : ${idmail}`);
                   this.ObjMail.Id_email = IdMail;
                   this.ObjBusqueda.Id_email = IdMail;
               //     console.log(this.ObjBusqueda);
-                      // ********** GUARDO EL USUARIO **********
+    // ********** GUARDO EL USUARIO **********
                       this.usuariosService.postUsuario(this.ObjBusqueda)
                       .then(IdUsuario =>{
                           console.log("Registro de Usuario Exitoso!");
-                          // ********** Busco el Id_usuario **********
+    // ********** Busco el Id_usuario **********
                               // this.usuarioCrearCuentaService.getId()
                               // .then(idusuario =>{
                               //     console.log(`Obtengo el Id usuario : ${idusuario}`);
                                   this.ObjMail.Id_usuario = IdUsuario;
-                                      // ********** Actualizo el mail **********
+    // ********** Actualizo el mail **********
                                       this.emailService.putMail(IdMail, this.ObjMail)
                                       .then(() =>{
                                           console.log("Actualizacion del MAil Exitosa!");
-                                       //*************** HAGO EL PEDIDO DEL TOKEN ******************* */
+    //*************** HAGO EL PEDIDO DEL TOKEN ******************* */
                                               console.log('OK; HAGO EL PEDIDO DEL TOKEN')
                                               console.log(this.objpidoToken.Clave+ " "+ this.objpidoToken.Mail)
                                               this.objpidoToken = this.form.value;
@@ -128,13 +128,13 @@ export class FormularioComponent implements OnInit {
                                                   this.objGrabarToken.N_token = token;
                                                   console.log(this.objGrabarToken.N_token);
                                                   console.log(this.objGrabarToken.Clave+" "+this.objGrabarToken.Mail);
-                                                      // ********** GUARGO EL LOGIN EN LA TABLA "login_usuarios" EN LA BBDD ***************************************            
+    // ********** GUARGO EL LOGIN EN LA TABLA "login_usuarios" EN LA BBDD ***************************************            
                                                       console.log("VOY A GRABAR EL LOGIN DEL USUARIO EN LA BBDD")
                                                       this.loginLoginRequestService.postLoginUsuario(this.objGrabarToken)
                                                       .then(respuesta =>{
                                                           console.log("Login grabado en la BBDD");
                                                           console.log('OK; A ENTRAR GRABAR EL TOKEN EN BBDD')
-                                                          // ********** SI RECIBI EL TOKENN LO GUARGO EN LA BBDD ***************************************
+    // ********** SI RECIBI EL TOKENN LO GUARGO EN LA BBDD ***************************************
                                                           console.log("OK, VOY A GRABAR EL TOKEN EN LA BBDD")
                                                           console.log(this.objGrabarToken);
                                                               this.nTokenService.PutToken(this.objGrabarToken)

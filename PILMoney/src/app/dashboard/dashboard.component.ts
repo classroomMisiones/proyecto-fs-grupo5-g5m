@@ -60,7 +60,7 @@ export class DashboardComponent implements OnInit {
 // ***************************************************************
   movimientosPesos(){
     console.log("******************** BUSCO MOVIMIENTOS")
-    this.transaccionesCuentaService.getxId(6) // RECIBO LAS RESPUESTA DEL POST
+    this.transaccionesCuentaService.getxId(this.ID) // RECIBO LAS RESPUESTA DEL POST
     .then(respuesta => {
       this.arrTransacciones = respuesta;
       console.log(this.arrTransacciones[0].Fecha);
@@ -106,57 +106,48 @@ export class DashboardComponent implements OnInit {
         .catch(error => console.log(`Error desde el POST ${error}`) 
         );
             
-        setTimeout(() => {
-          // ***** ciclo de espera para cambiar el color del texto
-          this.ColorActualizoCripto.color = '#fff'
-          this.ColorActualizoCriptos.color = '#E10101'
-        }, 1000); 
+    setTimeout(() => {      // ***** ciclo de espera para cambiar el color del texto
+        this.ColorActualizoCripto.color = '#fff'
+        this.ColorActualizoCriptos.color = '#E10101'
+    }, 1000); 
   };
 
 
 
   ngOnInit() {
     console.log("estoy en el ngOnInit DashBoard");
-    // ***** Hago la consulta a la API por los valores de la cripto
-    this.consultarAPI();
+    
+    this.consultarAPI(); // ***** Hago la consulta a la API por los valores de la cripto
 
-    setInterval(()=>{
-      // ***** Inicio un interval que cada 10 segundos actualiza los valores de la cripto
+    setInterval(()=>{   // ***** Inicio un interval que cada 10 segundos actualiza los valores de la cripto
       this.consultarAPI()
     },10000);
 
-    // ***** Cargo el array comisiones
-    this.onClikComisiones();
+    //this.movimientosPesos(); // ***** Cargo el array movimientos
+    this.onClikComisiones(); // ***** Cargo el array comisiones vigentes
 
-    // ***** tomo el token desde local storage
-    // ***** Guardo el token en un atributo privado  
+    // ***** tomo el token desde local storage   // ***** Guardo el token en un atributo privado  
     this.token = localStorage.getItem('miToken'); // console.log("ESTE ES EL TOKEN" + this.token);
 
-    // ***** tomo el ID del usuario desde la BBDD
-    this.nTokenService.getId(this.token)
-    .then( IdUsuario =>{
-    // ***** Guardo el ID en un atributo privado  
+    this.nTokenService.getId(this.token) // ***** tomo el ID del usuario desde la BBDD
+    .then( IdUsuario =>{    // ***** Guardo el ID en un atributo privado  
         this.ID = IdUsuario;  // console.log(`ID RECUPERADO: ${this.ID}`);
-
         // ***************************************************************
         // ***** Busco los datos del Usuario Actual **********************
         // **************************************************************
         //console.log("Usuario a Buscar:" + this.ID);
         this.usuarioService.getxId(this.ID) // RECIBO LAS RESPUESTA DEL POST
-        .then(respuesta => {
-            // ***** Guardo los registroe en un array console.log(respuesta);
+        .then(respuesta => {          // ***** Guardo los registroe en un array console.log(respuesta);
             this.UsuarioActual = respuesta;  // console.log(`Usuario Actual: ${respuesta}`);  console.log(`Usuario Actual: ${this.UsuarioActual}`);
         })
         .catch(error => console.log(`Error desde el POST ${error}`)
         );
 
-        // ***** Busco los registros de saldos de la cuenta
         // ***************************************************************
         // ******************** SALDO EN CUENTA *************************
         // **************************************************************
-        this.saldoCuentaService.getxId(this.ID) // RECIBO LAS RESPUESTA DEL POST
-        .then(respuesta => {
-            // ***** Guardo los registroe en un array console.log(respuesta);
+        this.saldoCuentaService.getxId(this.ID) // ***** Busco los registros de saldos de la cuenta  // RECIBO LAS RESPUESTA DEL POST
+        .then(respuesta => {       // ***** Guardo los registroe en un array console.log(respuesta);
             this.arrSaldoCuenta = respuesta; //  console.log(`Objeto de los saldos por ID ${this.arrSaldoCuenta}`);
         })
         .catch(error => console.log(`Error desde el POST ${error}`)
@@ -171,8 +162,7 @@ export class DashboardComponent implements OnInit {
   // ***************************************************************
   // ************** Acciones al salir del dashboard ****************
   // ***************************************************************
-  onClickLogOut(){
-    // ***** Realizo el put de la fecha y hora del LogOut
+  onClickLogOut(){     // ***** Realizo el put de la fecha y hora del LogOut
     // **** Grabo el login out en la BBDD
     this.loginLoginRequestService.putLoginUsuario(this.ID)
     .then(() =>{

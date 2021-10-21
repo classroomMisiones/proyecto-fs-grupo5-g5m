@@ -259,7 +259,7 @@
             <div class="pop">
               <button
                 type="button"
-                class="btn btn-danger"
+                class="btn btn btn-secondary"
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModal"
                 data-bs-whatever="@mdo"
@@ -278,7 +278,7 @@
                   <div class="modal-content">
                     <div class="modal-header">
                       <h5 class="modal-title" id="exampleModalLabel">
-                        Últimos movimientos
+                        Últimos movimientos <!-- arrTransacciones -->
                       </h5>
                       <button
                         type="button"
@@ -293,29 +293,27 @@
                           <thead>
                             <tr>
                               <th scope="col">#</th>
-                              <th scope="col">Tipo</th>
+                              <th scope="col">Fecha</th>
+                              <th scope="col">Hora</th>
+                              <th scope="col">Cod. tipo transaccion</th>
+                              <th scope="col">Cod. moneda de origen</th>
                               <th scope="col">Monto</th>
-                              <th scope="col">Moneda</th>
+                              <th scope="col">Cod. cuenta de destino</th>
+                              <th scope="col">Cod. Moneda de Destino</th>
+                              <th scope="col">Monto</th>
                             </tr>
                           </thead>
                           <tbody>
-                            <tr *ngForm="let registro of arrTransacciones">
-                              <th scope="row">1</th>
-                              <td>Deposito</td>
-                              <td>$55633</td>
-                              <td>Dolar</td>
-                            </tr>
-                            <tr>
-                              <th scope="row">2</th>
-                              <td>Retiro</td>
-                              <td>$4582</td>
-                              <td>Peso</td>
-                            </tr>
-                            <tr>
-                              <th scope="row">3</th>
-                              <td>Transferencia</td>
-                              <td>$78582</td>
-                              <td>Peso</td>
+                            <tr *ngFor = "let registro of arrTransacciones">
+                              <td scope="row">{{registro.Id_transaccion}}</td>
+                              <td>{{registro.Fecha}}</td>
+                              <td>{{registro.Hora}}</td>
+                              <td>{{registro.Id_tipo_transaccion}}</td>
+                              <td>{{registro.Id_moneda_origen}}</td>
+                              <td>{{registro.Monto_origen}}</td>
+                              <td>{{registro.Id_cuenta_destino}}</td>
+                              <td>{{registro.Id_moneda_destino}}</td>
+                              <td>{{registro.Monto_destino}}</td>
                             </tr>
                           </tbody>
                         </table>
@@ -676,7 +674,7 @@
             <div class="pop">
               <button
                 type="button"
-                class="btn btn-primary"
+                class="btn btn-secondary"
                 data-bs-toggle="modal"
                 data-bs-target="#ej"
                 data-bs-whatever="@mdo"

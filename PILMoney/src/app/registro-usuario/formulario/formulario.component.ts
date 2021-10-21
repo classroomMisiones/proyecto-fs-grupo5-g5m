@@ -32,14 +32,14 @@ export class FormularioComponent implements OnInit {
     Nombre: ['Antonio',[Validators.required, Validators.minLength(8), createPasswordStrengthValidator()]],
     Apellido: ['Valle',[Validators.required, Validators.minLength(8), createPasswordStrengthValidator()]],
     Mail: ['antoniovalle@gmail.com',{ validators:[Validators.required, Validators.email,Validators.minLength(5)], updateOn: 'blur' }],
-    Clave: ['Password56',[Validators.required, Validators.minLength(8), createPasswordStrengthValidator()]], 
+    Clave: ['Password56',[Validators.required, Validators.minLength(8), createPasswordStrengthValidator()]],
     Clave2: ['Password56',[Validators.required, Validators.minLength(8), createPasswordStrengthValidator()]]
-    
+
   });
    // Objeto para el envio de la solicitud de tocken
   objpidoToken! : loginInterface; // objeto para pedir el token => "Mail" "Clave"
   objGrabarToken! : N_token; // objeto para guardar el token => "Mail" "Clave" "N_token"
-  
+
   ObjMail = new Email();
   controlProcesos : boolean = false;
 
@@ -54,9 +54,9 @@ export class FormularioComponent implements OnInit {
     "Id_usuario" : 0,
     "Id_email" : 0
   }
-  
+
   constructor(private fb : FormBuilder,
-              private usuariosService : UsuariosService, 
+              private usuariosService : UsuariosService,
               private router : Router,
               private emailService : EmailService,
               private loginLoginRequestService : LoginLoginRequestService,
@@ -66,7 +66,9 @@ export class FormularioComponent implements OnInit {
               private mailCrearCuentaService : MailCrearCuentaService
               ){}
 
-  ngOnInit(){}
+  ngOnInit(){
+
+  }
 
   get nombre(){return this.form.get('Nombre');}
   get apellido(){return this.form.get('Apellido');}
@@ -74,7 +76,7 @@ export class FormularioComponent implements OnInit {
   get clave(){return this.form.get('Clave');}
   get clave2(){return this.form.get('Clave');}
 
-  // ****************************************************  
+  // ****************************************************
   // ********* ENVIO EL FORMULARIO PARA EL POST *********
   // ****************************************************
   onSubmit(){ //this.router.navigate(['/dashboard']);
@@ -84,7 +86,7 @@ export class FormularioComponent implements OnInit {
       this.ObjMail = this.ObjBusqueda;
       this.ObjBusqueda.Id_rol = 1;
       this.objpidoToken = this.form.value;          // console.log(this.ObjBusqueda+" "+this.objGrabarToken+" "+this.objpidoToken);
-      
+
       console.log('HAGO EL PING');
       if (this.loginRequestService.getPing()){      // console.log("OK, PING RECIBIDO");
     // ********** GUARDO EL MAIL **********
@@ -145,7 +147,7 @@ export class FormularioComponent implements OnInit {
                                                               .catch(error => {
                                                                   console.log("NO SE PUDO GRABAR EL TOKEN ERROR: " + error)
                                                                   this.controlProcesos = false;
-                                                              });   
+                                                              });
                                                       })//login usuario
                                                       .catch(error => console.log("NO SE PUDO GRABAR EL LOGIN USUARIO ERROR: " + error)
                                                       );
@@ -173,13 +175,13 @@ export class FormularioComponent implements OnInit {
                 // .catch(error => {
                 //     console.log("No se Pudo Registrar al Usuario" + error)
                 //     this.controlProcesos = false;
-                // });   
+                // });
         }) // email post
         .catch(error => {
           console.log("NO SE PUDO GRABAR EL MAIL: " + error)
           this.controlProcesos = false;
         });
-      
+
       }else{
         console.log("NO HAY CONEXION CON EL SERVIDOR")
       }
@@ -199,3 +201,6 @@ export function createPasswordStrengthValidator(): ValidatorFn {
       return !passwordValid ? {passwordStrength:true}: null;
   }
 }
+
+
+
